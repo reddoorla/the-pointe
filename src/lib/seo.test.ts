@@ -25,7 +25,9 @@ describe("composeTitle", () => {
 
   it("does not double the brand when the title already contains it", () => {
     expect(composeTitle(SITE_NAME)).toBe(SITE_NAME);
-    expect(composeTitle(`${SITE_NAME} Studio — Work`)).toBe(`${SITE_NAME} Studio — Work`);
+    expect(composeTitle(`${SITE_NAME} Studio — Work`)).toBe(
+      `${SITE_NAME} Studio — Work`,
+    );
   });
 });
 
