@@ -15,10 +15,13 @@ export const repositoryName =
  */
 export const isPlaceholderRepo = repositoryName === "your-prismic-repo-name";
 
+/** The homepage document's UID (single-page Blux migration). */
+export const HOME_UID = "the-pointe";
+
 const routes: prismic.ClientConfig["routes"] = [
   {
     type: "page",
-    uid: "home",
+    uid: HOME_UID,
     path: "/",
   },
   {

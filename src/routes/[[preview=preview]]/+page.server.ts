@@ -1,13 +1,13 @@
 import { asText } from "@prismicio/client";
 import { error } from "@sveltejs/kit";
 
-import { createClient, isPlaceholderRepo } from "$lib/prismicio";
+import { createClient, HOME_UID, isPlaceholderRepo } from "$lib/prismicio";
 
 export async function load({ fetch, cookies }) {
   const client = createClient({ fetch, cookies });
 
   try {
-    const page = await client.getByUID("page", "home");
+    const page = await client.getByUID("page", HOME_UID);
 
     return {
       page,

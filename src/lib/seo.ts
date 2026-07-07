@@ -3,7 +3,7 @@
 
 import { imgix, isPrismicImageUrl } from "$lib/utils/image";
 
-export const SITE_NAME = "Reddoor";
+export const SITE_NAME = "The Pointe";
 export const SITE_LOCALE = "en_US";
 
 /** Fallback meta description when a page has none. Empty = omit the tag —

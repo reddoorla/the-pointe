@@ -1,4 +1,4 @@
-import { createClient, isPlaceholderRepo } from "$lib/prismicio";
+import { createClient, HOME_UID, isPlaceholderRepo } from "$lib/prismicio";
 import type { RequestHandler } from "./$types";
 
 export const prerender = true;
@@ -9,7 +9,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
   const origin = url.origin;
 
   const urls = pages.map((page) => {
-    const path = page.uid === "home" ? "/" : `/${page.uid}`;
+    const path = page.uid === HOME_UID ? "/" : `/${page.uid}`;
     const lastmod = new Date(
       page.last_publication_date ?? Date.now(),
     ).toISOString();
