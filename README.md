@@ -1,8 +1,12 @@
-# Reddoor Starter and Site Scaffold
+# The Pointe Burbank
 
-## Purpose
+SvelteKit + Tailwind + Prismic site for The Pointe (www.thepointeburbank.com), migrated
+from Blux via the reddoor-maintenance `blux` pipeline. Content lives in the
+`the-pointe.prismic.io` repository. Scaffolded from [reddoor-starter](https://github.com/reddoorla/reddoor-starter).
 
-A forkable starting point for all SvelteKit, Tailwind + Prismic sites developed at Reddoor.
+## Starter reference
+
+Everything below is inherited starter documentation.
 
 ## Stack
 

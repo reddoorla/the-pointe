@@ -5,6 +5,7 @@ import {
   resolveOgImage,
   organizationJsonLd,
   composeTitle,
+  SITE_NAME,
   OG_IMAGE_WIDTH,
   OG_IMAGE_HEIGHT,
 } from "./seo";
@@ -13,18 +14,20 @@ const PRISMIC = "https://images.prismic.io/acme/abc.png?auto=compress";
 
 describe("composeTitle", () => {
   it("appends the site name for brand recall", () => {
-    expect(composeTitle("Contact")).toBe("Contact | Reddoor");
+    expect(composeTitle("Contact")).toBe(`Contact | ${SITE_NAME}`);
   });
 
   it("returns the bare site name for the home page (no page title)", () => {
-    expect(composeTitle(undefined)).toBe("Reddoor");
-    expect(composeTitle("")).toBe("Reddoor");
-    expect(composeTitle("   ")).toBe("Reddoor");
+    expect(composeTitle(undefined)).toBe(SITE_NAME);
+    expect(composeTitle("")).toBe(SITE_NAME);
+    expect(composeTitle("   ")).toBe(SITE_NAME);
   });
 
   it("does not double the brand when the title already contains it", () => {
-    expect(composeTitle("Reddoor")).toBe("Reddoor");
-    expect(composeTitle("Reddoor Studio — Work")).toBe("Reddoor Studio — Work");
+    expect(composeTitle(SITE_NAME)).toBe(SITE_NAME);
+    expect(composeTitle(`${SITE_NAME} Studio — Work`)).toBe(
+      `${SITE_NAME} Studio — Work`,
+    );
   });
 });
 

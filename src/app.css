@@ -11,14 +11,26 @@
   --color-current: currentColor;
   --color-black: black;
   --color-white: white;
-  --color-background: white;
 
-  /* Neutral placeholder palette — replace per project */
+  /* Palette from the Blux export theme (blux emit → theme.css): navy on white.
+     Overlay tokens style modal/menu surfaces. Fonts pending sign-off — the
+     export shipped no font settings, so body/headings fall back to sans. */
+  --color-background: #fff;
+  --color-text: #053a6c;
+  --color-links: #053a6c;
+  --color-icons: #053a6c;
+  --color-overlay-background: #fff;
+  --color-overlay-text: #000;
+  --color-overlay-icons: #000;
+
   --color-light: #e5e7eb;
-  --color-primary: #111827;
-  --color-dark: #111827;
-  --color-secondary: #6b7280;
-  --color-accent: #111827;
+  --color-primary: #053a6c;
+  --color-dark: #053a6c;
+  --color-secondary: #46648a;
+  --color-accent: #053a6c;
+
+  --font-heading: sans-serif;
+  --font-body: sans-serif;
 
   --transition-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
   --transition-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -179,12 +191,26 @@
   }
 
   body {
-    font-family: "helvetica", sans-serif;
+    font-family: var(--font-body);
     max-width: 100vw;
     overflow-x: clip;
     overflow-y: auto;
     margin: 0;
+    color: var(--color-text);
     background-color: var(--color-background);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  a {
+    color: var(--color-links);
   }
 
   /* Opt-in: add `class="hide-scrollbars"` to <html> in app.html to hide scrollbars
