@@ -46,8 +46,8 @@ const navLinks = [
 
 describe("Nav — logo-only mode", () => {
   it("renders no menu button without navLinks", () => {
-    const { queryByLabelText, getByText } = render(Nav);
-    expect(getByText("Logo")).toBeTruthy();
+    const { queryByLabelText, getByAltText } = render(Nav);
+    expect(getByAltText("The Pointe — home")).toBeTruthy();
     expect(queryByLabelText("Open menu")).toBeNull();
   });
 });

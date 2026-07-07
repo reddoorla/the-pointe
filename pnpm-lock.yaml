@@ -8,6 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/martel':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/montserrat':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@lucide/svelte':
         specifier: ^1.17.0
         version: 1.17.0(svelte@5.55.10(@typescript-eslint/types@8.60.0))
@@ -418,6 +424,12 @@ packages:
     peerDependenciesMeta:
       '@noble/hashes':
         optional: true
+
+  '@fontsource/martel@5.2.8':
+    resolution: {integrity: sha512-5leWG3FVh2BS+4TfVYoaUoDGizhjmR98e0j2UpalfYu008Oe5s5XgIqhXCDCqaWBtXmZOb2I1Q9S47YLiXGEiQ==}
+
+  '@fontsource/montserrat@5.2.8':
+    resolution: {integrity: sha512-xTjLxSbSfCycDB0pwmNsfNvdfWPaDaRQ2LC6yt/ZI7SdvXG52zHnzNYC/09mzuAuWNJyShkteutfCoDgym56hQ==}
 
   '@hapi/hoek@9.3.0':
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -3343,6 +3355,10 @@ snapshots:
       levn: 0.4.1
 
   '@exodus/bytes@1.15.0': {}
+
+  '@fontsource/martel@5.2.8': {}
+
+  '@fontsource/montserrat@5.2.8': {}
 
   '@hapi/hoek@9.3.0': {}
 

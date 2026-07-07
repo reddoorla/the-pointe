@@ -1,4 +1,8 @@
 <script lang="ts">
+  import "@fontsource/martel/200.css";
+  import "@fontsource/montserrat/300.css";
+  import "@fontsource/montserrat/400.css";
+  import "@fontsource/montserrat/500.css";
   import { PrismicPreview } from "@prismicio/svelte/kit";
   import { page } from "$app/state";
   import { afterNavigate, beforeNavigate } from "$app/navigation";
@@ -40,7 +44,7 @@
   Skip to main content
 </a>
 <div class="flex flex-col min-h-screen">
-  <Nav />
+  <Nav navLinks={[{ text: "Contact Us", href: "#contact" }]} />
 
   <main id="main-content" tabindex="-1" class="flex-1">
     {@render children?.()}
