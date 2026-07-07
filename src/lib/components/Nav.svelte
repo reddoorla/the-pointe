@@ -2,6 +2,7 @@
   import { Menu, X } from "@lucide/svelte";
   import { trapFocus } from "$lib/actions/trapFocus";
   import { fade } from "$lib/transitions";
+  import wordmark from "$lib/assets/tbp-pointe-wordmark.png";
 
   interface NavLink {
     text: string;
@@ -25,9 +26,11 @@
 </script>
 
 <nav
-  class="fixed top-0 left-0 w-full z-50 px-8 py-4 flex items-center justify-between"
+  class="fixed top-0 left-0 w-full z-50 px-8 py-4 flex items-center justify-between bg-background/90 backdrop-blur-sm"
 >
-  <a href="/" class="font-bold text-lg">Logo</a>
+  <a href="/" class="block">
+    <img src={wordmark} alt="The Pointe — home" class="h-6 w-auto" />
+  </a>
 
   {#if navLinks.length > 0}
     <div class="hidden lg:flex items-center gap-8">

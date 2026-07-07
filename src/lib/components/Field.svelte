@@ -61,7 +61,7 @@
   <label for={inputId} class="text-sm font-medium">
     {label}
     {#if required}
-      <span aria-hidden="true" class="text-red-600">*</span>
+      <span aria-hidden="true" class="text-red-700">*</span>
       <span class="sr-only">(required)</span>
     {/if}
   </label>
@@ -83,7 +83,7 @@
       bind:value
       aria-describedby={describedBy}
       aria-invalid={error ? "true" : undefined}
-      class="border-2 border-light rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary aria-invalid:border-red-600"
+      class="border-2 border-light rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary aria-invalid:border-red-700"
     ></textarea>
   {:else}
     <input
@@ -100,11 +100,11 @@
       bind:value
       aria-describedby={describedBy}
       aria-invalid={error ? "true" : undefined}
-      class="border-2 border-light rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary aria-invalid:border-red-600"
+      class="border-2 border-light rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary aria-invalid:border-red-700"
     />
   {/if}
 
   {#if error}
-    <p id={errorId} role="alert" class="text-sm text-red-600">{error}</p>
+    <p id={errorId} role="alert" class="text-sm text-red-700">{error}</p>
   {/if}
 </div>
