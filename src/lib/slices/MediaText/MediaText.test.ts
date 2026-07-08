@@ -31,13 +31,28 @@ describe("MediaText slice", () => {
     expect(getByRole("img").getAttribute("alt")).toBe("Pool");
   });
 
-  it("applies the reverse layout class for imageLeft", () => {
+  it("reverses the image side for imageLeft via grid order", () => {
     const { container } = render(MediaText, {
       props: { slice: makeSlice("imageLeft") },
     });
-    const section = container.querySelector(
-      "[data-slice-variation='imageLeft']",
+    // the editorial split reverses by ordering the grid columns, not a flex
+    // reverse: copy moves to order-2, media to order-1.
+    expect(container.querySelector(".mt-copy")?.className).toContain(
+      "lg:order-2",
     );
-    expect(section?.className).toContain("md:flex-row-reverse");
+    expect(container.querySelector(".mt-media")?.className).toContain(
+      "lg:order-1",
+    );
+  });
+
+  it("renders a media-only row as a centered feature image (no empty copy column)", () => {
+    const slice = makeSlice("imageRight");
+    // strip the text so only the image remains
+    (slice.primary as { heading: unknown[]; body: unknown[] }).heading = [];
+    (slice.primary as { heading: unknown[]; body: unknown[] }).body = [];
+    const { container } = render(MediaText, { props: { slice } });
+    expect(container.querySelector(".mt-copy")).toBeNull();
+    expect(container.querySelector(".mt-media")).toBeNull();
+    expect(container.querySelector("img")?.getAttribute("alt")).toBe("Pool");
   });
 });
