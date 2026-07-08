@@ -70,7 +70,9 @@ export function bandStyle(
     out.push(`min-height: ${height}`);
     out.push("display: flex");
     out.push("flex-direction: column");
-    out.push(`justify-content: ${VALIGN[block?.["vertical-align"] ?? ""] ?? "center"}`);
+    out.push(
+      `justify-content: ${VALIGN[block?.["vertical-align"] ?? ""] ?? "center"}`,
+    );
   }
   return out.join("; ");
 }

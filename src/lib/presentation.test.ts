@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { bandStyle, contentStyle, pagePresentation, roleClass } from "./presentation";
+import {
+  bandStyle,
+  contentStyle,
+  pagePresentation,
+  roleClass,
+} from "./presentation";
 
 describe("roleClass", () => {
   it("names the role utility class", () => {
@@ -53,9 +58,7 @@ describe("bandStyle", () => {
     expect(bandStyle({ height: "80vh" })).toContain("justify-content: center");
   });
   it("combines a background band and a height band", () => {
-    expect(
-      bandStyle({ "background-color": "#ffffff", height: "600px" }),
-    ).toBe(
+    expect(bandStyle({ "background-color": "#ffffff", height: "600px" })).toBe(
       "background-color: #ffffff; min-height: 600px; display: flex; flex-direction: column; justify-content: center",
     );
   });
@@ -65,9 +68,7 @@ describe("bandStyle", () => {
     expect(bandStyle({}, "45vh")).toBe(
       "min-height: 45vh; display: flex; flex-direction: column; justify-content: center",
     );
-    expect(bandStyle({ height: "80vh" }, "45vh")).toContain(
-      "min-height: 80vh",
-    );
+    expect(bandStyle({ height: "80vh" }, "45vh")).toContain("min-height: 80vh");
   });
   it("ignores a literal 'none' height", () => {
     expect(bandStyle({ height: "none" })).toBe("");
