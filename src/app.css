@@ -1,6 +1,13 @@
 /* Tailwind CSS v4 configuration */
 @import "tailwindcss";
 
+/* The Blux export's own text roles + `.txt-role-textN` utilities, generated
+   from theme.css (scripts/gen-blux-theme.mjs). Slice components apply the role
+   each heading/body actually uses, per styles-manifest.json — no per-site
+   type decisions live in this repo. Unlayered, so a role utility wins over the
+   @layer base heading defaults. */
+@import "./blux-theme.generated.css";
+
 @theme {
   --screen-sm: 560px;
   --screen-md: 768px;
@@ -39,22 +46,8 @@
   --font-heading: "Martel", Georgia, serif;
   --font-body: "Montserrat", -apple-system, "Segoe UI", sans-serif;
 
-  /* Named display/body roles (px→rem ÷16). Responsive pairs carry the export's
-     __media_mobile_* value as the clamp floor and the desktop value as the cap. */
-  /* text2 "Page Title" — Montserrat 300 70/100 uppercase (hero overlay voice); mobile 40/60 */
-  --text-page-title: clamp(2.5rem, 1.1rem + 4.6vw, 4.375rem);
-  --text-page-title--line-height: 1.4;
-  /* text11 "Page Title Serif" — Martel 200 50/80 capitalize; mobile 40/60 */
-  --text-serif-title: clamp(2.5rem, 1.9rem + 2vw, 3.125rem);
-  --text-serif-title--line-height: 1.6;
-  /* text5 "Grid Titles" — Montserrat 500 15/26 uppercase 1.5px (eyebrow) */
-  --text-eyebrow: 0.9375rem;
-  --text-eyebrow--line-height: 1.73;
-  --text-eyebrow--letter-spacing: 0.1em;
-  /* text14 "Body Serif" — Martel 200 22/38 */
-  --text-serif-body: 1.375rem;
-  --text-serif-body--line-height: 1.73;
-  /* text1 "Body (Default)" — Montserrat 300 18/36; mobile 18/30 */
+  /* Body default — text1 "Body (Default)", Montserrat 300 18/36. (The display
+     roles are the generated --text-textN vars in blux-theme.generated.css.) */
   --text-body: 1.125rem;
   --text-body--line-height: 2;
 
@@ -225,73 +218,11 @@ main > section.hero-band:first-child {
   }
 }
 
-/* ---- Export text roles, applied to slice content ----------------------------
-   These map the Blux export's named text roles onto the headings/paragraphs
-   PrismicRichText renders inside slice components. They live here (not in each
-   slice's <style>) because dynamically-imported slice component styles load
-   unreliably in this SvelteKit build; app.css is always in the layout bundle.
-   Unlayered so they win over the @layer base element defaults. */
-
-/* Hero overlay — text2 "Page Title": Montserrat 300 uppercase, 70/40px, 1.5px */
-.hero-copy :is(h1, h2) {
-  font-family: var(--font-body);
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: var(--text-page-title);
-  line-height: var(--text-page-title--line-height);
-}
-
-/* Grid eyebrow — text5 "Grid Titles": Montserrat 500 uppercase 15px 1.5px */
-.eyebrow :is(h2, h3, h4) {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: var(--text-eyebrow);
-  line-height: var(--text-eyebrow--line-height);
-  letter-spacing: var(--text-eyebrow--letter-spacing);
-  text-transform: uppercase;
-}
-
-/* Grid serif headline — text11 "Page Title Serif": Martel 200 at title scale */
-.headline :is(h2, h3, h4) {
-  font-family: var(--font-heading);
-  font-weight: 200;
-  font-size: var(--text-serif-title);
-  line-height: var(--text-serif-title--line-height);
-  text-transform: capitalize;
-}
-
-/* Standalone blurb — text14 "Body Serif": Martel 200 22/38 */
-.serif-blurb p {
-  font-family: var(--font-heading);
-  font-weight: 200;
-  font-size: var(--text-serif-body);
-  line-height: var(--text-serif-body--line-height);
-}
-
-/* RichText content is Martel serif throughout — text14 "Body Serif" for the
-   interstitial blurbs (migrated as plain paragraphs), 22/38. */
-.richtext-block p {
-  font-family: var(--font-heading);
-  font-weight: 200;
-  font-size: var(--text-serif-body);
-  line-height: var(--text-serif-body--line-height);
-  margin-block: 1em;
-}
-.richtext-block p:first-child {
-  margin-top: 0;
-}
-.richtext-block p:last-child {
-  margin-bottom: 0;
-}
-
-/* A short single-line rich_text block is a section opener — text11 "Page Title
-   Serif" display scale, capitalized. */
-.richtext-opener p {
-  font-size: var(--text-serif-title);
-  line-height: var(--text-serif-title--line-height);
-  text-transform: capitalize;
-  margin-block: 0;
+/* Text roles are applied by the slice components as `.txt-role-textN` classes
+   (see blux-theme.generated.css), driven by styles-manifest.json — there are no
+   per-site type rules here. Multi-paragraph rich_text still wants rhythm: */
+.richtext-block p + p {
+  margin-top: 1em;
 }
 
 @layer base {

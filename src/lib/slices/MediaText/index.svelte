@@ -2,17 +2,28 @@
   import RichTextBody from "$lib/components/RichTextBody.svelte";
   import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
   import { isFilled, type Content } from "@prismicio/client";
+  import { roleClass, type SliceContext } from "$lib/presentation";
 
-  interface Props {
+  let {
+    slice,
+    index,
+    context,
+  }: {
     slice: Content.MediaTextSlice;
-  }
-
-  let { slice }: Props = $props();
+    index?: number;
+    context?: SliceContext;
+  } = $props();
   let reverse = $derived(slice.variation === "imageLeft");
   let hasHeading = $derived(isFilled.richText(slice.primary.heading));
   let hasBody = $derived(isFilled.richText(slice.primary.body));
   let hasMedia = $derived(isFilled.image(slice.primary.media));
   let mediaOnly = $derived(hasMedia && !hasHeading && !hasBody);
+
+  let entry = $derived(
+    index != null ? context?.presentation?.get(index) : undefined,
+  );
+  let headingRole = $derived(entry?.presentation?.headingRole);
+  let bodyRole = $derived(entry?.presentation?.bodyRole);
 </script>
 
 {#if mediaOnly}
@@ -27,9 +38,9 @@
   </section>
 {:else}
   <!-- Photo-dominant editorial row: copy ~1/3, image ~2/3, alternating sides
-       down the page (see app.css `nth-child(even of …)` rule). A body with no
-       heading is a standalone blurb and gets the display serif, matching the
-       original's amenity rows. -->
+       down the page (see app.css `nth-child(even of …)` rule). The heading and
+       body each carry the text role the export assigned them (a heading-less
+       row's body is typically the text14 serif blurb). -->
   <section
     data-slice-type={slice.slice_type}
     data-slice-variation={slice.variation}
@@ -40,10 +51,16 @@
         ? 'lg:col-span-4'
         : 'text-center lg:col-span-8 lg:col-start-3'} {reverse
         ? 'lg:order-2'
-        : ''} {hasHeading ? '' : 'serif-blurb'}"
+        : ''}"
     >
-      <PrismicRichText field={slice.primary.heading} />
-      <RichTextBody field={slice.primary.body} />
+      {#if hasHeading}
+        <div class={roleClass(headingRole)}>
+          <PrismicRichText field={slice.primary.heading} />
+        </div>
+      {/if}
+      <div class={roleClass(bodyRole)}>
+        <RichTextBody field={slice.primary.body} />
+      </div>
     </div>
     {#if hasMedia}
       <div class="mt-media lg:col-span-8 {reverse ? 'lg:order-1' : ''}">

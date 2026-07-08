@@ -1,34 +1,37 @@
 <script lang="ts">
   import RichTextBody from "$lib/components/RichTextBody.svelte";
-  import { asText, type Content } from "@prismicio/client";
+  import type { Content } from "@prismicio/client";
+  import { roleClass, type SliceContext } from "$lib/presentation";
 
-  interface Props {
+  let {
+    slice,
+    index,
+    context,
+  }: {
     slice: Content.RichTextSlice;
-  }
+    index?: number;
+    context?: SliceContext;
+  } = $props();
 
-  let { slice }: Props = $props();
-
-  // The export renders rich_text content in Martel serif throughout (text11
-  // "Page Title Serif" for openers, text14 "Body Serif" for blurbs). A short
-  // single line is a section opener → display scale; anything longer is a
-  // blurb → serif body scale. Word count cleanly separates them in the data
-  // (openers ≤6 words, blurbs ≥9).
-  let isOpener = $derived(
-    asText(slice.primary.content).trim().split(/\s+/).filter(Boolean).length <=
-      6,
+  // The role this block uses (text5 eyebrow, text11/text0 serif display, text14
+  // serif body) comes straight from the manifest — no word-count guessing.
+  let entry = $derived(
+    index != null ? context?.presentation?.get(index) : undefined,
+  );
+  let role = $derived(
+    entry?.presentation?.headingRole ?? entry?.presentation?.bodyRole,
   );
 </script>
 
 <!-- Standalone copy blocks are the original's centered section openers and
-     interstitial blurbs — centered, on a comfortable measure. No `prose`: it
-     overrode the Martel-serif roles (text11/text14) these blocks use. -->
+     interstitial blurbs — centered, on a comfortable measure. The text role
+     (applied via .txt-role-*) decides eyebrow vs serif display vs serif body. -->
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
-  class="richtext-block mx-auto max-w-3xl px-6 py-10 text-center"
-  class:richtext-opener={isOpener}
+  class="richtext-block mx-auto max-w-3xl px-6 py-10 text-center {roleClass(
+    role,
+  )}"
 >
   <RichTextBody field={slice.primary.content} />
 </section>
-
-<!-- The .richtext-block paragraph rhythm lives in app.css (always loaded). -->

@@ -6,12 +6,17 @@
     PrismicRichText,
   } from "@prismicio/svelte";
   import { isFilled, type Content } from "@prismicio/client";
+  import { roleClass, type SliceContext } from "$lib/presentation";
 
-  interface Props {
+  let {
+    slice,
+    index,
+    context,
+  }: {
     slice: Content.SectionGridSlice;
-  }
-
-  let { slice }: Props = $props();
+    index?: number;
+    context?: SliceContext;
+  } = $props();
   let columns = $derived(slice.primary.columns ?? 3);
   const colClass: Record<number, string> = {
     2: "md:grid-cols-2",
@@ -24,22 +29,34 @@
     isFilled.richText(i.item_heading) || isFilled.richText(i.item_body);
   const hasMedia = (i: Item) => isFilled.image(i.item_media);
 
-  // Four layouts, chosen by what the items actually carry (mirrors the
-  // original's section archetypes):
-  // - every item is a bare image        → logo/photo tile strip
-  // - every item is image + text        → uniform card grid
-  // - text plus bare-image items        → magazine split: copy column beside
-  //                                       a staggered image column
-  // - no bare-image items at all        → plain copy stack (captions/labels)
-  // An item carrying BOTH text and an image inside a split is an eyebrow with
-  // its rule ornament — it belongs in the copy column at natural size.
-  let items = $derived(slice.items as Item[]);
-  let textItems = $derived(items.filter((i) => hasText(i) || !hasMedia(i)));
-  let mediaItems = $derived(items.filter((i) => hasMedia(i) && !hasText(i)));
+  // Each item's text role (text5 eyebrow vs text11 serif headline, …) comes
+  // from the manifest, aligned by item index. Augment the items with their
+  // role BEFORE the layout split so the role survives the filtering below.
+  let entry = $derived(
+    index != null ? context?.presentation?.get(index) : undefined,
+  );
+  let items = $derived(
+    (slice.items as Item[]).map((item, i) => ({
+      item,
+      headingRole: entry?.items?.[i]?.headingRole,
+      bodyRole: entry?.items?.[i]?.bodyRole,
+    })),
+  );
+
+  // Four layouts, chosen by what the items carry (mirrors the original's
+  // archetypes): all bare images → tile strip; all image+text → card grid;
+  // text plus bare-image items → magazine split; no bare-image items → copy.
+  let textItems = $derived(
+    items.filter((a) => hasText(a.item) || !hasMedia(a.item)),
+  );
+  let mediaItems = $derived(
+    items.filter((a) => hasMedia(a.item) && !hasText(a.item)),
+  );
   let mode = $derived(
-    items.length > 0 && items.every((i) => hasMedia(i) && !hasText(i))
+    items.length > 0 && items.every((a) => hasMedia(a.item) && !hasText(a.item))
       ? "tiles"
-      : items.length > 0 && items.every((i) => hasMedia(i) && hasText(i))
+      : items.length > 0 &&
+          items.every((a) => hasMedia(a.item) && hasText(a.item))
         ? "cards"
         : mediaItems.length === 0
           ? "copy"
@@ -55,14 +72,16 @@
   class="mx-auto max-w-7xl px-6 py-16"
 >
   {#if isFilled.richText(slice.primary.heading)}
-    <div class="mb-10 text-center">
+    <div
+      class="mb-10 text-center {roleClass(entry?.presentation?.headingRole)}"
+    >
       <PrismicRichText field={slice.primary.heading} />
     </div>
   {/if}
 
   {#if mode === "tiles"}
     <div class="grid grid-cols-2 gap-6 md:grid-cols-3">
-      {#each items as item (item)}
+      {#each items as { item } (item)}
         <PrismicLink
           field={item.item_link}
           class="flex items-center justify-center bg-surface p-8"
@@ -79,50 +98,56 @@
       data-grid-columns={columns}
       class="grid grid-cols-1 gap-10 {colClass[columns] ?? 'md:grid-cols-3'}"
     >
-      {#each items as item (item)}
+      {#each items as { item, headingRole, bodyRole } (item)}
         <PrismicLink field={item.item_link} class="block">
           <PrismicImage
             field={item.item_media}
             class="mb-4 aspect-[4/3] w-full object-cover"
           />
-          <div class="eyebrow">
+          <div class={roleClass(headingRole)}>
             <PrismicRichText field={item.item_heading} />
           </div>
-          <RichTextBody field={item.item_body} />
+          <div class={roleClass(bodyRole)}>
+            <RichTextBody field={item.item_body} />
+          </div>
         </PrismicLink>
       {/each}
     </div>
   {:else if mode === "copy"}
     <div class="flex max-w-3xl flex-col gap-6">
-      {#each textItems as item (item)}
-        <div class="eyebrow">
-          <PrismicRichText field={item.item_heading} />
-          <RichTextBody field={item.item_body} />
+      {#each textItems as { item, headingRole, bodyRole } (item)}
+        <div>
+          <div class={roleClass(headingRole)}>
+            <PrismicRichText field={item.item_heading} />
+          </div>
+          <div class={roleClass(bodyRole)}>
+            <RichTextBody field={item.item_body} />
+          </div>
         </div>
       {/each}
     </div>
   {:else}
     <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
       <div class="flex flex-col gap-6 lg:col-span-5">
-        {#each textItems as item (item)}
-          <!-- In a magazine split the ornament-bearing label is the eyebrow
-               (text5); a text-only item is the serif headline (text11). Use
-               class: directives so Svelte keeps the scoped rules (a dynamic
-               class={} expression gets pruned as "unused"). -->
-          <div class:eyebrow={hasMedia(item)} class:headline={!hasMedia(item)}>
-            <PrismicRichText field={item.item_heading} />
+        {#each textItems as { item, headingRole, bodyRole } (item)}
+          <div>
+            <div class={roleClass(headingRole)}>
+              <PrismicRichText field={item.item_heading} />
+            </div>
             {#if hasMedia(item)}
               <PrismicImage
                 field={item.item_media}
                 class="mt-2 h-auto w-auto"
               />
             {/if}
-            <RichTextBody field={item.item_body} />
+            <div class={roleClass(bodyRole)}>
+              <RichTextBody field={item.item_body} />
+            </div>
           </div>
         {/each}
       </div>
       <div class="flex flex-col gap-10 lg:col-span-7">
-        {#each mediaItems as item, i (item)}
+        {#each mediaItems as { item }, i (item)}
           <PrismicImage
             field={item.item_media}
             class="h-auto {isSmall(item) ? 'w-auto' : 'w-full'} {i % 2 === 1
@@ -134,6 +159,3 @@
     </div>
   {/if}
 </section>
-
-<!-- The .eyebrow / .headline text-role treatments live in app.css (always
-     loaded); slice component styles load unreliably for dynamic slices. -->

@@ -3,16 +3,28 @@
   import RichTextBody from "$lib/components/RichTextBody.svelte";
   import { PrismicLink, PrismicRichText } from "@prismicio/svelte";
   import type { Content } from "@prismicio/client";
+  import { roleClass, type SliceContext } from "$lib/presentation";
 
-  interface Props {
+  let {
+    slice,
+    index,
+    context,
+  }: {
     slice: Content.HeroSlice;
-  }
+    index?: number;
+    context?: SliceContext;
+  } = $props();
 
-  let { slice }: Props = $props();
+  let entry = $derived(
+    index != null ? context?.presentation?.get(index) : undefined,
+  );
+  let headingRole = $derived(entry?.presentation?.headingRole);
+  let bodyRole = $derived(entry?.presentation?.bodyRole);
 </script>
 
-<!-- Full-bleed image band. Overlay copy uses the original's hero voice:
-     tracked uppercase Montserrat in white, not the display serif. -->
+<!-- Full-bleed image band. Overlay copy uses whatever role the export assigns
+     the hero title (text2 "Page Title" on thePointe), applied via .txt-role-*;
+     white comes from the section, which the role class doesn't touch. -->
 <section
   data-slice-type={slice.slice_type}
   data-slice-variation={slice.variation}
@@ -24,9 +36,13 @@
       preload={false}
     />
   {/if}
-  <div class="hero-copy relative z-10 mx-auto max-w-4xl px-6 py-24">
-    <PrismicRichText field={slice.primary.heading} />
-    <RichTextBody field={slice.primary.body} />
+  <div class="relative z-10 mx-auto max-w-4xl px-6 py-24">
+    <div class={roleClass(headingRole)}>
+      <PrismicRichText field={slice.primary.heading} />
+    </div>
+    <div class={roleClass(bodyRole)}>
+      <RichTextBody field={slice.primary.body} />
+    </div>
     {#if slice.primary.cta_label && slice.primary.cta_link}
       <PrismicLink
         field={slice.primary.cta_link}
@@ -37,5 +53,3 @@
     {/if}
   </div>
 </section>
-
-<!-- The .hero-copy text2 overlay treatment lives in app.css (always loaded). -->
