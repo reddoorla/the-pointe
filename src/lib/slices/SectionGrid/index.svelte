@@ -1,5 +1,6 @@
 <script lang="ts">
   import RichTextBody from "$lib/components/RichTextBody.svelte";
+  import SectionBand from "$lib/components/SectionBand.svelte";
   import {
     PrismicImage,
     PrismicLink,
@@ -66,10 +67,11 @@
   const isSmall = (i: Item) => (i.item_media?.dimensions?.width ?? 9999) < 480;
 </script>
 
-<section
-  data-slice-type={slice.slice_type}
-  data-slice-variation={slice.variation}
-  class="mx-auto max-w-7xl px-6 py-16"
+<SectionBand
+  block={entry?.presentation?.block}
+  sliceType={slice.slice_type}
+  variation={slice.variation}
+  contentClass="max-w-7xl px-6 py-16"
 >
   {#if isFilled.richText(slice.primary.heading)}
     <div
@@ -158,4 +160,4 @@
       </div>
     </div>
   {/if}
-</section>
+</SectionBand>

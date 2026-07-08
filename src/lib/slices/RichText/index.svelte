@@ -1,5 +1,6 @@
 <script lang="ts">
   import RichTextBody from "$lib/components/RichTextBody.svelte";
+  import SectionBand from "$lib/components/SectionBand.svelte";
   import type { Content } from "@prismicio/client";
   import { roleClass, type SliceContext } from "$lib/presentation";
 
@@ -24,14 +25,15 @@
 </script>
 
 <!-- Standalone copy blocks are the original's centered section openers and
-     interstitial blurbs — centered, on a comfortable measure. The text role
-     (applied via .txt-role-*) decides eyebrow vs serif display vs serif body. -->
-<section
-  data-slice-type={slice.slice_type}
-  data-slice-variation={slice.variation}
-  class="richtext-block mx-auto max-w-3xl px-6 py-10 text-center {roleClass(
-    role,
-  )}"
+     interstitial blurbs — centered, on a comfortable measure. The band's
+     background/height and the box's max-width/text-align come from the export
+     (SectionBand); the text role (via .txt-role-*) decides eyebrow vs serif
+     display vs serif body. -->
+<SectionBand
+  block={entry?.presentation?.block}
+  sliceType={slice.slice_type}
+  variation={slice.variation}
+  contentClass="richtext-block max-w-3xl px-6 py-10 text-center {roleClass(role)}"
 >
   <RichTextBody field={slice.primary.content} />
-</section>
+</SectionBand>
