@@ -4,7 +4,7 @@
 
 **Goal:** The render side of the faithful-grid pipeline: a presentation-manifest module, a `SectionBand` wrapper, a recursive `Grid.svelte` fallback renderer, and the pattern band slices (`grid_band`, `title_band`, `split_feature`, `gallery`, `media_full`, a `band` variation on `hero`) — all additive, so the live archetype content keeps rendering untouched.
 
-**Architecture:** Every band slice carries a `band` (Number) field written at emit (plan 5). Band-level *presentation* — style record, background media, fallback trees, media payloads — lives in `src/lib/blux/blux-presentation.json`, loaded by `src/lib/blux/presentation.ts` and passed to every slice via `SliceZone`'s `context` prop. Pattern slices keep their *text* CMS-editable in Prismic; the Grid fallback renders its whole serialized node tree from the manifest (locked design decision #4 in the spec, `reddoor-maintenance` docs/superpowers/specs/2026-07-08-blux-faithful-grid-slices-design.md). Nothing in this plan deletes or alters the rendering of the existing `hero`(default)/`media_text`/`section_grid`/`rich_text`/`collection_list` slices — the live page must keep working until plan 7 re-migrates.
+**Architecture:** Every band slice carries a `band` (Number) field written at emit (plan 5). Band-level _presentation_ — style record, background media, fallback trees, media payloads — lives in `src/lib/blux/blux-presentation.json`, loaded by `src/lib/blux/presentation.ts` and passed to every slice via `SliceZone`'s `context` prop. Pattern slices keep their _text_ CMS-editable in Prismic; the Grid fallback renders its whole serialized node tree from the manifest (locked design decision #4 in the spec, `reddoor-maintenance` docs/superpowers/specs/2026-07-08-blux-faithful-grid-slices-design.md). Nothing in this plan deletes or alters the rendering of the existing `hero`(default)/`media_text`/`section_grid`/`rich_text`/`collection_list` slices — the live page must keep working until plan 7 re-migrates.
 
 **Tech Stack:** Svelte 5 (runes, snippets), SvelteKit, @prismicio/svelte 2 (SliceZone passes `slice`, `index`, `slices`, `context` props), vitest + @testing-library/svelte (co-located `*.test.ts`), Tailwind 4. Gate: `pnpm lint` (prettier+eslint), `pnpm check` (svelte-check), `pnpm test`, `pnpm build`.
 
@@ -98,7 +98,11 @@ export type RenderMedia = {
   alt?: string;
 };
 
-export type GridToken = { cols: number | "any"; ratio?: number; sized?: number };
+export type GridToken = {
+  cols: number | "any";
+  ratio?: number;
+  sized?: number;
+};
 
 export type RenderNode =
   | { kind: "row"; cells: RenderCell[] }
@@ -120,7 +124,12 @@ export type BandPresentation = {
   /** Grid fallback: the band's whole serialized node tree. */
   tree?: RenderNode;
   /** SplitFeature payload (text side may contain nested media — render recursively). */
-  split?: { mediaSide: "left" | "right"; ratio: number; media: RenderMedia; text: RenderNode };
+  split?: {
+    mediaSide: "left" | "right";
+    ratio: number;
+    media: RenderMedia;
+    text: RenderNode;
+  };
   /** Gallery payload. */
   gallery?: RenderMedia[];
   /** MediaFull payload. */
@@ -210,13 +219,16 @@ import { createRawSnippet } from "svelte";
 import SectionBand from "./SectionBand.svelte";
 
 afterEach(() => cleanup());
-const children = () => createRawSnippet(() => ({ render: () => "<p>content</p>" }));
+const children = () =>
+  createRawSnippet(() => ({ render: () => "<p>content</p>" }));
 
 describe("SectionBand", () => {
   it("applies the style record inline and renders children", () => {
     const { container } = render(SectionBand, {
       props: {
-        band: { style: { "background-color": "rgb(1, 2, 3)", "min-height": "50vh" } },
+        band: {
+          style: { "background-color": "rgb(1, 2, 3)", "min-height": "50vh" },
+        },
         children: children(),
       },
     });
@@ -233,11 +245,15 @@ describe("SectionBand", () => {
         children: children(),
       },
     });
-    expect(container.querySelector("video")?.getAttribute("src")).toBe("https://cdn/bg.mp4");
+    expect(container.querySelector("video")?.getAttribute("src")).toBe(
+      "https://cdn/bg.mp4",
+    );
   });
 
   it("renders a bare section with no media when band is null", () => {
-    const { container } = render(SectionBand, { props: { band: null, children: children() } });
+    const { container } = render(SectionBand, {
+      props: { band: null, children: children() },
+    });
     expect(container.querySelector("section")).not.toBeNull();
     expect(container.querySelector("img")).toBeNull();
     expect(container.querySelector("video")).toBeNull();
@@ -258,10 +274,22 @@ describe("SectionBand", () => {
 
 {#if media.kind === "video"}
   <!-- Ambient loop, muted so autoplay is allowed everywhere. -->
-  <video src={media.url} class={passedClasses} autoplay loop muted playsinline preload="metadata"
+  <video
+    src={media.url}
+    class={passedClasses}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
   ></video>
 {:else}
-  <img src={media.url} alt={media.alt ?? ""} loading="lazy" class={passedClasses} />
+  <img
+    src={media.url}
+    alt={media.alt ?? ""}
+    loading="lazy"
+    class={passedClasses}
+  />
 {/if}
 ```
 
@@ -332,7 +360,10 @@ const tree: RenderNode = {
         },
         {
           token: { cols: 2, ratio: 40 },
-          node: { kind: "media", media: { kind: "image", url: "https://cdn/a.jpg" } },
+          node: {
+            kind: "media",
+            media: { kind: "image", url: "https://cdn/a.jpg" },
+          },
         },
       ],
     },
@@ -349,7 +380,9 @@ describe("Grid (recursive fallback)", () => {
     expect(cells).toHaveLength(2);
     expect((cells[0] as HTMLElement).style.flexBasis).toBe("60%");
     expect((cells[1] as HTMLElement).style.flexBasis).toBe("40%");
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("https://cdn/a.jpg");
+    expect(container.querySelector("img")?.getAttribute("src")).toBe(
+      "https://cdn/a.jpg",
+    );
     expect(container.textContent).toContain("Left copy");
   });
 
@@ -374,7 +407,9 @@ describe("Grid (recursive fallback)", () => {
       props: {
         node: {
           kind: "row",
-          cells: [{ token: { cols: "any" }, node: { kind: "subtitle", text: "s" } }],
+          cells: [
+            { token: { cols: "any" }, node: { kind: "subtitle", text: "s" } },
+          ],
         },
       },
     });
@@ -481,8 +516,12 @@ describe("GridBand slice", () => {
     const { container } = render(GridBand, {
       props: { slice: slice(5), context: { presentation } },
     });
-    expect(container.querySelector("h3")?.textContent).toBe("From the manifest");
-    expect(container.querySelector("section")?.style.backgroundColor).toBe("rgb(10, 20, 30)");
+    expect(container.querySelector("h3")?.textContent).toBe(
+      "From the manifest",
+    );
+    expect(container.querySelector("section")?.style.backgroundColor).toBe(
+      "rgb(10, 20, 30)",
+    );
   });
 
   it("renders nothing (no crash) when the band has no manifest entry", () => {
@@ -493,7 +532,9 @@ describe("GridBand slice", () => {
   });
 
   it("tolerates a missing context entirely", () => {
-    const { container } = render(GridBand, { props: { slice: slice(5), context: {} } });
+    const { container } = render(GridBand, {
+      props: { slice: slice(5), context: {} },
+    });
     expect(container.querySelector("section")).toBeNull();
   });
 });
@@ -517,7 +558,10 @@ describe("GridBand slice", () => {
       "description": "Band rendered from the blux presentation manifest by band index",
       "imageUrl": "",
       "primary": {
-        "band": { "type": "Number", "config": { "label": "band (index from the Blux export)" } }
+        "band": {
+          "type": "Number",
+          "config": { "label": "band (index from the Blux export)" }
+        }
       },
       "items": {}
     }
@@ -539,7 +583,9 @@ describe("GridBand slice", () => {
   };
   let { slice, context = {} }: Props = $props();
 
-  const band = $derived(bandFor(context.presentation, slice.primary.band ?? null));
+  const band = $derived(
+    bandFor(context.presentation, slice.primary.band ?? null),
+  );
 </script>
 
 {#if band?.tree}
@@ -626,7 +672,9 @@ describe("SplitFeature slice", () => {
     expect(cells).toHaveLength(2);
     // mediaSide right → text first, media second
     expect(cells[0]?.textContent).toContain("Manifest text");
-    expect(cells[1]?.querySelector("img")?.getAttribute("src")).toBe("https://cdn/split.jpg");
+    expect(cells[1]?.querySelector("img")?.getAttribute("src")).toBe(
+      "https://cdn/split.jpg",
+    );
     expect((cells[1] as HTMLElement).style.flexBasis).toBe("40%");
   });
 
@@ -665,7 +713,10 @@ Tests for the others (same imports/cleanup):
       "description": "Heading + optional subtitle",
       "imageUrl": "",
       "primary": {
-        "band": { "type": "Number", "config": { "label": "band (index from the Blux export)" } },
+        "band": {
+          "type": "Number",
+          "config": { "label": "band (index from the Blux export)" }
+        },
         "heading": { "type": "Text", "config": { "label": "heading" } },
         "subtitle": { "type": "Text", "config": { "label": "subtitle" } }
       },
@@ -685,18 +736,26 @@ Tests for the others (same imports/cleanup):
   type Props = {
     slice: {
       slice_type: string;
-      primary: { band?: number | null; heading?: string | null; subtitle?: string | null };
+      primary: {
+        band?: number | null;
+        heading?: string | null;
+        subtitle?: string | null;
+      };
     };
     context?: { presentation?: Presentation };
   };
   let { slice, context = {} }: Props = $props();
-  const band = $derived(bandFor(context.presentation, slice.primary.band ?? null));
+  const band = $derived(
+    bandFor(context.presentation, slice.primary.band ?? null),
+  );
 </script>
 
 <SectionBand {band}>
   <div class="mx-auto w-full max-w-screen-xl px-6 py-16 text-center">
     {#if slice.primary.heading}<h2>{slice.primary.heading}</h2>{/if}
-    {#if slice.primary.subtitle}<p class="mt-2">{slice.primary.subtitle}</p>{/if}
+    {#if slice.primary.subtitle}<p class="mt-2">
+        {slice.primary.subtitle}
+      </p>{/if}
   </div>
 </SectionBand>
 ```
@@ -708,7 +767,11 @@ Tests for the others (same imports/cleanup):
 ```svelte
 <script lang="ts">
   import { PrismicRichText } from "@prismicio/svelte";
-  import { bandFor, cellWidth, type Presentation } from "$lib/blux/presentation";
+  import {
+    bandFor,
+    cellWidth,
+    type Presentation,
+  } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
   import Grid from "$lib/blux/Grid.svelte";
   import Media from "$lib/blux/Media.svelte";
@@ -723,7 +786,9 @@ Tests for the others (same imports/cleanup):
     context?: { presentation?: Presentation };
   };
   let { slice, context = {} }: Props = $props();
-  const band = $derived(bandFor(context.presentation, slice.primary.band ?? null));
+  const band = $derived(
+    bandFor(context.presentation, slice.primary.band ?? null),
+  );
   const split = $derived(band?.split ?? null);
 </script>
 
@@ -733,14 +798,22 @@ Tests for the others (same imports/cleanup):
       class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center gap-y-8 px-6 py-12"
       class:flex-row-reverse={split.mediaSide === "left"}
     >
-      <div data-split-cell class="min-w-0 grow" style:flex-basis="{100 - split.ratio}%">
+      <div
+        data-split-cell
+        class="min-w-0 grow"
+        style:flex-basis="{100 - split.ratio}%"
+      >
         {#if slice.primary.body && isFilled.richText(slice.primary.body)}
           <PrismicRichText field={slice.primary.body} />
         {:else}
           <Grid node={split.text} />
         {/if}
       </div>
-      <div data-split-cell class="min-w-0 grow" style:flex-basis="{split.ratio}%">
+      <div
+        data-split-cell
+        class="min-w-0 grow"
+        style:flex-basis="{split.ratio}%"
+      >
         <Media media={split.media} class="h-auto w-full" />
       </div>
     </div>
@@ -765,7 +838,9 @@ Tests for the others (same imports/cleanup):
     context?: { presentation?: Presentation };
   };
   let { slice, context = {} }: Props = $props();
-  const band = $derived(bandFor(context.presentation, slice.primary.band ?? null));
+  const band = $derived(
+    bandFor(context.presentation, slice.primary.band ?? null),
+  );
   const media = $derived(band?.gallery ?? null);
 </script>
 
@@ -773,7 +848,11 @@ Tests for the others (same imports/cleanup):
   <SectionBand {band}>
     <div class="mx-auto flex w-full max-w-screen-xl flex-wrap px-6 py-12">
       {#each media as m, i (i)}
-        <div data-gallery-cell class="min-w-0 grow" style:flex-basis="{100 / media.length}%">
+        <div
+          data-gallery-cell
+          class="min-w-0 grow"
+          style:flex-basis="{100 / media.length}%"
+        >
           <Media media={m} class="h-auto w-full" />
         </div>
       {/each}
@@ -797,7 +876,9 @@ Tests for the others (same imports/cleanup):
     context?: { presentation?: Presentation };
   };
   let { slice, context = {} }: Props = $props();
-  const band = $derived(bandFor(context.presentation, slice.primary.band ?? null));
+  const band = $derived(
+    bandFor(context.presentation, slice.primary.band ?? null),
+  );
 </script>
 
 {#if band?.media}
@@ -856,7 +937,9 @@ describe("Hero band variation", () => {
     });
     expect(container.querySelector("h2")?.textContent).toBe("the outdoors");
     expect(container.textContent).toContain("fresh air");
-    expect(container.querySelector("img")?.getAttribute("src")).toBe("https://cdn/hero-bg.jpg");
+    expect(container.querySelector("img")?.getAttribute("src")).toBe(
+      "https://cdn/hero-bg.jpg",
+    );
     expect(container.querySelector("section")?.style.minHeight).toBe("80vh");
   });
 });
@@ -875,7 +958,10 @@ describe("Hero band variation", () => {
   "description": "Blux band hero — background from the presentation manifest, overlay text",
   "imageUrl": "",
   "primary": {
-    "band": { "type": "Number", "config": { "label": "band (index from the Blux export)" } },
+    "band": {
+      "type": "Number",
+      "config": { "label": "band (index from the Blux export)" }
+    },
     "heading": { "type": "Text", "config": { "label": "heading" } },
     "subtitle": { "type": "Text", "config": { "label": "subtitle" } },
     "body": { "type": "Text", "config": { "label": "body" } }
@@ -888,10 +974,14 @@ describe("Hero band variation", () => {
 
 ```svelte
 {#if slice.variation === "band"}
-  <SectionBand band={bandFor(context?.presentation, slice.primary.band ?? null)}>
+  <SectionBand
+    band={bandFor(context?.presentation, slice.primary.band ?? null)}
+  >
     <div class="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
       {#if slice.primary.heading}<h2>{slice.primary.heading}</h2>{/if}
-      {#if slice.primary.subtitle}<p class="mt-2">{slice.primary.subtitle}</p>{/if}
+      {#if slice.primary.subtitle}<p class="mt-2">
+          {slice.primary.subtitle}
+        </p>{/if}
       {#if slice.primary.body}<p class="mt-4">{slice.primary.body}</p>{/if}
     </div>
   </SectionBand>
@@ -925,7 +1015,11 @@ Type note: the slice prop is currently `Content.HeroSlice`; after regenerating t
   const presentation = loadPresentation();
 </script>
 
-<SliceZone slices={data.page.data.slices} {components} context={{ presentation }} />
+<SliceZone
+  slices={data.page.data.slices}
+  {components}
+  context={{ presentation }}
+/>
 ```
 
 Same `context={{ presentation }}` on the slice-simulator's `<SliceZone>`.
