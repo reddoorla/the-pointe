@@ -38,6 +38,24 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "band",
+      "name": "Band",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Blux band hero — background from the presentation manifest, overlay text",
+      "imageUrl": "",
+      "primary": {
+        "band": {
+          "type": "Number",
+          "config": { "label": "band (index from the Blux export)" }
+        },
+        "heading": { "type": "Text", "config": { "label": "heading" } },
+        "subtitle": { "type": "Text", "config": { "label": "subtitle" } },
+        "body": { "type": "Text", "config": { "label": "body" } }
+      },
+      "items": {}
     }
   ]
 }
