@@ -64,13 +64,14 @@ export function bandFor(
   band: number | null | undefined,
 ): BandPresentation | null {
   if (!presentation || band === null || band === undefined) return null;
-  return presentation.bands[String(band)] ?? null;
+  return presentation.bands?.[String(band)] ?? null;
 }
 
 /** A cell's CSS width from its grid token; null = let flex distribute. */
 export function cellWidth(token: GridToken): string | null {
   if (typeof token.ratio === "number") return `${token.ratio}%`;
   if (typeof token.sized === "number") return `${token.sized}%`;
-  if (token.cols === "any") return null;
+  // Covers "any" plus malformed cols (0, negative) that would yield Infinity%.
+  if (typeof token.cols !== "number" || token.cols <= 0) return null;
   return `${Math.round((100 / token.cols) * 10000) / 10000}%`;
 }

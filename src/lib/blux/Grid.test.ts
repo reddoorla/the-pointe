@@ -60,6 +60,16 @@ describe("Grid (recursive fallback)", () => {
     expect(container.querySelector("[data-widget='map']")).not.toBeNull();
   });
 
+  it("clamps heading levels to the h1–h6 range", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: { kind: "heading", level: 9, html: "Deep" },
+      },
+    });
+    expect(container.querySelector("h6")).not.toBeNull();
+    expect(container.querySelector("h9")).toBeNull();
+  });
+
   it("a cell with cols 'any' gets no explicit basis (flex auto)", () => {
     const { container } = render(Grid, {
       props: {

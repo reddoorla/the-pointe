@@ -30,7 +30,10 @@
     <Grid node={child} />
   {/each}
 {:else if node.kind === "heading"}
-  <svelte:element this={`h${node.level}`} class={roleClass(node.role)}>
+  <svelte:element
+    this={`h${Math.min(Math.max(node.level, 1), 6)}`}
+    class={roleClass(node.role)}
+  >
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html node.html}
   </svelte:element>

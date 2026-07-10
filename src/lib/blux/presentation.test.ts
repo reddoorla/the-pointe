@@ -17,11 +17,19 @@ describe("presentation", () => {
     expect(bandFor(undefined, 3)).toBeNull();
   });
 
+  it("bandFor tolerates a manifest missing the bands key", () => {
+    expect(bandFor({} as Presentation, 1)).toBeNull();
+  });
+
   it("cellWidth: ratio → %, sized → %, numeric cols → 100/cols, any → null", () => {
     expect(cellWidth({ cols: 2, ratio: 60 })).toBe("60%");
     expect(cellWidth({ cols: 1, sized: 40 })).toBe("40%");
     expect(cellWidth({ cols: 4 })).toBe("25%");
     expect(cellWidth({ cols: 3 })).toBe("33.3333%");
     expect(cellWidth({ cols: "any" })).toBeNull();
+  });
+
+  it("cellWidth guards non-positive cols instead of yielding Infinity%", () => {
+    expect(cellWidth({ cols: 0 })).toBeNull();
   });
 });

@@ -1,8 +1,26 @@
-import { describe, expect, it, afterEach } from "vitest";
+import { describe, expect, it, afterEach, beforeEach, vi } from "vitest";
 import { render, cleanup } from "@testing-library/svelte";
 import Media from "./Media.svelte";
 
-afterEach(() => cleanup());
+// jsdom has no matchMedia; the component queries prefers-reduced-motion.
+const mockMatchMedia = (reduce: boolean) => {
+  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+    matches: reduce && query === "(prefers-reduced-motion: reduce)",
+    media: query,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    onchange: null,
+    dispatchEvent: () => false,
+  }));
+};
+
+beforeEach(() => mockMatchMedia(false));
+afterEach(() => {
+  cleanup();
+  vi.restoreAllMocks();
+});
 
 describe("Media", () => {
   it("renders an <img loading=lazy> for kind image with alt defaulting empty", () => {
@@ -14,6 +32,18 @@ describe("Media", () => {
     expect(img?.getAttribute("loading")).toBe("lazy");
     expect(img?.getAttribute("alt")).toBe("");
     expect(container.querySelector("video")).toBeNull();
+  });
+
+  it("renders loading=eager on the <img> when told (LCP images)", () => {
+    const { container } = render(Media, {
+      props: {
+        media: { kind: "image", url: "https://cdn/x.jpg" },
+        loading: "eager",
+      },
+    });
+    expect(container.querySelector("img")?.getAttribute("loading")).toBe(
+      "eager",
+    );
   });
 
   it("renders an ambient <video> for kind video (muted, loop, playsinline, autoplay, metadata)", () => {
@@ -28,5 +58,19 @@ describe("Media", () => {
     expect(video?.getAttribute("preload")).toBe("metadata");
     // muted is a property, not always reflected as an attribute
     expect((video as HTMLVideoElement).muted).toBe(true);
+  });
+
+  it("pauses the ambient video when prefers-reduced-motion is reduce", () => {
+    mockMatchMedia(true);
+    // jsdom media elements don't really play; observe the pause() call.
+    const pause = vi
+      .spyOn(HTMLMediaElement.prototype, "pause")
+      .mockImplementation(() => {});
+    const { container } = render(Media, {
+      props: { media: { kind: "video", url: "https://cdn/x.mp4" } },
+    });
+    const video = container.querySelector("video") as HTMLVideoElement;
+    expect(pause).toHaveBeenCalled();
+    expect(video.paused).toBe(true);
   });
 });

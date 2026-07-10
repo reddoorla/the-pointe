@@ -3,8 +3,13 @@
   import type { BandPresentation } from "./presentation";
   import Media from "./Media.svelte";
 
-  type Props = { band: BandPresentation | null; children: Snippet };
-  let { band, children }: Props = $props();
+  type Props = {
+    band: BandPresentation | null;
+    children: Snippet;
+    /** True for the first band: its background image is the likely LCP. */
+    eagerBackground?: boolean;
+  };
+  let { band, children, eagerBackground = false }: Props = $props();
 
   const styleAttr = $derived(
     band?.style
@@ -20,7 +25,11 @@
 <section class="relative isolate w-full" style={styleAttr}>
   {#if band?.background}
     <div class="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <Media media={band.background} class="h-full w-full object-cover" />
+      <Media
+        media={band.background}
+        class="h-full w-full object-cover"
+        loading={eagerBackground ? "eager" : "lazy"}
+      />
     </div>
   {/if}
   {@render children()}

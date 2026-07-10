@@ -1,7 +1,21 @@
-import { describe, expect, it, afterEach } from "vitest";
+import { describe, expect, it, afterEach, beforeEach, vi } from "vitest";
 import { render, cleanup } from "@testing-library/svelte";
 import { createRawSnippet } from "svelte";
 import SectionBand from "./SectionBand.svelte";
+
+// jsdom has no matchMedia; Media queries prefers-reduced-motion for videos.
+beforeEach(() => {
+  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    onchange: null,
+    dispatchEvent: () => false,
+  }));
+});
 
 afterEach(() => cleanup());
 const children = () =>
@@ -32,6 +46,35 @@ describe("SectionBand", () => {
     });
     expect(container.querySelector("video")?.getAttribute("src")).toBe(
       "https://cdn/bg.mp4",
+    );
+    // Decorative background media must stay out of the a11y tree.
+    expect(
+      container.querySelector("[aria-hidden='true'] video"),
+    ).not.toBeNull();
+  });
+
+  it("passes eager loading to the background image when eagerBackground is set", () => {
+    const { container } = render(SectionBand, {
+      props: {
+        band: { background: { kind: "image", url: "https://cdn/bg.jpg" } },
+        eagerBackground: true,
+        children: children(),
+      },
+    });
+    expect(container.querySelector("img")?.getAttribute("loading")).toBe(
+      "eager",
+    );
+  });
+
+  it("background image stays lazy by default", () => {
+    const { container } = render(SectionBand, {
+      props: {
+        band: { background: { kind: "image", url: "https://cdn/bg.jpg" } },
+        children: children(),
+      },
+    });
+    expect(container.querySelector("img")?.getAttribute("loading")).toBe(
+      "lazy",
     );
   });
 
