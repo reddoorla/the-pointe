@@ -21,6 +21,7 @@
   import SplitFeature from "$lib/slices/SplitFeature/index.svelte";
   import Gallery from "$lib/slices/Gallery/index.svelte";
   import MediaFull from "$lib/slices/MediaFull/index.svelte";
+  import LocationMap from "$lib/slices/LocationMap/index.svelte";
   import { trapFocus } from "$lib/actions/trapFocus";
   import type { RichTextField } from "@prismicio/client";
   import type { Presentation } from "$lib/blux/presentation";
@@ -232,6 +233,23 @@
           style: { "background-color": "#111111", color: "#ffffff" },
           background: { kind: "image", url: pixel },
         },
+        // 107 — LocationMap: keyless in CI, so the placeholder div renders
+        // and axe audits the toggle chips (no external Maps request).
+        "107": {
+          map: {
+            mid: "fixture-mid",
+            layers: [
+              {
+                name: "Portfolio",
+                lid: "fixture-lid",
+                initiallyVisible: true,
+                preserveViewport: false,
+              },
+            ],
+            toggles: [{ label: "All locations", layers: ["Portfolio"] }],
+            styles: [],
+          },
+        },
       },
     },
   };
@@ -250,6 +268,10 @@
   };
   const galleryFixture = { slice_type: "gallery", primary: { band: 104 } };
   const mediaFullFixture = { slice_type: "media_full", primary: { band: 105 } };
+  const locationMapFixture = {
+    slice_type: "location_map",
+    primary: { band: 107 },
+  };
   const heroBandFixture = {
     slice_type: "hero",
     variation: "band",
@@ -497,12 +519,13 @@
   <CollectionList slice={collectionListFixture} context={collectionCtx} />
 
   <!-- Blux band slices — presentation comes from the shared bluxCtx manifest
-       (bands 101–106), exactly as SliceZone context supplies it in routes. -->
+       (bands 101–107), exactly as SliceZone context supplies it in routes. -->
   <GridBand slice={gridBandFixture} context={bluxCtx} />
   <TitleBand slice={titleBandFixture} context={bluxCtx} />
   <SplitFeature slice={splitFeatureFixture} context={bluxCtx} />
   <Gallery slice={galleryFixture} context={bluxCtx} />
   <MediaFull slice={mediaFullFixture} context={bluxCtx} />
+  <LocationMap slice={locationMapFixture} context={bluxCtx} />
   <Hero slice={heroBandFixture} context={bluxCtx} />
 </main>
 

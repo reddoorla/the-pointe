@@ -4,6 +4,7 @@ import CollectionList from "./CollectionList/index.svelte";
 import Gallery from "./Gallery/index.svelte";
 import GridBand from "./GridBand/index.svelte";
 import Hero from "./Hero/index.svelte";
+import LocationMap from "./LocationMap/index.svelte";
 import MediaFull from "./MediaFull/index.svelte";
 import MediaText from "./MediaText/index.svelte";
 import RichText from "./RichText/index.svelte";
@@ -16,6 +17,7 @@ export const components = {
   gallery: Gallery,
   grid_band: GridBand,
   hero: Hero,
+  location_map: LocationMap,
   media_full: MediaFull,
   media_text: MediaText,
   rich_text: RichText,

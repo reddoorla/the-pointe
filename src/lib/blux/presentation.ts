@@ -31,6 +31,22 @@ export type RenderNode =
 
 export type RenderCell = { token: GridToken; node: RenderNode };
 
+export type MapLayer = {
+  name: string;
+  lid: string;
+  initiallyVisible: boolean;
+  preserveViewport: boolean;
+};
+export type MapToggle = { label: string; layers: string[] };
+export type MapRenderConfig = {
+  mid: string;
+  layers: MapLayer[];
+  toggles: MapToggle[];
+  styles: unknown[];
+  center?: { lat: number; lng: number };
+  zoom?: number;
+};
+
 export type BandPresentation = {
   /** CSS property → value, applied inline on the band <section>. */
   style?: Record<string, string>;
@@ -49,6 +65,8 @@ export type BandPresentation = {
   gallery?: RenderMedia[];
   /** MediaFull payload. */
   media?: RenderMedia;
+  /** LocationMap payload (plan 4). */
+  map?: MapRenderConfig;
 };
 
 export type Presentation = { bands: Record<string, BandPresentation> };
