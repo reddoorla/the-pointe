@@ -21,8 +21,12 @@ export function loadMapsApi(key: string): Promise<GMapsNS> {
       delete w[cbName];
       const google = (window as unknown as { google?: { maps?: GMapsNS } })
         .google;
-      if (google?.maps) resolve(google.maps);
-      else reject(new Error("Maps JS API loaded but google.maps is missing"));
+      if (google?.maps) {
+        resolve(google.maps);
+      } else {
+        mapsApi = null; // allow a retry, same as the onerror path
+        reject(new Error("Maps JS API loaded but google.maps is missing"));
+      }
     };
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&callback=${cbName}`;

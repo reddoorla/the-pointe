@@ -25,6 +25,7 @@
   }
 
   function select(i: number) {
+    if (i === active) return; // re-applying would re-fetch the KML (flicker)
     const prev = active;
     active = i;
     if (gmap) applyToggle(i, prev);
@@ -33,21 +34,28 @@
   $effect(() => {
     if (!key || !mountEl) return;
     let cancelled = false;
-    loadMapsApi(key).then((g: GMapsNS) => {
-      if (cancelled || !mountEl) return;
-      gmap = new g.Map(mountEl, {
-        ...(config.center ? { center: config.center } : {}),
-        ...(config.zoom !== undefined ? { zoom: config.zoom } : {}),
-        styles: config.styles,
-      });
-      for (const l of config.layers) {
-        layerObjs[l.name] = new g.KmlLayer({
-          url: `https://www.google.com/maps/d/u/0/kml?forcekmz=1&mid=${config.mid}&lid=${l.lid}`,
-          preserveViewport: l.preserveViewport,
-          map: l.initiallyVisible ? gmap : null,
+    loadMapsApi(key)
+      .then((g: GMapsNS) => {
+        if (cancelled || !mountEl) return;
+        gmap = new g.Map(mountEl, {
+          ...(config.center ? { center: config.center } : {}),
+          ...(config.zoom !== undefined ? { zoom: config.zoom } : {}),
+          styles: config.styles,
         });
-      }
-    });
+        for (const l of config.layers) {
+          layerObjs[l.name] = new g.KmlLayer({
+            url: `https://www.google.com/maps/d/u/0/kml?forcekmz=1&mid=${encodeURIComponent(config.mid)}&lid=${encodeURIComponent(l.lid)}`,
+            preserveViewport: l.preserveViewport,
+            map: l.initiallyVisible ? gmap : null,
+          });
+        }
+        // Catch up on a chip clicked while the API was still loading; prev=0
+        // skips the off pass, preserving the portfolio quirk.
+        if (active !== 0) applyToggle(active, 0);
+      })
+      .catch(() => {
+        // Accepted degraded state: the map div stays blank, chips stay inert.
+      });
     return () => {
       cancelled = true;
     };
