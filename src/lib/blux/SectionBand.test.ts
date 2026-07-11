@@ -78,6 +78,27 @@ describe("SectionBand", () => {
     );
   });
 
+  it("carries slice identity data-attrs when given, omits them when not", () => {
+    const withAttrs = render(SectionBand, {
+      props: {
+        band: null,
+        sliceType: "grid_band",
+        sliceVariation: "default",
+        children: children(),
+      },
+    });
+    const section = withAttrs.container.querySelector("section");
+    expect(section?.getAttribute("data-slice-type")).toBe("grid_band");
+    expect(section?.getAttribute("data-slice-variation")).toBe("default");
+
+    const bare = render(SectionBand, {
+      props: { band: null, children: children() },
+    });
+    const bareSection = bare.container.querySelector("section");
+    expect(bareSection?.hasAttribute("data-slice-type")).toBe(false);
+    expect(bareSection?.hasAttribute("data-slice-variation")).toBe(false);
+  });
+
   it("renders a bare section with no media when band is null", () => {
     const { container } = render(SectionBand, {
       props: { band: null, children: children() },

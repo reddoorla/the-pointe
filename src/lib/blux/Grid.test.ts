@@ -36,8 +36,17 @@ describe("Grid (recursive fallback)", () => {
     expect(h2?.className).toContain("txt-role-text2");
     const cells = container.querySelectorAll("[data-grid-cell]");
     expect(cells).toHaveLength(2);
-    expect((cells[0] as HTMLElement).style.flexBasis).toBe("60%");
-    expect((cells[1] as HTMLElement).style.flexBasis).toBe("40%");
+    expect(
+      (cells[0] as HTMLElement).style.getPropertyValue("--cell-basis"),
+    ).toBe("60%");
+    expect(
+      (cells[1] as HTMLElement).style.getPropertyValue("--cell-basis"),
+    ).toBe("40%");
+    // Cells stack full-width on mobile; the token basis applies from md: up.
+    expect((cells[0] as HTMLElement).className).toContain("basis-full");
+    expect((cells[0] as HTMLElement).className).toContain(
+      "md:basis-(--cell-basis)",
+    );
     expect(container.querySelector("img")?.getAttribute("src")).toBe(
       "https://cdn/a.jpg",
     );
@@ -70,7 +79,7 @@ describe("Grid (recursive fallback)", () => {
     expect(container.querySelector("h9")).toBeNull();
   });
 
-  it("a cell with cols 'any' gets no explicit basis (flex auto)", () => {
+  it("a cell with cols 'any' falls back to an auto basis from md: up", () => {
     const { container } = render(Grid, {
       props: {
         node: {
@@ -82,6 +91,8 @@ describe("Grid (recursive fallback)", () => {
       },
     });
     const cell = container.querySelector("[data-grid-cell]") as HTMLElement;
-    expect(cell.style.flexBasis).toBe("");
+    expect(cell.style.getPropertyValue("--cell-basis")).toBe("auto");
+    expect(cell.className).toContain("basis-full");
+    expect(cell.className).toContain("md:basis-(--cell-basis)");
   });
 });

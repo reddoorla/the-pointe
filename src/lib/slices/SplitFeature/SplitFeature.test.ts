@@ -37,7 +37,45 @@ describe("SplitFeature slice", () => {
     expect(cells[1]?.querySelector("img")?.getAttribute("src")).toBe(
       "https://cdn/split.jpg",
     );
-    expect((cells[1] as HTMLElement).style.flexBasis).toBe("40%");
+    expect(
+      (cells[0] as HTMLElement).style.getPropertyValue("--cell-basis"),
+    ).toBe("60%");
+    expect(
+      (cells[1] as HTMLElement).style.getPropertyValue("--cell-basis"),
+    ).toBe("40%");
+    // Cells stack full-width on mobile; the ratio basis applies from md: up.
+    expect((cells[1] as HTMLElement).className).toContain("basis-full");
+    expect((cells[1] as HTMLElement).className).toContain(
+      "md:basis-(--cell-basis)",
+    );
+    // Media on the right → no direction flip.
+    expect(cells[0]?.parentElement?.className).not.toContain(
+      "flex-row-reverse",
+    );
+  });
+
+  it("flips visual order with flex-row-reverse when media belongs left, keeping text-first DOM order", () => {
+    const left: Presentation = {
+      bands: {
+        "1": {
+          split: {
+            mediaSide: "left",
+            ratio: 40,
+            media: { kind: "image", url: "https://cdn/split.jpg" },
+            text: { kind: "body", html: "<p>Manifest text</p>" },
+          },
+        },
+      },
+    };
+    const { container } = render(SplitFeature, {
+      props: { slice, context: { presentation: left } },
+    });
+    const cells = container.querySelectorAll("[data-split-cell]");
+    expect(cells).toHaveLength(2);
+    expect(cells[0]?.parentElement?.className).toContain("flex-row-reverse");
+    // DOM order stays text first, media second (screen readers, mobile stack).
+    expect(cells[0]?.textContent).toContain("Manifest text");
+    expect(cells[1]?.querySelector("img")).not.toBeNull();
   });
 
   it("renders nothing without a manifest split payload", () => {

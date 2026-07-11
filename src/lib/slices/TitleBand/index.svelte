@@ -5,6 +5,7 @@
   type Props = {
     slice: {
       slice_type: string;
+      variation?: string;
       primary: {
         band?: number | null;
         heading?: string | null;
@@ -19,7 +20,11 @@
   );
 </script>
 
-<SectionBand {band}>
+<SectionBand
+  {band}
+  sliceType={slice.slice_type}
+  sliceVariation={slice.variation}
+>
   <div class="mx-auto w-full max-w-screen-xl px-6 py-16 text-center">
     {#if slice.primary.heading}<h2>{slice.primary.heading}</h2>{/if}
     {#if slice.primary.subtitle}<p class="mt-2">

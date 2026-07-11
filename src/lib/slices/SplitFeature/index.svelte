@@ -10,6 +10,7 @@
   type Props = {
     slice: {
       slice_type: string;
+      variation?: string;
       primary: { band?: number | null; body?: RichTextField | null };
     };
     context?: { presentation?: Presentation };
@@ -22,15 +23,19 @@
 </script>
 
 {#if split}
-  <SectionBand {band}>
+  <SectionBand
+    {band}
+    sliceType={slice.slice_type}
+    sliceVariation={slice.variation}
+  >
     <div
       class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center gap-y-8 px-6 py-12"
       class:flex-row-reverse={split.mediaSide === "left"}
     >
       <div
         data-split-cell
-        class="min-w-0 grow"
-        style:flex-basis="{100 - split.ratio}%"
+        class="min-w-0 grow basis-full md:basis-(--cell-basis)"
+        style:--cell-basis="{100 - split.ratio}%"
       >
         {#if slice.primary.body && isFilled.richText(slice.primary.body)}
           <PrismicRichText field={slice.primary.body} />
@@ -40,8 +45,8 @@
       </div>
       <div
         data-split-cell
-        class="min-w-0 grow"
-        style:flex-basis="{split.ratio}%"
+        class="min-w-0 grow basis-full md:basis-(--cell-basis)"
+        style:--cell-basis="{split.ratio}%"
       >
         <Media media={split.media} class="h-auto w-full" />
       </div>

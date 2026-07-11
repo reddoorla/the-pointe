@@ -18,8 +18,8 @@
     {#each node.cells as cell, i (i)}
       <div
         data-grid-cell
-        class="min-w-0 grow"
-        style:flex-basis={cellWidth(cell.token) ?? undefined}
+        class="min-w-0 grow basis-full md:basis-(--cell-basis)"
+        style:--cell-basis={cellWidth(cell.token) ?? "auto"}
       >
         <Grid node={cell.node} />
       </div>

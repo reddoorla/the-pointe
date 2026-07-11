@@ -4,7 +4,11 @@
   import Media from "$lib/blux/Media.svelte";
 
   type Props = {
-    slice: { slice_type: string; primary: { band?: number | null } };
+    slice: {
+      slice_type: string;
+      variation?: string;
+      primary: { band?: number | null };
+    };
     context?: { presentation?: Presentation };
   };
   let { slice, context = {} }: Props = $props();
@@ -14,7 +18,11 @@
 </script>
 
 {#if band?.media}
-  <SectionBand {band}>
+  <SectionBand
+    {band}
+    sliceType={slice.slice_type}
+    sliceVariation={slice.variation}
+  >
     <Media media={band.media} class="h-auto w-full" />
   </SectionBand>
 {/if}

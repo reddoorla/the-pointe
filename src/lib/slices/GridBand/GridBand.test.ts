@@ -33,6 +33,10 @@ describe("GridBand slice", () => {
     expect(container.querySelector("section")?.style.backgroundColor).toBe(
       "rgb(10, 20, 30)",
     );
+    // Slice-identity parity with the generated slices.
+    const section = container.querySelector("section");
+    expect(section?.getAttribute("data-slice-type")).toBe("grid_band");
+    expect(section?.getAttribute("data-slice-variation")).toBe("default");
   });
 
   it("renders nothing (no crash) when the band has no manifest entry", () => {

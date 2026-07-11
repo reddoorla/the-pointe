@@ -4,7 +4,11 @@
   import Grid from "$lib/blux/Grid.svelte";
 
   type Props = {
-    slice: { slice_type: string; primary: { band?: number | null } };
+    slice: {
+      slice_type: string;
+      variation?: string;
+      primary: { band?: number | null };
+    };
     context?: { presentation?: Presentation };
   };
   let { slice, context = {} }: Props = $props();
@@ -15,7 +19,11 @@
 </script>
 
 {#if band?.tree}
-  <SectionBand {band}>
+  <SectionBand
+    {band}
+    sliceType={slice.slice_type}
+    sliceVariation={slice.variation}
+  >
     <div class="mx-auto w-full max-w-screen-xl px-6 py-12">
       <Grid node={band.tree} />
     </div>

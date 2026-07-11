@@ -32,6 +32,8 @@
   <SectionBand
     band={bandFor(context?.presentation, slice.primary.band ?? null)}
     eagerBackground
+    sliceType={slice.slice_type}
+    sliceVariation={slice.variation}
   >
     <div class="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
       {#if slice.primary.heading}<h2>{slice.primary.heading}</h2>{/if}
