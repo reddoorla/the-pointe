@@ -32,4 +32,27 @@ describe("presentation", () => {
   it("cellWidth guards non-positive cols instead of yielding Infinity%", () => {
     expect(cellWidth({ cols: 0 })).toBeNull();
   });
+
+  it("carries the map payload on a band (plan 4 render contract)", () => {
+    const p: Presentation = {
+      bands: {
+        "14": {
+          map: {
+            mid: "M",
+            layers: [
+              {
+                name: "A",
+                lid: "L",
+                initiallyVisible: true,
+                preserveViewport: false,
+              },
+            ],
+            toggles: [{ label: "All", layers: ["A"] }],
+            styles: [],
+          },
+        },
+      },
+    };
+    expect(bandFor(p, 14)?.map?.mid).toBe("M");
+  });
 });
