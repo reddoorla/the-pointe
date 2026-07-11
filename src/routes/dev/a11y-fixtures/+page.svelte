@@ -16,8 +16,14 @@
   import MediaText from "$lib/slices/MediaText/index.svelte";
   import SectionGrid from "$lib/slices/SectionGrid/index.svelte";
   import CollectionList from "$lib/slices/CollectionList/index.svelte";
+  import GridBand from "$lib/slices/GridBand/index.svelte";
+  import TitleBand from "$lib/slices/TitleBand/index.svelte";
+  import SplitFeature from "$lib/slices/SplitFeature/index.svelte";
+  import Gallery from "$lib/slices/Gallery/index.svelte";
+  import MediaFull from "$lib/slices/MediaFull/index.svelte";
   import { trapFocus } from "$lib/actions/trapFocus";
   import type { RichTextField } from "@prismicio/client";
+  import type { Presentation } from "$lib/blux/presentation";
 
   let modalOpen = $state(false);
   let trapDemoOpen = $state(false);
@@ -138,6 +144,122 @@
       ],
     },
   };
+
+  // Blux band-slice fixtures: text lives on the slice (or is empty), the
+  // presentation manifest carries styles/trees/media — mirroring how the
+  // SliceZone context wires loadPresentation() on the page routes. Band
+  // indices 101–106 are fixture-only and shared via one context object.
+  const bluxCtx: { presentation: Presentation } = {
+    presentation: {
+      bands: {
+        // 101 — GridBand: heading + a 2-cell row (body text + image).
+        "101": {
+          tree: {
+            kind: "stack",
+            children: [
+              { kind: "heading", level: 2, html: "GridBand slice" },
+              {
+                kind: "row",
+                cells: [
+                  {
+                    token: { cols: 2 },
+                    node: {
+                      kind: "body",
+                      html: "<p>Body copy in the left grid cell.</p>",
+                    },
+                  },
+                  {
+                    token: { cols: 2 },
+                    node: {
+                      kind: "media",
+                      media: {
+                        kind: "image",
+                        url: pixel,
+                        alt: "Grid cell placeholder image",
+                      },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        // 102 — TitleBand: styled band; heading/subtitle come from the slice.
+        "102": {
+          style: { "background-color": "#f5f5f5", color: "#111111" },
+        },
+        // 103 — SplitFeature: manifest split payload (slice body left empty so
+        // the manifest text path renders).
+        "103": {
+          split: {
+            mediaSide: "right",
+            ratio: 50,
+            media: {
+              kind: "image",
+              url: pixel,
+              alt: "Split feature placeholder image",
+            },
+            text: {
+              kind: "stack",
+              children: [
+                { kind: "heading", level: 2, html: "SplitFeature slice" },
+                {
+                  kind: "body",
+                  html: "<p>Manifest-path body copy beside the media.</p>",
+                },
+              ],
+            },
+          },
+        },
+        // 104 — Gallery: two images.
+        "104": {
+          gallery: [
+            { kind: "image", url: pixel, alt: "Gallery placeholder one" },
+            { kind: "image", url: pixel, alt: "Gallery placeholder two" },
+          ],
+        },
+        // 105 — MediaFull: one full-width image.
+        "105": {
+          media: {
+            kind: "image",
+            url: pixel,
+            alt: "Full-width placeholder image",
+          },
+        },
+        // 106 — Hero band: text over a background image; explicit dark ground
+        // + white text so contrast is computable under the image.
+        "106": {
+          style: { "background-color": "#111111", color: "#ffffff" },
+          background: { kind: "image", url: pixel },
+        },
+      },
+    },
+  };
+  const gridBandFixture = { slice_type: "grid_band", primary: { band: 101 } };
+  const titleBandFixture = {
+    slice_type: "title_band",
+    primary: {
+      band: 102,
+      heading: "TitleBand slice",
+      subtitle: "Subtitle under the styled band heading.",
+    },
+  };
+  const splitFeatureFixture = {
+    slice_type: "split_feature",
+    primary: { band: 103 },
+  };
+  const galleryFixture = { slice_type: "gallery", primary: { band: 104 } };
+  const mediaFullFixture = { slice_type: "media_full", primary: { band: 105 } };
+  const heroBandFixture = {
+    slice_type: "hero",
+    variation: "band",
+    primary: {
+      band: 106,
+      heading: "Hero band slice",
+      subtitle: "Subtitle over the band background image.",
+    },
+    items: [],
+  } as unknown as Content.HeroSlice;
 </script>
 
 <main class="max-w-3xl mx-auto px-8 py-16 space-y-12">
@@ -373,6 +495,15 @@
   <MediaText slice={mediaTextFixture} />
   <SectionGrid slice={sectionGridFixture} />
   <CollectionList slice={collectionListFixture} context={collectionCtx} />
+
+  <!-- Blux band slices — presentation comes from the shared bluxCtx manifest
+       (bands 101–106), exactly as SliceZone context supplies it in routes. -->
+  <GridBand slice={gridBandFixture} context={bluxCtx} />
+  <TitleBand slice={titleBandFixture} context={bluxCtx} />
+  <SplitFeature slice={splitFeatureFixture} context={bluxCtx} />
+  <Gallery slice={galleryFixture} context={bluxCtx} />
+  <MediaFull slice={mediaFullFixture} context={bluxCtx} />
+  <Hero slice={heroBandFixture} context={bluxCtx} />
 </main>
 
 <!-- Renders nothing at rest (overlay only appears mid-navigation, aria-hidden);
