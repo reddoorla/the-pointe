@@ -5,6 +5,7 @@
   import type { Content } from "@prismicio/client";
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
+  import BandTitle from "$lib/blux/BandTitle.svelte";
 
   // The `band` variation is not in the generated prismic types yet
   // (regenerating them is out of scope), so widen the slice union locally.
@@ -36,11 +37,13 @@
     sliceVariation={slice.variation}
   >
     <div class="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
-      {#if slice.primary.heading}<h2>{slice.primary.heading}</h2>{/if}
-      {#if slice.primary.subtitle}<p class="mt-2">
-          {slice.primary.subtitle}
+      <BandTitle
+        heading={slice.primary.heading}
+        subtitle={slice.primary.subtitle}
+      />
+      {#if slice.primary.body}<p class="txt-role-text1 mt-4">
+          {slice.primary.body}
         </p>{/if}
-      {#if slice.primary.body}<p class="mt-4">{slice.primary.body}</p>{/if}
     </div>
   </SectionBand>
 {:else}

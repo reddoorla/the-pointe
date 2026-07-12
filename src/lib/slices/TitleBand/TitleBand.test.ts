@@ -23,24 +23,38 @@ const slice = {
 } as never;
 
 describe("TitleBand slice", () => {
-  it("renders heading and subtitle inside a manifest-styled section", () => {
+  it("renders the display line as <h2> and the eyebrow as a text5 label", () => {
     const { container } = render(TitleBand, {
       props: { slice, context: { presentation } },
     });
-    expect(container.querySelector("h2")?.textContent).toBe("The Space");
-    expect(container.querySelector("p")?.textContent).toContain(
+    // The subtitle is the large display line (the visual heading); the heading
+    // field is the small uppercase eyebrow above it.
+    expect(container.querySelector("h2")?.textContent).toBe(
       "Every corner considered",
     );
+    expect(container.querySelector("h2")?.className).toContain(
+      "txt-role-text12",
+    );
+    const eyebrow = container.querySelector("p.txt-role-text5");
+    expect(eyebrow?.textContent).toContain("The Space");
     expect(container.querySelector("section")?.style.backgroundColor).toBe(
       "rgb(1, 2, 3)",
     );
   });
 
-  it("renders Prismic-only with no context (bare section still shows heading)", () => {
+  it("renders a heading-only band as a lone text11 display line", () => {
+    const headingOnly = {
+      slice_type: "title_band",
+      variation: "default",
+      primary: { band: 1, heading: "Come Be A Part Of It.", subtitle: "" },
+      items: [],
+    } as never;
     const { container } = render(TitleBand, {
-      props: { slice, context: {} },
+      props: { slice: headingOnly, context: {} },
     });
     expect(container.querySelector("section")).not.toBeNull();
-    expect(container.querySelector("h2")?.textContent).toBe("The Space");
+    const h2 = container.querySelector("h2");
+    expect(h2?.textContent).toBe("Come Be A Part Of It.");
+    expect(h2?.className).toContain("txt-role-text11");
   });
 });

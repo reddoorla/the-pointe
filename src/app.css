@@ -294,3 +294,82 @@
     filter: blur(0.5px);
   }
 }
+
+/* ── Blux text-role scale ──────────────────────────────────────────────────
+   Grid.svelte tags every parsed text run with `txt-role-text{N}` (the role id
+   from the Blux export). These rules reproduce the source's typography per
+   role — font family, size, leading, tracking, weight and case — measured
+   verbatim from the rendered original's computed styles
+   (www.thepointeburbank.com). Kept UNLAYERED so they win over the base
+   h1..h6 / body defaults for whichever element the run lands on, while staying
+   at class specificity so a band's own inline color/align still applies.
+   Mobile overrides use Blux's own <=767px breakpoint. */
+.txt-role-text1 {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 36px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.txt-role-text5 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 26px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.txt-role-text8 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.txt-role-text11 {
+  font-family: var(--font-heading);
+  font-weight: 200;
+  font-size: 50px;
+  line-height: 80px;
+  letter-spacing: normal;
+  text-transform: capitalize;
+}
+.txt-role-text12 {
+  font-family: var(--font-heading);
+  font-weight: 200;
+  font-size: 80px;
+  line-height: 120px;
+  letter-spacing: normal;
+  text-transform: capitalize;
+}
+.txt-role-text13 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 60px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.txt-role-text14 {
+  font-family: var(--font-heading);
+  font-weight: 200;
+  font-size: 22px;
+  line-height: 38px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+@media (max-width: 767px) {
+  .txt-role-text1 {
+    line-height: 30px;
+  }
+  .txt-role-text11 {
+    font-size: 40px;
+    line-height: 60px;
+  }
+  .txt-role-text12 {
+    font-size: 48px;
+    line-height: 70px;
+  }
+}
