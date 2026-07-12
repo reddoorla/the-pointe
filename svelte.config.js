@@ -64,6 +64,8 @@ const config = {
           "https://player.vimeo.com",
           // Cloudflare Turnstile contact-form widget (enable via PUBLIC_TURNSTILE_SITE_KEY).
           "https://challenges.cloudflare.com",
+          // Google Maps JS API loader (LocationMap; enable via VITE_GOOGLE_MAPS_KEY).
+          "https://maps.googleapis.com",
         ],
         "style-src": ["self", "unsafe-inline"],
         "img-src": [
@@ -71,8 +73,16 @@ const config = {
           "data:",
           "https://images.prismic.io",
           "https://*.prismic.io",
+          // Blux export CDN — the converted manifest points here until the
+          // operator's `blux migrate` re-hosts assets on Prismic.
+          "https://*.cloudfront.net",
+          // Google Maps tiles / markers (LocationMap).
+          "https://maps.googleapis.com",
+          "https://maps.gstatic.com",
+          "https://*.googleusercontent.com",
+          "https://*.ggpht.com",
         ],
-        "media-src": ["self", "https://*.vimeocdn.com"],
+        "media-src": ["self", "https://*.vimeocdn.com", "https://*.cloudfront.net"],
         "frame-src": [
           "self",
           "https://player.vimeo.com",
@@ -83,6 +93,8 @@ const config = {
           "self",
           "https://*.prismic.io",
           "https://static.cdn.prismic.io",
+          // Google Maps JS API + KML layer fetches (LocationMap).
+          "https://maps.googleapis.com",
         ],
         "font-src": ["self", "data:"],
         "base-uri": ["self"],
