@@ -25,7 +25,7 @@
     sliceVariation={slice.variation}
   >
     <div class="mx-auto w-full max-w-screen-xl px-6 py-12">
-      <Grid node={band.tree} />
+      <Grid node={band.tree} map={band.map} />
     </div>
   </SectionBand>
 {:else}

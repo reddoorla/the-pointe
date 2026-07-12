@@ -69,6 +69,20 @@ describe("Grid (recursive fallback)", () => {
     expect(container.querySelector("[data-widget='map']")).not.toBeNull();
   });
 
+  it("mounts LocationMap for a widget:map when a map config is provided", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "stack",
+          children: [{ kind: "widget", widget: { type: "map" } }],
+        },
+        map: { mid: "M", layers: [], toggles: [], styles: [] },
+      },
+    });
+    expect(container.querySelector("[data-map-placeholder]")).not.toBeNull();
+    expect(container.querySelector("[data-widget='map']")).toBeNull();
+  });
+
   it("clamps heading levels to the h1–h6 range", () => {
     const { container } = render(Grid, {
       props: {

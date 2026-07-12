@@ -1,18 +1,21 @@
 <script lang="ts">
-  import type { RenderNode } from "./presentation";
+  import type { RenderNode, MapRenderConfig } from "./presentation";
   import { cellWidth } from "./presentation";
   import Media from "./Media.svelte";
+  import LocationMap from "./LocationMap.svelte";
   import Grid from "./Grid.svelte";
 
-  type Props = { node: RenderNode };
-  let { node }: Props = $props();
+  type Props = { node: RenderNode; map?: MapRenderConfig };
+  let { node, map }: Props = $props();
 
   const roleClass = (role?: string) => (role ? `txt-role-${role}` : "");
 </script>
 
 <!-- Render-faithful fallback: reconstructs a band's parsed node tree.
      HTML strings are baked by our own emit stage — same trust class as
-     Prismic rich text. Widgets render a mount placeholder until plan 4. -->
+     Prismic rich text. A widget:map mounts the real LocationMap when a
+     map config is threaded down from the band; other widget types still
+     render a mount placeholder. -->
 {#if node.kind === "row"}
   <div class="flex w-full flex-wrap" data-grid-row>
     {#each node.cells as cell, i (i)}
@@ -21,13 +24,13 @@
         class="min-w-0 grow basis-full md:basis-(--cell-basis)"
         style:--cell-basis={cellWidth(cell.token) ?? "auto"}
       >
-        <Grid node={cell.node} />
+        <Grid node={cell.node} {map} />
       </div>
     {/each}
   </div>
 {:else if node.kind === "stack"}
   {#each node.children as child, i (i)}
-    <Grid node={child} />
+    <Grid node={child} {map} />
   {/each}
 {:else if node.kind === "heading"}
   <svelte:element
@@ -48,5 +51,9 @@
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html node.html}
 {:else if node.kind === "widget"}
-  <div data-widget={node.widget.type} class="min-h-64 w-full"></div>
+  {#if node.widget.type === "map" && map}
+    <LocationMap {map} />
+  {:else}
+    <div data-widget={node.widget.type} class="min-h-64 w-full"></div>
+  {/if}
 {/if}
