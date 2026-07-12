@@ -1,6 +1,10 @@
 import { test } from "@playwright/test";
 import { mkdirSync } from "node:fs";
 
+// Local fidelity tool: loads images from the Blux CDN, so it's network-dependent
+// and slow. Skip it in CI (it captures screenshots, asserts nothing).
+test.skip(!!process.env.CI, "local screenshot tool — not for CI");
+
 test("converted the-pointe — full page + segments", async ({ page }) => {
   mkdirSync("/tmp/pointe-shots", { recursive: true });
   const errors: string[] = [];
