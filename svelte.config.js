@@ -85,6 +85,10 @@ const config = {
         "media-src": [
           "self",
           "https://*.vimeocdn.com",
+          // Prismic-hosted video after `blux migrate` re-hosts export media
+          // (e.g. the-pointe.cdn.prismic.io). Images use img-src's *.prismic.io.
+          "https://*.prismic.io",
+          // Blux export CDN — only used before the migrate re-hosts to Prismic.
           "https://*.cloudfront.net",
         ],
         "frame-src": [
