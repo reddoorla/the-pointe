@@ -46,7 +46,11 @@
 {:else if node.kind === "subtitle"}
   <p class={roleClass(node.role)}>{node.text}</p>
 {:else if node.kind === "media"}
-  <Media media={node.media} class="h-auto w-full" />
+  <!-- Render at the image's intrinsic width (capped to the cell), not forced
+       full-bleed: Blux uses small graphics as horizontal rules/logos that must
+       NOT stretch. Photos are intrinsically large and still fill. Exact source
+       widths land once the emit stage threads them into the manifest. -->
+  <Media media={node.media} class="mx-auto block h-auto max-w-full" />
 {:else if node.kind === "raw"}
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html node.html}
