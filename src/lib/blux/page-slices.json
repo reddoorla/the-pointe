@@ -1,0 +1,137 @@
+[
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 0
+    }
+  },
+  {
+    "slice_type": "split_feature",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 1
+    }
+  },
+  {
+    "slice_type": "title_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 2,
+      "heading": "the space",
+      "subtitle": "distinguished design"
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 3
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 4
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 5
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 6
+    }
+  },
+  {
+    "slice_type": "hero",
+    "variation": "band",
+    "items": [],
+    "primary": {
+      "band": 7,
+      "heading": "the outdoors",
+      "subtitle": "an impeccably lush haven"
+    }
+  },
+  {
+    "slice_type": "gallery",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 8
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 9
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 10
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 11
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 12
+    }
+  },
+  {
+    "slice_type": "title_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 13,
+      "heading": "the location",
+      "subtitle": "everything within reach"
+    }
+  },
+  {
+    "slice_type": "grid_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 14
+    }
+  },
+  {
+    "slice_type": "title_band",
+    "variation": "default",
+    "items": [],
+    "primary": {
+      "band": 15,
+      "heading": "Come Be A Part Of It."
+    }
+  }
+]
