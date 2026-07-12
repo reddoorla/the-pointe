@@ -16,13 +16,13 @@
 
 Regenerated from `reddoor-maintenance` `origin/main` (plan 5). 16 bands / 16 slices:
 
-| slices (in order) | manifest band payload |
-| --- | --- |
+| slices (in order)                                                   | manifest band payload                                                                              |
+| ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | 0 `grid_band` · 3,4,5,6,9,10,11,12 `grid_band` · **14 `grid_band`** | `tree` (+`style`, some `background`); **band 14 also has `map`** + a `widget:map` node in its tree |
-| 1 `split_feature` | `split` |
-| 2,13,15 `title_band` | `style` only (text is in the slice `primary.heading`/`subtitle`) |
-| 7 `hero`/`band` | `style` + `background` (text in slice primary) |
-| 8 `gallery` | `gallery[]` |
+| 1 `split_feature`                                                   | `split`                                                                                            |
+| 2,13,15 `title_band`                                                | `style` only (text is in the slice `primary.heading`/`subtitle`)                                   |
+| 7 `hero`/`band`                                                     | `style` + `background` (text in slice primary)                                                     |
+| 8 `gallery`                                                         | `gallery[]`                                                                                        |
 
 - **No `location_map`/`media_full`/`rich_text` slices** — the map is co-located inside band 14's `grid_band` (`bands["14"].map` + a `widget:map` tree node), NOT a standalone slice.
 - Page-doc slice `primary` fields carry **no Prismic markers** (all `band` + plain `Text` for hero/title). So the slice array renders directly with no marker resolution.
@@ -34,11 +34,13 @@ Regenerated from `reddoor-maintenance` `origin/main` (plan 5). 16 bands / 16 sli
 ## File Structure
 
 **Create (the-pointe):**
+
 - `src/lib/blux/page-slices.json` — the committed slice-zone array (`documents[0].data.slices` from the convert output), for the local dev render.
 - `src/routes/dev/blux-page/+page.svelte` — local full-page render (no `+page.server.ts` → no Prismic).
 - `tests/blux-page.spec.ts` — Playwright: navigate `/dev/blux-page`, capture full + segmented screenshots.
 
 **Modify:**
+
 - `src/lib/blux/blux-presentation.json` — replace the empty `{"bands":{}}` with the real manifest.
 - `src/lib/blux/Grid.svelte` — accept + thread a `map` prop; mount `<LocationMap>` for a `widget:map`.
 - `src/lib/slices/GridBand/index.svelte` — pass `map={band.map}` into `Grid`.
@@ -67,6 +69,7 @@ A detached worktree at `origin/main` is already set up at `/Users/tuckerlemos/Do
 cd /Users/tuckerlemos/Documents/GitHub/rm-main-convert
 pnpm tsx src/cli/bin.ts blux convert /Users/tuckerlemos/Desktop/thePointe --out /tmp/pointe-convert-v2
 ```
+
 Expected: `Converted 16 bands → /tmp/pointe-convert-v2 (16 manifest bands, 16 slices, map config extracted)`.
 
 - [ ] **Step 2: Copy the manifest + extract the slice zone.**
@@ -83,6 +86,7 @@ node -e 'const p=require("/tmp/pointe-convert-v2/migration-plan.json"); require(
 cd /Users/tuckerlemos/Documents/GitHub/pointe-plan7
 node -e 'const m=require("./src/lib/blux/blux-presentation.json"); const s=require("./src/lib/blux/page-slices.json"); console.log("bands", Object.keys(m.bands).length, "slices", s.length, "band14.map", !!m.bands["14"]?.map, "band14.tree", !!m.bands["14"]?.tree, "types", [...new Set(s.map(x=>x.slice_type+"/"+x.variation))].join(","))'
 ```
+
 Expected: `bands 16 slices 16 band14.map true band14.tree true types grid_band/default,split_feature/default,title_band/default,hero/band,gallery/default`. If band count ≠ 16 or `band14.map` is false, STOP — the convert output is wrong.
 
 - [ ] **Step 4: Commit.**
@@ -106,7 +110,10 @@ In `src/lib/blux/Grid.test.ts` — KEEP the existing placeholder test (widget no
 
 ```ts
 it("mounts LocationMap for a widget:map when a map config is provided", () => {
-  const node = { kind: "stack", children: [{ kind: "widget", widget: { type: "map" } }] } as const;
+  const node = {
+    kind: "stack",
+    children: [{ kind: "widget", widget: { type: "map" } }],
+  } as const;
   const map = { mid: "M", layers: [], toggles: [], styles: [] };
   const { container } = render(Grid, { props: { node, map } });
   // keyless (no VITE_GOOGLE_MAPS_KEY in jsdom) → LocationMap renders its placeholder,
@@ -123,13 +130,25 @@ it("mounts the map for a grid band whose tree carries a widget:map + map payload
   const presentation = {
     bands: {
       "9": {
-        tree: { kind: "stack", children: [{ kind: "widget", widget: { type: "map" } }, { kind: "body", html: "<p>addr</p>" }] },
+        tree: {
+          kind: "stack",
+          children: [
+            { kind: "widget", widget: { type: "map" } },
+            { kind: "body", html: "<p>addr</p>" },
+          ],
+        },
         map: { mid: "M", layers: [], toggles: [], styles: [] },
       },
     },
   };
-  const slice = { slice_type: "grid_band", variation: "default", primary: { band: 9 } };
-  const { container } = render(GridBand, { props: { slice, context: { presentation } } });
+  const slice = {
+    slice_type: "grid_band",
+    variation: "default",
+    primary: { band: 9 },
+  };
+  const { container } = render(GridBand, {
+    props: { slice, context: { presentation } },
+  });
   expect(container.querySelector("[data-map-placeholder]")).not.toBeNull();
 });
 ```
@@ -141,6 +160,7 @@ it("mounts the map for a grid band whose tree carries a widget:map + map payload
 - [ ] **Step 3: Implement `Grid.svelte`.**
 
 - Add the prop + import (keep the existing `node` prop):
+
 ```svelte
   import type { RenderNode, MapRenderConfig } from "./presentation";
   import { cellWidth } from "./presentation";
@@ -151,10 +171,12 @@ it("mounts the map for a grid band whose tree carries a widget:map + map payload
   type Props = { node: RenderNode; map?: MapRenderConfig };
   let { node, map }: Props = $props();
 ```
+
 - Thread `{map}` through BOTH recursions:
   - row cell: `<Grid node={cell.node} {map} />`
   - stack child: `<Grid node={child} {map} />`
 - Replace the widget arm:
+
 ```svelte
 {:else if node.kind === "widget"}
   {#if node.widget.type === "map" && map}
@@ -164,11 +186,13 @@ it("mounts the map for a grid band whose tree carries a widget:map + map payload
   {/if}
 {/if}
 ```
+
 (Update the stale header comment "until plan 4" → note the map now mounts when a config is threaded in.)
 
 - [ ] **Step 4: Implement `GridBand/index.svelte`** — pass the band's map into Grid:
+
 ```svelte
-      <Grid node={band.tree} map={band.map} />
+<Grid node={band.tree} map={band.map} />
 ```
 
 - [ ] **Step 5: Run — verify pass + no regressions.**
@@ -203,6 +227,7 @@ git commit -m "feat(blux): Grid mounts LocationMap for a co-located widget:map (
 
 <SliceZone {slices} {components} context={{ presentation }} />
 ```
+
 > If TS complains about the JSON import's shape against `SliceZone`'s expected slice type, cast: `slices={slices as never}` (this is a dev-only fixture route). Confirm `$lib/slices` exports `components` and the import style matches the production `+page.svelte`.
 
 - [ ] **Step 2: Manual smoke — run the dev server + eyeball once.**
@@ -210,6 +235,7 @@ git commit -m "feat(blux): Grid mounts LocationMap for a co-located widget:map (
 ```bash
 pnpm vite:dev   # port 5173; do NOT use `pnpm dev` (that also starts slicemachine)
 ```
+
 Open `http://localhost:5173/dev/blux-page`. Confirm: the page renders a stacked magazine layout (not a blank page), the hero/gallery/split bands show images, band 14 shows the map area (a neutral placeholder locally — no Maps key). Kill the server when done (`pkill -f "vite dev"` — never leave a zombie dev server).
 
 - [ ] **Step 3: Add a Playwright screenshot spec** `tests/blux-page.spec.ts`:
@@ -220,16 +246,25 @@ import { test } from "@playwright/test";
 test("converted the-pointe — full page + segments", async ({ page }) => {
   await page.goto("/dev/blux-page");
   await page.waitForLoadState("networkidle");
-  await page.screenshot({ path: "screenshots/converted-full.png", fullPage: true });
+  await page.screenshot({
+    path: "screenshots/converted-full.png",
+    fullPage: true,
+  });
   // segmented shots (fullPage screenshots downscale badly) — one per band section
   const bands = page.locator("[data-slice-type], section");
   const n = await bands.count();
   for (let i = 0; i < n; i++) {
     await bands.nth(i).scrollIntoViewIfNeeded();
-    await bands.nth(i).screenshot({ path: `screenshots/band-${String(i).padStart(2, "0")}.png` }).catch(() => {});
+    await bands
+      .nth(i)
+      .screenshot({
+        path: `screenshots/band-${String(i).padStart(2, "0")}.png`,
+      })
+      .catch(() => {});
   }
 });
 ```
+
 > Confirm the section selector against the rendered DOM (SectionBand emits `data-slice-type`; adjust if the band wrapper differs). Add `screenshots/` to `.gitignore` if it isn't already (don't commit binaries unless the repo does).
 
 - [ ] **Step 4: Capture the screenshots.**
@@ -237,6 +272,7 @@ test("converted the-pointe — full page + segments", async ({ page }) => {
 ```bash
 pnpm exec playwright test tests/blux-page.spec.ts --project=chromium
 ```
+
 (Playwright's `webServer` auto-starts `vite:dev` and `reuseExistingServer` locally.) Confirm `screenshots/converted-full.png` + per-band shots exist and are non-trivial in size.
 
 - [ ] **Step 5: Commit** (the route + spec; screenshots stay untracked unless the repo commits such artifacts):
@@ -262,6 +298,7 @@ git commit -m "test(blux): local dev render route + screenshot harness for the c
 pnpm exec slicemachine-cli --help 2>/dev/null || cat package.json | grep -i slicemachine
 # use the repo's codegen script — likely `pnpm slicemachine` or a types-gen script; run the one that regenerates src/prismicio-types.d.ts WITHOUT needing Prismic auth.
 ```
+
 > If regenerating requires Prismic auth / a running Slice Machine the sandbox can't provide, DO NOT hand-edit the "DO NOT EDIT" file blindly. Instead: report BLOCKED on the type regen, leave `customtypes` updated, and note that `typecheck` may flag the band slices in the page union until the operator regenerates during the migrate step. The dev route imports `page-slices.json` untyped, so the render + its tests are unaffected either way.
 
 - [ ] **Step 3: Verify.**
@@ -287,6 +324,7 @@ git commit -m "feat(blux): register grid band slices in the page custom type cho
 cd /Users/tuckerlemos/Documents/GitHub/pointe-plan7
 pnpm lint && pnpm typecheck && pnpm vitest run && pnpm build && pnpm test:a11y
 ```
+
 Expected: all green. `test:a11y` runs axe on `/dev/a11y-fixtures` + `/dev/animate-in`; if you want the converted page a11y-checked too, add `/dev/blux-page` to `tests/a11y.spec.ts`'s goto list (optional — flag any real contrast failures on the converted content rather than silencing them).
 
 - [ ] **Step 2: Push + open a PR** (mark it clearly operator-action-pending):
@@ -306,6 +344,6 @@ gh pr create --base main --title "feat(blux): the-pointe faithful-grid render (p
 
 ## Notes / risks
 
-- **Local map renders as a placeholder** (no `VITE_GOOGLE_MAPS_KEY` in dev) — that's expected and correct; the real map only appears with the key set (Netlify). The screenshot check verifies the map *section* is present + sized, not the live tiles.
+- **Local map renders as a placeholder** (no `VITE_GOOGLE_MAPS_KEY` in dev) — that's expected and correct; the real map only appears with the key set (Netlify). The screenshot check verifies the map _section_ is present + sized, not the live tiles.
 - **Some media may be missing** — the convert diagnostics flag unresolved assets (mostly library assets, not this page's rendered media, which resolved via `data-base`). Note any visibly-missing images in the sign-off; a fully-resolved set may need a probe pass (a plan-5 follow-up), not this plan.
 - **`page-slices.json` is a local render fixture**, not shipped to production — the production page reads its slices from Prismic after the operator's migrate. Keep it in `src/lib/blux/` for the dev route only.

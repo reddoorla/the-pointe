@@ -82,7 +82,11 @@ const config = {
           "https://*.googleusercontent.com",
           "https://*.ggpht.com",
         ],
-        "media-src": ["self", "https://*.vimeocdn.com", "https://*.cloudfront.net"],
+        "media-src": [
+          "self",
+          "https://*.vimeocdn.com",
+          "https://*.cloudfront.net",
+        ],
         "frame-src": [
           "self",
           "https://player.vimeo.com",

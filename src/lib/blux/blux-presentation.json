@@ -1329,31 +1329,19 @@
         "toggles": [
           {
             "label": "The Burbank Portfolio",
-            "layers": [
-              "The_Burbank_Portfolio"
-            ]
+            "layers": ["The_Burbank_Portfolio"]
           },
           {
             "label": "Studio And Offices",
-            "layers": [
-              "Studios",
-              "Office_Tenants"
-            ]
+            "layers": ["Studios", "Office_Tenants"]
           },
           {
             "label": "Retail And Dining",
-            "layers": [
-              "Food_And_Drink",
-              "Retail",
-              "Entertainment"
-            ]
+            "layers": ["Food_And_Drink", "Retail", "Entertainment"]
           },
           {
             "label": "Hotel And Services",
-            "layers": [
-              "Hotels",
-              "Services"
-            ]
+            "layers": ["Hotels", "Services"]
           }
         ],
         "styles": [
