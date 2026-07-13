@@ -23,7 +23,8 @@ export type RenderMedia = {
 export type GridToken = {
   cols: number | "any";
   ratio?: number;
-  sized?: number;
+  /** Grid inter-cell spacing in px (Blux `grid-N-sM`). A gap, not a width. */
+  spacing?: number;
 };
 
 export type RenderNode =
@@ -97,10 +98,12 @@ export function bandFor(
   return entry ? { ...entry, index: band } : null;
 }
 
-/** A cell's CSS width from its grid token; null = let flex distribute. */
+/** A cell's CSS width from its grid token; null = let flex distribute. Width
+ * comes from an explicit `ratio` or an equal split of the column count;
+ * `spacing` is a gap, never a width, so a 1-column `grid-1-s40` stat list
+ * stacks full-width instead of collapsing to a spacing-derived phantom width. */
 export function cellWidth(token: GridToken): string | null {
   if (typeof token.ratio === "number") return `${token.ratio}%`;
-  if (typeof token.sized === "number") return `${token.sized}%`;
   // Covers "any" plus malformed cols (0, negative) that would yield Infinity%.
   if (typeof token.cols !== "number" || token.cols <= 0) return null;
   return `${Math.round((100 / token.cols) * 10000) / 10000}%`;

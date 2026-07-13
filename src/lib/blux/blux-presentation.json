@@ -162,7 +162,7 @@
                 {
                   "token": {
                     "cols": 1,
-                    "sized": 40
+                    "spacing": 40
                   },
                   "node": {
                     "kind": "row",
@@ -202,7 +202,7 @@
                 {
                   "token": {
                     "cols": 1,
-                    "sized": 40
+                    "spacing": 40
                   },
                   "node": {
                     "kind": "row",
@@ -242,7 +242,7 @@
                 {
                   "token": {
                     "cols": 1,
-                    "sized": 40
+                    "spacing": 40
                   },
                   "node": {
                     "kind": "row",
@@ -282,7 +282,7 @@
                 {
                   "token": {
                     "cols": 1,
-                    "sized": 40
+                    "spacing": 40
                   },
                   "node": {
                     "kind": "row",
@@ -656,7 +656,7 @@
                         {
                           "token": {
                             "cols": "any",
-                            "sized": 20
+                            "spacing": 20
                           },
                           "node": {
                             "kind": "media",
@@ -673,7 +673,7 @@
                         {
                           "token": {
                             "cols": "any",
-                            "sized": 20
+                            "spacing": 20
                           },
                           "node": {
                             "kind": "media",
