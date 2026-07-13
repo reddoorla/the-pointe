@@ -55,6 +55,9 @@ export type MapRenderConfig = {
 };
 
 export type BandPresentation = {
+  /** The band's source index, stamped by `bandFor` (not from the manifest) so
+   * the band <section> can carry an `id` for the nav's section anchors. */
+  index?: number;
   /** CSS property → value, applied inline on the band <section>. */
   style?: Record<string, string>;
   /** Band-level background media, rendered behind the content box. */
@@ -89,7 +92,9 @@ export function bandFor(
   band: number | null | undefined,
 ): BandPresentation | null {
   if (!presentation || band === null || band === undefined) return null;
-  return presentation.bands?.[String(band)] ?? null;
+  const entry = presentation.bands?.[String(band)];
+  // Stamp the index so the <section> can expose it as an anchor target.
+  return entry ? { ...entry, index: band } : null;
 }
 
 /** A cell's CSS width from its grid token; null = let flex distribute. */

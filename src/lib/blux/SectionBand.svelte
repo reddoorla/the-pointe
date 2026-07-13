@@ -49,7 +49,8 @@
 <!-- One rendered band: full-bleed section carrying the band's block style and
      optional background media; content sits above the background. -->
 <section
-  class="relative isolate w-full {centered
+  id={band?.index != null ? String(band.index) : undefined}
+  class="relative isolate w-full scroll-mt-24 {centered
     ? 'flex flex-col justify-center'
     : ''}"
   style={styleAttr}

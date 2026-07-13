@@ -25,32 +25,41 @@
   const closeMenu = () => (isMenuOpen = false);
 </script>
 
-<nav
-  class="fixed top-0 left-0 w-full z-50 px-8 py-4 flex items-center justify-between bg-background/90 backdrop-blur-sm"
->
-  <a href="/" class="block">
-    <img src={wordmark} alt="The Pointe — home" class="h-6 w-auto" />
-  </a>
+<!-- Faithful to the original: a solid white bar (page background is #edeff4, not
+     white) with the logo + links inset to the content gutter, links in the
+     original's muted slate. -->
+<nav class="fixed top-0 left-0 z-50 w-full bg-white py-9">
+  <div
+    class="mx-auto flex w-full max-w-[1150px] items-center justify-between px-6 lg:px-0"
+  >
+    <a href="/" class="block">
+      <img src={wordmark} alt="The Pointe — home" class="h-7 w-auto" />
+    </a>
 
-  {#if navLinks.length > 0}
-    <div class="hidden lg:flex items-center gap-8">
-      {#each navLinks as link (link.href)}
-        <a href={link.href}>{link.text}</a>
-      {/each}
-    </div>
+    {#if navLinks.length > 0}
+      <div class="hidden items-center gap-9 text-[#4b4b6e] lg:flex">
+        {#each navLinks as link (link.href)}
+          <a
+            href={link.href}
+            class="text-inherit no-underline transition-opacity hover:opacity-70"
+            >{link.text}</a
+          >
+        {/each}
+      </div>
 
-    {#if !isMenuOpen}
-      <button
-        bind:this={openButtonEl}
-        type="button"
-        class="lg:hidden flex items-center justify-center min-h-11 min-w-11"
-        onclick={openMenu}
-        aria-label="Open menu"
-      >
-        <Menu size={24} />
-      </button>
+      {#if !isMenuOpen}
+        <button
+          bind:this={openButtonEl}
+          type="button"
+          class="flex min-h-11 min-w-11 items-center justify-center text-[#4b4b6e] lg:hidden"
+          onclick={openMenu}
+          aria-label="Open menu"
+        >
+          <Menu size={24} />
+        </button>
+      {/if}
     {/if}
-  {/if}
+  </div>
 </nav>
 
 {#if isMenuOpen}
