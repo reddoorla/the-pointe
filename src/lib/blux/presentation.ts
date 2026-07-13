@@ -11,6 +11,13 @@ export type RenderMedia = {
   /** Absolute URL (Prismic CDN after emit). */
   url: string;
   alt?: string;
+  /** Source display width in px (Blux inline `width`). Rendered capped to 100%
+   * so in-flow images match the original instead of stretching full-bleed. */
+  width?: number;
+  /** Aspect ratio as height/width percentage (Blux `mediaRatio`/`data-og-ratio`). */
+  aspect?: number;
+  /** Source `background-size` intent. */
+  fit?: "contain" | "cover";
 };
 
 export type GridToken = {

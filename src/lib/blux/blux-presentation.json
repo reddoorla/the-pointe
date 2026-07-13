@@ -20,7 +20,10 @@
             "media": {
               "kind": "image",
               "url": "https://images.prismic.io/the-pointe/MQcRMcS56VgYa7wv_b035b800-7ed3-479e-bb02-54a3eccfb27a.png?auto=format,compress",
-              "alt": "Pointe-Reverse.png"
+              "alt": "Pointe-Reverse.png",
+              "width": 600,
+              "aspect": 11.919,
+              "fit": "contain"
             }
           },
           {
@@ -48,7 +51,10 @@
         "media": {
           "kind": "image",
           "url": "https://images.prismic.io/the-pointe/5oFxTpyd_vvATXo4_0c78a3e9-984b-4697-a025-2fb1055da37e.png?auto=format,compress",
-          "alt": "pointe-placeholder-2.png"
+          "alt": "pointe-placeholder-2.png",
+          "width": 779,
+          "aspect": 166.496,
+          "fit": "contain"
         },
         "text": {
           "kind": "stack",
@@ -64,7 +70,10 @@
               "media": {
                 "kind": "image",
                 "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
-                "alt": "lines-blue.png"
+                "alt": "lines-blue.png",
+                "width": 50,
+                "aspect": 18.978,
+                "fit": "contain"
               }
             },
             {
@@ -83,7 +92,10 @@
               "media": {
                 "kind": "image",
                 "url": "https://images.prismic.io/the-pointe/PDAnjbYv1xPkjqiw_e15eb8af-95eb-4aac-b03e-ca1990de534e.png?auto=format,compress",
-                "alt": "pointe-placeholder-1.png"
+                "alt": "pointe-placeholder-1.png",
+                "width": 1334,
+                "aspect": 78.111,
+                "fit": "contain"
               }
             }
           ]
@@ -117,7 +129,10 @@
                   "media": {
                     "kind": "image",
                     "url": "https://images.prismic.io/the-pointe/-vrK908vcH_s-JW-_511a1d2e-2ad5-4d93-857e-463f15bc5b82.png?auto=format,compress",
-                    "alt": "Pointe Stacking.png"
+                    "alt": "Pointe Stacking.png",
+                    "width": 971,
+                    "aspect": 118.95,
+                    "fit": "contain"
                   }
                 },
                 {
@@ -125,7 +140,10 @@
                   "media": {
                     "kind": "image",
                     "url": "https://images.prismic.io/the-pointe/XY7N7bOAYVJBsF8F_43983b42-cd6d-42ba-b76d-9bce1931e581.png?auto=format,compress",
-                    "alt": "Pointe.png"
+                    "alt": "Pointe.png",
+                    "width": 1645,
+                    "aspect": 32.462,
+                    "fit": "contain"
                   }
                 }
               ]
@@ -156,7 +174,10 @@
                           "media": {
                             "kind": "image",
                             "url": "https://images.prismic.io/the-pointe/taVvxuTTCSoUU0bd_449cb545-61ab-4faa-a1a2-5b802ae27982.png?auto=format,compress",
-                            "alt": "stacking-1.png"
+                            "alt": "stacking-1.png",
+                            "width": 200,
+                            "aspect": 67.917,
+                            "fit": "contain"
                           }
                         }
                       },
@@ -193,7 +214,10 @@
                           "media": {
                             "kind": "image",
                             "url": "https://images.prismic.io/the-pointe/tXYgKZbyol-X671Y_56ceaf76-a802-47e2-9bfa-d48fff84642d.png?auto=format,compress",
-                            "alt": "stacking-2.png"
+                            "alt": "stacking-2.png",
+                            "width": 200,
+                            "aspect": 67.917,
+                            "fit": "contain"
                           }
                         }
                       },
@@ -230,7 +254,10 @@
                           "media": {
                             "kind": "image",
                             "url": "https://images.prismic.io/the-pointe/G_5jkEYl0AlciPSz_39999486-c94a-47f9-9054-699d21955ec5.png?auto=format,compress",
-                            "alt": "stacking-3.png"
+                            "alt": "stacking-3.png",
+                            "width": 210,
+                            "aspect": 68.182,
+                            "fit": "contain"
                           }
                         }
                       },
@@ -267,7 +294,10 @@
                           "media": {
                             "kind": "image",
                             "url": "https://images.prismic.io/the-pointe/jIpdCtfQZuq4E9xY_1083733e-b211-4e23-8a62-2c6db839a02c.png?auto=format,compress",
-                            "alt": "leed.png"
+                            "alt": "leed.png",
+                            "width": 123,
+                            "aspect": 100.0,
+                            "fit": "contain"
                           }
                         }
                       },
@@ -337,7 +367,10 @@
                   "media": {
                     "kind": "image",
                     "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
-                    "alt": "lines-blue.png"
+                    "alt": "lines-blue.png",
+                    "width": 50,
+                    "aspect": 18.978,
+                    "fit": "contain"
                   }
                 },
                 {
@@ -382,7 +415,10 @@
                     "media": {
                       "kind": "image",
                       "url": "https://images.prismic.io/the-pointe/R8P0RhyB09SDVsQ2_7c52c8df-a506-4a7a-9a1d-91aa11e5d7c6.png?auto=format,compress",
-                      "alt": "FIT HC.png"
+                      "alt": "FIT HC.png",
+                      "width": 1334,
+                      "aspect": 88.006,
+                      "fit": "cover"
                     }
                   }
                 },
@@ -428,7 +464,10 @@
                     "media": {
                       "kind": "image",
                       "url": "https://images.prismic.io/the-pointe/xqxblazwJYmZdLeB_2c05f47c-cfee-4383-8955-5dea66b4df15.png?auto=format,compress",
-                      "alt": "pointe-placeholder-4.png"
+                      "alt": "pointe-placeholder-4.png",
+                      "width": 2563,
+                      "aspect": 64.69,
+                      "fit": "cover"
                     }
                   }
                 }
@@ -452,7 +491,10 @@
                     "media": {
                       "kind": "image",
                       "url": "https://images.prismic.io/the-pointe/j3oX4_nYtTkP_VZ8_6fefaae2-82b2-4861-9efe-b491cc3d2af1.jpg?auto=format,compress",
-                      "alt": "mrkt-cafe-035-cliffwilliam-_CWF1375.jpg"
+                      "alt": "mrkt-cafe-035-cliffwilliam-_CWF1375.jpg",
+                      "width": 3800,
+                      "aspect": 66.658,
+                      "fit": "contain"
                     }
                   }
                 },
@@ -533,7 +575,10 @@
             "media": {
               "kind": "image",
               "url": "https://images.prismic.io/the-pointe/z8yoZAoEZAqy5KCN_bf56be7d-863c-4f44-8247-6d92ea7762a9.png?auto=format,compress",
-              "alt": "40px_lines.png"
+              "alt": "40px_lines.png",
+              "width": 40,
+              "aspect": 17.5,
+              "fit": "contain"
             }
           },
           {
@@ -541,7 +586,10 @@
             "media": {
               "kind": "image",
               "url": "https://images.prismic.io/the-pointe/X6YGpBsbrrwdi1ff_b640649d-05cf-40c1-9edc-f3fc9d427c76.png?auto=format,compress",
-              "alt": "TBP-Logo-Outline.png"
+              "alt": "TBP-Logo-Outline.png",
+              "width": 996,
+              "aspect": 6.124,
+              "fit": "contain"
             }
           },
           {
@@ -605,7 +653,10 @@
                             "media": {
                               "kind": "image",
                               "url": "https://images.prismic.io/the-pointe/x4uOQMZTS0kpOOtx_cfc17af2-ff1f-40a4-a5bf-4123cd5f355c.png?auto=format,compress",
-                              "alt": "worthe.png"
+                              "alt": "worthe.png",
+                              "width": 120,
+                              "aspect": 26.009,
+                              "fit": "contain"
                             }
                           }
                         },
@@ -619,7 +670,10 @@
                             "media": {
                               "kind": "image",
                               "url": "https://images.prismic.io/the-pointe/N_SqrV9yqYJ5sgen_966adedb-0315-4afd-b070-8c89f8792267.png?auto=format,compress",
-                              "alt": "Blackstone.png"
+                              "alt": "Blackstone.png",
+                              "width": 160,
+                              "aspect": 39.576,
+                              "fit": "contain"
                             }
                           }
                         }
@@ -658,7 +712,10 @@
             "media": {
               "kind": "image",
               "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
-              "alt": "lines-blue.png"
+              "alt": "lines-blue.png",
+              "width": 50,
+              "aspect": 18.978,
+              "fit": "contain"
             }
           },
           {
@@ -711,7 +768,10 @@
                     "media": {
                       "kind": "image",
                       "url": "https://images.prismic.io/the-pointe/jK98khk97tsUanDa_126045fb-2364-4d99-9d6f-5502674ecdc9.jpg?auto=format,compress",
-                      "alt": "TBP_Studio_img_Getty_200417679-web.jpg"
+                      "alt": "TBP_Studio_img_Getty_200417679-web.jpg",
+                      "width": 1078,
+                      "aspect": 75.232,
+                      "fit": "cover"
                     }
                   }
                 }
@@ -735,7 +795,10 @@
                     "media": {
                       "kind": "image",
                       "url": "https://images.prismic.io/the-pointe/6YfjZw-N9_NOEyfP_da8e7a33-0929-4618-9044-4b2ac23041c0.jpg?auto=format,compress",
-                      "alt": "eva-darron-oCdVtGFeDC0-unsplash.jpg"
+                      "alt": "eva-darron-oCdVtGFeDC0-unsplash.jpg",
+                      "width": 5774,
+                      "aspect": 56.269,
+                      "fit": "cover"
                     }
                   }
                 },
@@ -784,7 +847,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/1EUpmAUXwGz6-_7z_122c1f54-872a-40af-8437-a6a226ad968a.jpg?auto=format,compress",
-                          "alt": "TBP_Burbank_women_coffee-web.jpg"
+                          "alt": "TBP_Burbank_women_coffee-web.jpg",
+                          "width": 1080,
+                          "aspect": 66.667,
+                          "fit": "cover"
                         }
                       },
                       {
@@ -996,7 +1062,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/U6cLZrJEA5fl-0s__052e9b6f-6abe-4478-8a20-380f73d119ff.png?auto=format,compress",
-                          "alt": "tenant-1.png"
+                          "alt": "tenant-1.png",
+                          "width": 1701,
+                          "aspect": 23.692,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1009,7 +1078,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/c6DDo3VjsDjmQtxU_f0e78916-7572-4cb2-a931-47b994991ef8.png?auto=format,compress",
-                          "alt": "tenant-2.png"
+                          "alt": "tenant-2.png",
+                          "width": 1701,
+                          "aspect": 23.692,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1022,7 +1094,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/dNR4TBG9ZyM7Qf8w_b4dd73b4-a59a-426b-8908-a4407632d190.png?auto=format,compress",
-                          "alt": "tenant-3.png"
+                          "alt": "tenant-3.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1035,7 +1110,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/9Z_G61gZpXJv0ymG_050cf5e5-2d8b-4712-950e-ad6c353c3e5e.png?auto=format,compress",
-                          "alt": "tenant-4.png"
+                          "alt": "tenant-4.png",
+                          "width": 1701,
+                          "aspect": 23.692,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1048,7 +1126,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/DVP2WljYM7Q1gtkl_4ea50f1e-25e9-4d60-a67c-2f1aa9410c55.png?auto=format,compress",
-                          "alt": "tenant-5.png"
+                          "alt": "tenant-5.png",
+                          "width": 852,
+                          "aspect": 23.709,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1061,7 +1142,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/4MoTm8jJl7trwbI9_0cfa7062-d911-483c-94be-20e8e4e0f4bb.png?auto=format,compress",
-                          "alt": "tenant-6.png"
+                          "alt": "tenant-6.png",
+                          "width": 1702,
+                          "aspect": 23.678,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1074,7 +1158,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/Zzbnh19EFaFr91wY_63b7996d-fe0a-4f00-abcc-c3fb521638f5.png?auto=format,compress",
-                          "alt": "tenant-7.png"
+                          "alt": "tenant-7.png",
+                          "width": 1702,
+                          "aspect": 23.678,
+                          "fit": "contain"
                         }
                       }
                     }
@@ -1097,7 +1184,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/kPr8Vx9CojUfl7M9_3b966d54-aa06-4d81-ac7a-00a18a31da6f.png?auto=format,compress",
-                          "alt": "Dining-1.png"
+                          "alt": "Dining-1.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1110,7 +1200,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/9YVxB_Re0g5C5rzF_6e1b82f7-5bf9-48b1-b956-8d614a319176.png?auto=format,compress",
-                          "alt": "Dining-2.png"
+                          "alt": "Dining-2.png",
+                          "width": 1702,
+                          "aspect": 23.678,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1123,7 +1216,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/U3rDOImfFk32ohpt_1d601436-8017-4dd1-a548-29b66dd10eab.png?auto=format,compress",
-                          "alt": "Dining-3.png"
+                          "alt": "Dining-3.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1136,7 +1232,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/wuXt8zh_WPK467F2_fa1b07a4-1c8b-497c-9241-5c013a6e278c.png?auto=format,compress",
-                          "alt": "Dining-4.png"
+                          "alt": "Dining-4.png",
+                          "width": 852,
+                          "aspect": 23.709,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1149,7 +1248,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/4GRpybwNhhNvVAJ3_2116f17d-7cf0-4880-997d-bd3b5d9a08f1.png?auto=format,compress",
-                          "alt": "Dining-5.png"
+                          "alt": "Dining-5.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1162,7 +1264,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/401-mJOSPl2fvNPC_fd4d69f3-bb9e-4754-bebc-c2897a1bc1c8.png?auto=format,compress",
-                          "alt": "Dining-6.png"
+                          "alt": "Dining-6.png",
+                          "width": 852,
+                          "aspect": 23.709,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1175,7 +1280,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/1gRTmtF_oE59Yp1N_ae55dfb4-2234-4188-899f-3fe9ee92682b.png?auto=format,compress",
-                          "alt": "Dining-7.png"
+                          "alt": "Dining-7.png",
+                          "width": 1701,
+                          "aspect": 23.692,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1188,7 +1296,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/AVrQd1fmrMMyGBwW_ccdd3fcb-7361-4683-a5ff-5558b65746c0.png?auto=format,compress",
-                          "alt": "Dining-8.png"
+                          "alt": "Dining-8.png",
+                          "width": 1702,
+                          "aspect": 23.678,
+                          "fit": "contain"
                         }
                       }
                     }
@@ -1211,7 +1322,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/L72pVL06Cdo2S_Y7_80180ff4-c26c-4c3f-8cc5-3ae8df7d64cb.png?auto=format,compress",
-                          "alt": "service-1.png"
+                          "alt": "service-1.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1224,7 +1338,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/1PjlbjQgOpPQDvZB_ea5a8ac9-4bd3-4934-a38c-cf0a9cce6517.png?auto=format,compress",
-                          "alt": "service-2.png"
+                          "alt": "service-2.png",
+                          "width": 1702,
+                          "aspect": 23.678,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1237,7 +1354,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/lysbN9kolwpbnHa5_998c3e5a-f177-4d0e-9e0e-d95f1b803976.png?auto=format,compress",
-                          "alt": "service-3.png"
+                          "alt": "service-3.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1250,7 +1370,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/ZOBAvtrb358TghoC_865149e9-5e82-440f-93e0-6c5279d23e26.png?auto=format,compress",
-                          "alt": "service-4.png"
+                          "alt": "service-4.png",
+                          "width": 1702,
+                          "aspect": 23.678,
+                          "fit": "contain"
                         }
                       }
                     },
@@ -1263,7 +1386,10 @@
                         "media": {
                           "kind": "image",
                           "url": "https://images.prismic.io/the-pointe/LaKUeFJVPHPK7Nuq_c9dffc4f-f371-4007-ba80-71233c827d79.png?auto=format,compress",
-                          "alt": "service-5.png"
+                          "alt": "service-5.png",
+                          "width": 851,
+                          "aspect": 23.737,
+                          "fit": "contain"
                         }
                       }
                     }

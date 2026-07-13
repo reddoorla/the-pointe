@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {
-    bandFor,
-    cellWidth,
-    type Presentation,
-  } from "$lib/blux/presentation";
+  import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
   import Media from "$lib/blux/Media.svelte";
 
@@ -28,14 +24,18 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap px-6 py-12">
+    <!-- The source models this as a full-bleed image slider (each frame a
+         cover image ~80vh tall). A static reproduction shows the frames as an
+         edge-to-edge cover strip: full width, equal thirds, fixed height so
+         the large lazy images reserve their box and never collapse. -->
+    <div class="flex w-full flex-col sm:flex-row">
       {#each media as m, i (i)}
-        <div
-          data-gallery-cell
-          class="min-w-0 grow basis-full md:basis-(--cell-basis)"
-          style:--cell-basis={cellWidth({ cols: media.length }) ?? "auto"}
-        >
-          <Media media={m} class="h-auto w-full" />
+        <div data-gallery-cell class="min-w-0 flex-1">
+          <Media
+            media={m}
+            class="block h-[48vh] w-full object-cover sm:h-[60vh]"
+            loading={i === 0 ? "eager" : "lazy"}
+          />
         </div>
       {/each}
     </div>

@@ -33,14 +33,9 @@ describe("Gallery slice", () => {
     expect(cells).toHaveLength(3);
     expect(container.querySelectorAll("img")).toHaveLength(2);
     expect(container.querySelectorAll("video")).toHaveLength(1);
-    // Even thirds via the shared cellWidth guard, stacking below md.
-    expect(
-      (cells[0] as HTMLElement).style.getPropertyValue("--cell-basis"),
-    ).toBe("33.3333%");
-    expect((cells[0] as HTMLElement).className).toContain("basis-full");
-    expect((cells[0] as HTMLElement).className).toContain(
-      "md:basis-(--cell-basis)",
-    );
+    // Even thirds via flex, stacking below sm; cover images carry a fixed height.
+    expect((cells[0] as HTMLElement).className).toContain("flex-1");
+    expect(container.querySelector("img")?.className).toContain("object-cover");
   });
 
   it("renders nothing without a manifest gallery payload", () => {
