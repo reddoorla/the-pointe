@@ -17,7 +17,10 @@
      map config is threaded down from the band; other widget types still
      render a mount placeholder. -->
 {#if node.kind === "row"}
-  <div class="flex w-full flex-wrap" data-grid-row>
+  <!-- gap-y spaces rows that wrap to their own line (stacked media/text bands
+       and mobile) with Blux's inter-block rhythm; side-by-side cell pairs sit
+       on one flex line so it doesn't affect their horizontal spacing. -->
+  <div class="flex w-full flex-wrap gap-y-10" data-grid-row>
     {#each node.cells as cell, i (i)}
       <div
         data-grid-cell

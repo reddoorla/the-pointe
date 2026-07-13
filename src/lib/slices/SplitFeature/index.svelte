@@ -36,7 +36,7 @@
       >
         <div
           data-split-cell
-          class="min-w-0 grow basis-full text-left md:basis-(--cell-basis)"
+          class="min-w-0 grow basis-full text-left md:basis-(--cell-basis) md:pt-20"
           style:--cell-basis="{100 - split.ratio}%"
         >
           {#if slice.primary.body && isFilled.richText(slice.primary.body)}
@@ -47,7 +47,7 @@
         </div>
         <div
           data-split-cell
-          class="min-w-0 grow basis-full md:basis-(--cell-basis)"
+          class="min-w-0 grow basis-full md:basis-(--cell-basis) md:pt-[100px]"
           style:--cell-basis="{split.ratio}%"
         >
           <Media media={split.media} class="h-auto w-full" />
