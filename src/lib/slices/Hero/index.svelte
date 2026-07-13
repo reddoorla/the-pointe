@@ -5,6 +5,7 @@
   import type { Content } from "@prismicio/client";
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
+  import BandContent from "$lib/blux/BandContent.svelte";
   import BandTitle from "$lib/blux/BandTitle.svelte";
 
   // The `band` variation is not in the generated prismic types yet
@@ -27,16 +28,22 @@
   }
 
   let { slice, context = {} }: Props = $props();
+  const band = $derived(
+    bandFor(
+      context?.presentation,
+      (slice.primary as { band?: number | null }).band ?? null,
+    ),
+  );
 </script>
 
 {#if slice.variation === "band"}
   <SectionBand
-    band={bandFor(context?.presentation, slice.primary.band ?? null)}
+    {band}
     eagerBackground
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <div class="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
+    <BandContent {band} class="relative z-10">
       <BandTitle
         heading={slice.primary.heading}
         subtitle={slice.primary.subtitle}
@@ -44,7 +51,7 @@
       {#if slice.primary.body}<p class="txt-role-text1 mt-4">
           {slice.primary.body}
         </p>{/if}
-    </div>
+    </BandContent>
   </SectionBand>
 {:else}
   <section

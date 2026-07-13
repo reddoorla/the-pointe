@@ -29,9 +29,13 @@
     {/each}
   </div>
 {:else if node.kind === "stack"}
-  {#each node.children as child, i (i)}
-    <Grid node={child} {map} />
-  {/each}
+  <!-- Blux stacks its block elements with vertical rhythm between them; the
+       flat stack rendered them flush. A modest column gap restores it. -->
+  <div class="flex flex-col gap-6">
+    {#each node.children as child, i (i)}
+      <Grid node={child} {map} />
+    {/each}
+  </div>
 {:else if node.kind === "heading"}
   <svelte:element
     this={`h${Math.min(Math.max(node.level, 1), 6)}`}

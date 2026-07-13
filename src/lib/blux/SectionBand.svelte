@@ -32,6 +32,8 @@
     for (const [k, v] of Object.entries(s)) {
       if (k.startsWith("_")) continue;
       if (k === "vertical-align") continue;
+      // Content alignment + geometry is owned by BandContent, not the section.
+      if (k === "text-align") continue;
       if (k === "height") {
         parts.push(`min-height: ${v}`);
         continue;

@@ -105,14 +105,16 @@
     "2": {
       "style": {
         "vertical-align": "middle",
-        "text-align": "center"
+        "text-align": "center",
+        "_contentPadding": "40px 4% 40px 4%"
       }
     },
     "3": {
       "style": {
         "text-align": "center",
         "vertical-align": "middle",
-        "_max-content-width": "1280px"
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
       },
       "tree": {
         "kind": "row",
@@ -343,7 +345,8 @@
       "style": {
         "text-align": "left",
         "vertical-align": "middle",
-        "_max-content-width": "1280px"
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
       },
       "tree": {
         "kind": "row",
@@ -554,7 +557,8 @@
       "style": {
         "text-align": "left",
         "vertical-align": "middle",
-        "_max-content-width": "1280px"
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
       },
       "background": {
         "kind": "image",
@@ -602,7 +606,8 @@
     },
     "10": {
       "style": {
-        "_max-content-width": "1280px"
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
       },
       "tree": {
         "kind": "stack",
@@ -691,7 +696,8 @@
       "style": {
         "text-align": "left",
         "vertical-align": "middle",
-        "_max-content-width": "1280px"
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
       },
       "background": {
         "kind": "image",
