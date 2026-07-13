@@ -25,8 +25,11 @@ describe("Hero band variation", () => {
     const { container } = render(Hero, {
       props: { slice, context: { presentation } },
     });
-    expect(container.querySelector("h2")?.textContent).toBe("the outdoors");
-    expect(container.textContent).toContain("fresh air");
+    // Display line (subtitle) is the visual <h2>; the heading is the eyebrow.
+    expect(container.querySelector("h2")?.textContent).toBe("fresh air");
+    expect(container.querySelector("p.txt-role-text5")?.textContent).toContain(
+      "the outdoors",
+    );
     expect(container.querySelector("img")?.getAttribute("src")).toBe(
       "https://cdn/hero-bg.jpg",
     );

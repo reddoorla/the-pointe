@@ -20,19 +20,38 @@
     sliceVariation,
   }: Props = $props();
 
-  const styleAttr = $derived(
-    band?.style
-      ? Object.entries(band.style)
-          .map(([k, v]) => `${k}: ${v}`)
-          .join("; ")
-      : undefined,
-  );
+  // Band style carries a few keys that aren't valid CSS-as-is:
+  //  - `_`-prefixed synthetic hints (e.g. `_contentPadding`, `_max-content-width`)
+  //    are consumed by the slice wrappers, not emitted here.
+  //  - `vertical-align: middle` is Blux's vertical centering → flex below.
+  //  - a fixed `height` would clip taller content → relax to `min-height`.
+  const styleAttr = $derived.by(() => {
+    const s = band?.style;
+    if (!s) return undefined;
+    const parts: string[] = [];
+    for (const [k, v] of Object.entries(s)) {
+      if (k.startsWith("_")) continue;
+      if (k === "vertical-align") continue;
+      // Content alignment + geometry is owned by BandContent, not the section.
+      if (k === "text-align") continue;
+      if (k === "height") {
+        parts.push(`min-height: ${v}`);
+        continue;
+      }
+      parts.push(`${k}: ${v}`);
+    }
+    return parts.length ? parts.join("; ") : undefined;
+  });
+  // Blux centers a band's content vertically with `vertical-align: middle`.
+  const centered = $derived(band?.style?.["vertical-align"] === "middle");
 </script>
 
 <!-- One rendered band: full-bleed section carrying the band's block style and
      optional background media; content sits above the background. -->
 <section
-  class="relative isolate w-full"
+  class="relative isolate w-full {centered
+    ? 'flex flex-col justify-center'
+    : ''}"
   style={styleAttr}
   data-slice-type={sliceType}
   data-slice-variation={sliceVariation}

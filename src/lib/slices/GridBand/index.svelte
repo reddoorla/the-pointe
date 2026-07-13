@@ -1,6 +1,7 @@
 <script lang="ts">
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
+  import BandContent from "$lib/blux/BandContent.svelte";
   import Grid from "$lib/blux/Grid.svelte";
 
   type Props = {
@@ -24,9 +25,9 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <div class="mx-auto w-full max-w-screen-xl px-6 py-12">
-      <Grid node={band.tree} />
-    </div>
+    <BandContent {band}>
+      <Grid node={band.tree} map={band.map} />
+    </BandContent>
   </SectionBand>
 {:else}
   <!-- grid_band without a manifest entry: nothing to render faithfully. -->

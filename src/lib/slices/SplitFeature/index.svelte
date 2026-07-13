@@ -2,6 +2,7 @@
   import { PrismicRichText } from "@prismicio/svelte";
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
+  import BandContent from "$lib/blux/BandContent.svelte";
   import Grid from "$lib/blux/Grid.svelte";
   import Media from "$lib/blux/Media.svelte";
   import { isFilled } from "@prismicio/client";
@@ -28,28 +29,30 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <div
-      class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center gap-y-8 px-6 py-12"
-      class:flex-row-reverse={split.mediaSide === "left"}
-    >
+    <BandContent {band}>
       <div
-        data-split-cell
-        class="min-w-0 grow basis-full md:basis-(--cell-basis)"
-        style:--cell-basis="{100 - split.ratio}%"
+        class="flex w-full flex-wrap items-center gap-y-8"
+        class:flex-row-reverse={split.mediaSide === "left"}
       >
-        {#if slice.primary.body && isFilled.richText(slice.primary.body)}
-          <PrismicRichText field={slice.primary.body} />
-        {:else}
-          <Grid node={split.text} />
-        {/if}
+        <div
+          data-split-cell
+          class="min-w-0 grow basis-full text-left md:basis-(--cell-basis) md:pt-20"
+          style:--cell-basis="{100 - split.ratio}%"
+        >
+          {#if slice.primary.body && isFilled.richText(slice.primary.body)}
+            <PrismicRichText field={slice.primary.body} />
+          {:else}
+            <Grid node={split.text} />
+          {/if}
+        </div>
+        <div
+          data-split-cell
+          class="min-w-0 grow basis-full md:basis-(--cell-basis) md:pt-[100px]"
+          style:--cell-basis="{split.ratio}%"
+        >
+          <Media media={split.media} class="h-auto w-full" />
+        </div>
       </div>
-      <div
-        data-split-cell
-        class="min-w-0 grow basis-full md:basis-(--cell-basis)"
-        style:--cell-basis="{split.ratio}%"
-      >
-        <Media media={split.media} class="h-auto w-full" />
-      </div>
-    </div>
+    </BandContent>
   </SectionBand>
 {/if}

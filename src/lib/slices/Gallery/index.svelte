@@ -1,9 +1,5 @@
 <script lang="ts">
-  import {
-    bandFor,
-    cellWidth,
-    type Presentation,
-  } from "$lib/blux/presentation";
+  import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
   import Media from "$lib/blux/Media.svelte";
 
@@ -28,16 +24,16 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap px-6 py-12">
-      {#each media as m, i (i)}
-        <div
-          data-gallery-cell
-          class="min-w-0 grow basis-full md:basis-(--cell-basis)"
-          style:--cell-basis={cellWidth({ cols: media.length }) ?? "auto"}
-        >
-          <Media media={m} class="h-auto w-full" />
-        </div>
-      {/each}
+    <!-- The source is a full-bleed image slider showing ONE ~80vh cover frame
+         at a time. We have no slider runtime, so we render the first frame
+         full-bleed at 80vh to match the original's default view and height.
+         Frames 1+ stay in the manifest for a future true-slider enhancement. -->
+    <div data-gallery-cell class="w-full">
+      <Media
+        media={media[0]}
+        class="block h-[80vh] w-full object-cover"
+        loading="eager"
+      />
     </div>
   </SectionBand>
 {/if}

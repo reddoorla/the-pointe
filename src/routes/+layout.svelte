@@ -3,6 +3,7 @@
   import "@fontsource/montserrat/300.css";
   import "@fontsource/montserrat/400.css";
   import "@fontsource/montserrat/500.css";
+  import "@fontsource/montserrat/600.css"; // Blux role text13 (uppercase label)
   import { PrismicPreview } from "@prismicio/svelte/kit";
   import { page } from "$app/state";
   import { afterNavigate, beforeNavigate } from "$app/navigation";

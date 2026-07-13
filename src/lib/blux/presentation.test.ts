@@ -3,9 +3,12 @@ import { bandFor, cellWidth, loadPresentation } from "./presentation";
 import type { Presentation } from "./presentation";
 
 describe("presentation", () => {
-  it("loadPresentation returns the checked-in manifest (empty bands to start)", () => {
+  it("loadPresentation returns the checked-in converted the-pointe manifest", () => {
     const p = loadPresentation();
-    expect(p.bands).toEqual({});
+    // The manifest is now the real plan-5 convert output (16 bands, keyed by
+    // string index). Band 14 carries the co-located map payload.
+    expect(Object.keys(p.bands).length).toBe(16);
+    expect(bandFor(p, 14)?.map?.mid).toBeTruthy();
   });
 
   it("bandFor looks up by band index and returns null when absent", () => {

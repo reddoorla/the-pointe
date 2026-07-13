@@ -1,1 +1,1432 @@
-{ "bands": {} }
+{
+  "bands": {
+    "0": {
+      "style": {
+        "height": "100vh",
+        "vertical-align": "middle",
+        "_contentPadding": "0 4% 0 4%",
+        "text-align": "center"
+      },
+      "background": {
+        "kind": "image",
+        "url": "https://images.prismic.io/the-pointe/zjhx7517rHxjlyP6_a37733d6-09cc-4c0c-be9f-e220770f2397.jpg?auto=format,compress",
+        "alt": "Pointe-Web-7.jpg"
+      },
+      "tree": {
+        "kind": "stack",
+        "children": [
+          {
+            "kind": "media",
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/MQcRMcS56VgYa7wv_b035b800-7ed3-479e-bb02-54a3eccfb27a.png?auto=format,compress",
+              "alt": "Pointe-Reverse.png",
+              "width": 600,
+              "aspect": 11.919,
+              "fit": "contain"
+            }
+          },
+          {
+            "kind": "subtitle",
+            "text": "BURBANK",
+            "role": "text13"
+          }
+        ]
+      }
+    },
+    "1": {
+      "style": {
+        "text-align": "center",
+        "vertical-align": "middle",
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
+      },
+      "background": {
+        "kind": "image",
+        "url": "https://images.prismic.io/the-pointe/qSnYlKx8o1X4P3J7_a732d1e4-59be-42ba-b87f-5acea9b3c4b9.png?auto=format,compress",
+        "alt": "bg-lines-4.png"
+      },
+      "split": {
+        "mediaSide": "right",
+        "ratio": 40,
+        "media": {
+          "kind": "image",
+          "url": "https://images.prismic.io/the-pointe/5oFxTpyd_vvATXo4_0c78a3e9-984b-4697-a025-2fb1055da37e.png?auto=format,compress",
+          "alt": "pointe-placeholder-2.png",
+          "width": 779,
+          "aspect": 166.496,
+          "fit": "contain"
+        },
+        "text": {
+          "kind": "stack",
+          "children": [
+            {
+              "kind": "heading",
+              "level": 1,
+              "html": "The Pointe",
+              "role": "text5"
+            },
+            {
+              "kind": "media",
+              "media": {
+                "kind": "image",
+                "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
+                "alt": "lines-blue.png",
+                "width": 50,
+                "aspect": 18.978,
+                "fit": "contain"
+              }
+            },
+            {
+              "kind": "heading",
+              "level": 4,
+              "html": "a monument <br>of excellence",
+              "role": "text11"
+            },
+            {
+              "kind": "body",
+              "html": "Nestled among the biggest names in entertainment, The Pointe  is a modern and elegant haven for the finest tenants in Burbank.",
+              "role": "text1"
+            },
+            {
+              "kind": "media",
+              "media": {
+                "kind": "image",
+                "url": "https://images.prismic.io/the-pointe/PDAnjbYv1xPkjqiw_e15eb8af-95eb-4aac-b03e-ca1990de534e.png?auto=format,compress",
+                "alt": "pointe-placeholder-1.png",
+                "width": 1334,
+                "aspect": 78.111,
+                "fit": "contain"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "2": {
+      "style": {
+        "vertical-align": "middle",
+        "text-align": "center",
+        "_contentPadding": "40px 4% 40px 4%"
+      }
+    },
+    "3": {
+      "style": {
+        "text-align": "center",
+        "vertical-align": "middle",
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
+      },
+      "tree": {
+        "kind": "row",
+        "cells": [
+          {
+            "token": {
+              "cols": 2
+            },
+            "node": {
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "media",
+                  "media": {
+                    "kind": "image",
+                    "url": "https://images.prismic.io/the-pointe/-vrK908vcH_s-JW-_511a1d2e-2ad5-4d93-857e-463f15bc5b82.png?auto=format,compress",
+                    "alt": "Pointe Stacking.png",
+                    "width": 971,
+                    "aspect": 118.95,
+                    "fit": "contain"
+                  }
+                },
+                {
+                  "kind": "media",
+                  "media": {
+                    "kind": "image",
+                    "url": "https://images.prismic.io/the-pointe/XY7N7bOAYVJBsF8F_43983b42-cd6d-42ba-b76d-9bce1931e581.png?auto=format,compress",
+                    "alt": "Pointe.png",
+                    "width": 1645,
+                    "aspect": 32.462,
+                    "fit": "contain"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "token": {
+              "cols": 2
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 1,
+                    "sized": 40
+                  },
+                  "node": {
+                    "kind": "row",
+                    "cells": [
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 20
+                        },
+                        "node": {
+                          "kind": "media",
+                          "media": {
+                            "kind": "image",
+                            "url": "https://images.prismic.io/the-pointe/taVvxuTTCSoUU0bd_449cb545-61ab-4faa-a1a2-5b802ae27982.png?auto=format,compress",
+                            "alt": "stacking-1.png",
+                            "width": 200,
+                            "aspect": 67.917,
+                            "fit": "contain"
+                          }
+                        }
+                      },
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 80
+                        },
+                        "node": {
+                          "kind": "heading",
+                          "level": 5,
+                          "html": "480,000 SF of<br>Class A office space<br>",
+                          "role": "text5"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 1,
+                    "sized": 40
+                  },
+                  "node": {
+                    "kind": "row",
+                    "cells": [
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 20
+                        },
+                        "node": {
+                          "kind": "media",
+                          "media": {
+                            "kind": "image",
+                            "url": "https://images.prismic.io/the-pointe/tXYgKZbyol-X671Y_56ceaf76-a802-47e2-9bfa-d48fff84642d.png?auto=format,compress",
+                            "alt": "stacking-2.png",
+                            "width": 200,
+                            "aspect": 67.917,
+                            "fit": "contain"
+                          }
+                        }
+                      },
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 80
+                        },
+                        "node": {
+                          "kind": "heading",
+                          "level": 5,
+                          "html": "Premier 14-Story<br>Office Tower",
+                          "role": "text5"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 1,
+                    "sized": 40
+                  },
+                  "node": {
+                    "kind": "row",
+                    "cells": [
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 20
+                        },
+                        "node": {
+                          "kind": "media",
+                          "media": {
+                            "kind": "image",
+                            "url": "https://images.prismic.io/the-pointe/G_5jkEYl0AlciPSz_39999486-c94a-47f9-9054-699d21955ec5.png?auto=format,compress",
+                            "alt": "stacking-3.png",
+                            "width": 210,
+                            "aspect": 68.182,
+                            "fit": "contain"
+                          }
+                        }
+                      },
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 80
+                        },
+                        "node": {
+                          "kind": "heading",
+                          "level": 5,
+                          "html": "9.35 Acres in the<br>Media District",
+                          "role": "text5"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 1,
+                    "sized": 40
+                  },
+                  "node": {
+                    "kind": "row",
+                    "cells": [
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 20
+                        },
+                        "node": {
+                          "kind": "media",
+                          "media": {
+                            "kind": "image",
+                            "url": "https://images.prismic.io/the-pointe/jIpdCtfQZuq4E9xY_1083733e-b211-4e23-8a62-2c6db839a02c.png?auto=format,compress",
+                            "alt": "leed.png",
+                            "width": 123,
+                            "aspect": 100.0,
+                            "fit": "contain"
+                          }
+                        }
+                      },
+                      {
+                        "token": {
+                          "cols": 2,
+                          "ratio": 80
+                        },
+                        "node": {
+                          "kind": "heading",
+                          "level": 5,
+                          "html": "LEED Gold Certified<br>Energy Star Certified",
+                          "role": "text5"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "4": {
+      "style": {
+        "text-align": "center",
+        "height": "800px",
+        "vertical-align": "middle",
+        "background-color": "#ffffff"
+      },
+      "background": {
+        "kind": "image",
+        "url": "https://images.prismic.io/the-pointe/X0sQTvgTHInu583I_8fc9d04c-543a-4ca9-8cf6-18cda24eb711.png?auto=format,compress",
+        "alt": "pointe-placeholder-3.png"
+      },
+      "tree": {
+        "kind": "raw",
+        "html": "<div class=\"block-holder\" style=\"position: relative; z-index: 2;\"><div class=\"blockcontainer blocks0container valignmiddle\" style=\"min-height: 800px; height: 1px;\"><div class=\"block-content valignmiddleitem\" style=\"width: 100%;\"></div></div></div>"
+      }
+    },
+    "5": {
+      "style": {
+        "text-align": "left",
+        "vertical-align": "middle",
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
+      },
+      "tree": {
+        "kind": "row",
+        "cells": [
+          {
+            "token": {
+              "cols": 2,
+              "ratio": 60
+            },
+            "node": {
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "heading",
+                  "level": 4,
+                  "html": "on-site luxuries",
+                  "role": "text5"
+                },
+                {
+                  "kind": "media",
+                  "media": {
+                    "kind": "image",
+                    "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
+                    "alt": "lines-blue.png",
+                    "width": 50,
+                    "aspect": 18.978,
+                    "fit": "contain"
+                  }
+                },
+                {
+                  "kind": "heading",
+                  "level": 4,
+                  "html": "premium <br>amenities",
+                  "role": "text11"
+                },
+                {
+                  "kind": "body",
+                  "html": "A campus built for the modern worker, The Pointe offers amenities that enrich the every day.",
+                  "role": "text1"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "6": {
+      "style": {
+        "_max-content-width": "1280px",
+        "_contentPadding": "0 4% 0 4%"
+      },
+      "tree": {
+        "kind": "row",
+        "cells": [
+          {
+            "token": {
+              "cols": 1
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 70
+                  },
+                  "node": {
+                    "kind": "media",
+                    "media": {
+                      "kind": "image",
+                      "url": "https://images.prismic.io/the-pointe/R8P0RhyB09SDVsQ2_7c52c8df-a506-4a7a-9a1d-91aa11e5d7c6.png?auto=format,compress",
+                      "alt": "FIT HC.png",
+                      "width": 1334,
+                      "aspect": 88.006,
+                      "fit": "cover"
+                    }
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 30
+                  },
+                  "node": {
+                    "kind": "body",
+                    "html": "Renew and recover with exclusive access to a state-of-the-art <a href=\"https://www.tbpfit.com/\" class=\"links\">FIT Health Club</a> with full-service locker rooms in a spa-like atmosphere. <br>",
+                    "role": "text14"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "token": {
+              "cols": 1
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 30
+                  },
+                  "node": {
+                    "kind": "body",
+                    "html": "Enjoy exclusive access to on-site production and filming studios.",
+                    "role": "text14"
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 70
+                  },
+                  "node": {
+                    "kind": "media",
+                    "media": {
+                      "kind": "image",
+                      "url": "https://images.prismic.io/the-pointe/xqxblazwJYmZdLeB_2c05f47c-cfee-4383-8955-5dea66b4df15.png?auto=format,compress",
+                      "alt": "pointe-placeholder-4.png",
+                      "width": 2563,
+                      "aspect": 64.69,
+                      "fit": "cover"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "token": {
+              "cols": 1
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 70
+                  },
+                  "node": {
+                    "kind": "media",
+                    "media": {
+                      "kind": "image",
+                      "url": "https://images.prismic.io/the-pointe/j3oX4_nYtTkP_VZ8_6fefaae2-82b2-4861-9efe-b491cc3d2af1.jpg?auto=format,compress",
+                      "alt": "mrkt-cafe-035-cliffwilliam-_CWF1375.jpg",
+                      "width": 3800,
+                      "aspect": 66.658,
+                      "fit": "contain"
+                    }
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 30
+                  },
+                  "node": {
+                    "kind": "body",
+                    "html": "Head to the MRKT for a quick bite on-the-go, or dine in for a filling meal.",
+                    "role": "text14"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "7": {
+      "style": {
+        "vertical-align": "middle",
+        "_contentPadding": "100px 4% 100px 4%",
+        "text-align": "center"
+      },
+      "background": {
+        "kind": "image",
+        "url": "https://images.prismic.io/the-pointe/plJBLbCNYoVV_DVd_3852eddf-55e3-4f7d-b106-f58a5af214f6.png?auto=format,compress",
+        "alt": "bg-lines-2.png"
+      }
+    },
+    "8": {
+      "style": {
+        "_contentPadding": "0px",
+        "_max-content-width": "none"
+      },
+      "gallery": [
+        {
+          "kind": "image",
+          "url": "https://images.prismic.io/the-pointe/8_X493LSjFGia_pq_aefbd53c-205a-402a-ba88-6294a555b0aa.jpg?auto=format,compress",
+          "alt": "Oe-Ueda__13A5181-2.jpg"
+        },
+        {
+          "kind": "image",
+          "url": "https://images.prismic.io/the-pointe/lJgYetvcQOKsOvMQ_cb6f38b7-4ca7-4590-aeb9-11287fc942e4.jpg?auto=format,compress",
+          "alt": "© Oe-Ueda _13A5260-2.jpg"
+        },
+        {
+          "kind": "image",
+          "url": "https://images.prismic.io/the-pointe/PgF-4ylZIqo8wYFz_88737f87-d643-4435-9eb7-839516e95b38.jpg?auto=format,compress",
+          "alt": "© Oe-Ueda _13A5357-2.jpg"
+        }
+      ]
+    },
+    "9": {
+      "style": {
+        "text-align": "left",
+        "vertical-align": "middle",
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
+      },
+      "background": {
+        "kind": "image",
+        "url": "https://images.prismic.io/the-pointe/z2ekZ3_ZKFpJUl8G_673cb1d4-af95-4e81-a5dd-5018d4af5e86.png?auto=format,compress",
+        "alt": "bg-lines-5.png"
+      },
+      "tree": {
+        "kind": "stack",
+        "children": [
+          {
+            "kind": "heading",
+            "level": 4,
+            "html": "a property within",
+            "role": "text5"
+          },
+          {
+            "kind": "media",
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/z8yoZAoEZAqy5KCN_bf56be7d-863c-4f44-8247-6d92ea7762a9.png?auto=format,compress",
+              "alt": "40px_lines.png",
+              "width": 40,
+              "aspect": 17.5,
+              "fit": "contain"
+            }
+          },
+          {
+            "kind": "media",
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/X6YGpBsbrrwdi1ff_b640649d-05cf-40c1-9edc-f3fc9d427c76.png?auto=format,compress",
+              "alt": "TBP-Logo-Outline.png",
+              "width": 996,
+              "aspect": 6.124,
+              "fit": "contain"
+            }
+          },
+          {
+            "kind": "body",
+            "html": "A collection of 13 buildings offering premier office space among the biggest names in entertainment. Explore 3,100,000 SF of endless possibilities.",
+            "role": "text1"
+          }
+        ]
+      }
+    },
+    "10": {
+      "style": {
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
+      },
+      "tree": {
+        "kind": "stack",
+        "children": [
+          {
+            "kind": "media",
+            "media": {
+              "kind": "video",
+              "url": "https://the-pointe.cdn.prismic.io/the-pointe/umyIrT5aU5dans1-_c023afe4-996f-4013-83ab-2634ea55355d.mp4",
+              "alt": "TBP_vid.mp4"
+            }
+          },
+          {
+            "kind": "row",
+            "cells": [
+              {
+                "token": {
+                  "cols": 2
+                },
+                "node": {
+                  "kind": "raw",
+                  "html": "<div id=\"page-block-10-item-1-item-0\" class=\"blocks0\"><div class=\"blockcontainer blocks0container\" style=\"padding: 0px;\"><div class=\"block-content\"></div></div></div>"
+                }
+              },
+              {
+                "token": {
+                  "cols": 2
+                },
+                "node": {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "heading",
+                      "level": 4,
+                      "html": "presented by",
+                      "role": "text5"
+                    },
+                    {
+                      "kind": "row",
+                      "cells": [
+                        {
+                          "token": {
+                            "cols": "any",
+                            "sized": 20
+                          },
+                          "node": {
+                            "kind": "media",
+                            "media": {
+                              "kind": "image",
+                              "url": "https://images.prismic.io/the-pointe/x4uOQMZTS0kpOOtx_cfc17af2-ff1f-40a4-a5bf-4123cd5f355c.png?auto=format,compress",
+                              "alt": "worthe.png",
+                              "width": 120,
+                              "aspect": 26.009,
+                              "fit": "contain"
+                            }
+                          }
+                        },
+                        {
+                          "token": {
+                            "cols": "any",
+                            "sized": 20
+                          },
+                          "node": {
+                            "kind": "media",
+                            "media": {
+                              "kind": "image",
+                              "url": "https://images.prismic.io/the-pointe/N_SqrV9yqYJ5sgen_966adedb-0315-4afd-b070-8c89f8792267.png?auto=format,compress",
+                              "alt": "Blackstone.png",
+                              "width": 160,
+                              "aspect": 39.576,
+                              "fit": "contain"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "11": {
+      "style": {
+        "text-align": "left",
+        "vertical-align": "middle",
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
+      },
+      "background": {
+        "kind": "image",
+        "url": "https://images.prismic.io/the-pointe/vqfi923-jp-vkvVF_6dd54dfc-b4d1-4ef2-8165-a1f2421668bf.png?auto=format,compress",
+        "alt": "bg-lines-3.png"
+      },
+      "tree": {
+        "kind": "stack",
+        "children": [
+          {
+            "kind": "heading",
+            "level": 4,
+            "html": "local amenities",
+            "role": "text5"
+          },
+          {
+            "kind": "media",
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
+              "alt": "lines-blue.png",
+              "width": 50,
+              "aspect": 18.978,
+              "fit": "contain"
+            }
+          },
+          {
+            "kind": "heading",
+            "level": 4,
+            "html": "a city full of possibilities",
+            "role": "text11"
+          },
+          {
+            "kind": "body",
+            "html": "Burbank offers a wide range of opportunities from its network of world-renowned studios, accessible airport, and recreational activities.",
+            "role": "text1"
+          }
+        ]
+      }
+    },
+    "12": {
+      "style": {
+        "_max-content-width": "none",
+        "_contentPadding": "0 4% 0 4%"
+      },
+      "tree": {
+        "kind": "row",
+        "cells": [
+          {
+            "token": {
+              "cols": 1
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 30
+                  },
+                  "node": {
+                    "kind": "body",
+                    "html": "Be part of the community among the biggest names in entertainment. <br>",
+                    "role": "text14"
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 70
+                  },
+                  "node": {
+                    "kind": "media",
+                    "media": {
+                      "kind": "image",
+                      "url": "https://images.prismic.io/the-pointe/jK98khk97tsUanDa_126045fb-2364-4d99-9d6f-5502674ecdc9.jpg?auto=format,compress",
+                      "alt": "TBP_Studio_img_Getty_200417679-web.jpg",
+                      "width": 1078,
+                      "aspect": 75.232,
+                      "fit": "cover"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "token": {
+              "cols": 1
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 70
+                  },
+                  "node": {
+                    "kind": "media",
+                    "media": {
+                      "kind": "image",
+                      "url": "https://images.prismic.io/the-pointe/6YfjZw-N9_NOEyfP_da8e7a33-0929-4618-9044-4b2ac23041c0.jpg?auto=format,compress",
+                      "alt": "eva-darron-oCdVtGFeDC0-unsplash.jpg",
+                      "width": 5774,
+                      "aspect": 56.269,
+                      "fit": "cover"
+                    }
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 30
+                  },
+                  "node": {
+                    "kind": "body",
+                    "html": "Fly, surf, ski, all within an hour away. Plus every business partner is around the corner.<br>",
+                    "role": "text14"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "token": {
+              "cols": 1
+            },
+            "node": {
+              "kind": "row",
+              "cells": [
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 30
+                  },
+                  "node": {
+                    "kind": "body",
+                    "html": "Day or night, Burbank delights with vibrant energy and one-of-a-kind character.",
+                    "role": "text14"
+                  }
+                },
+                {
+                  "token": {
+                    "cols": 2,
+                    "ratio": 70
+                  },
+                  "node": {
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "media",
+                        "media": {
+                          "kind": "image",
+                          "url": "https://images.prismic.io/the-pointe/1EUpmAUXwGz6-_7z_122c1f54-872a-40af-8437-a6a226ad968a.jpg?auto=format,compress",
+                          "alt": "TBP_Burbank_women_coffee-web.jpg",
+                          "width": 1080,
+                          "aspect": 66.667,
+                          "fit": "cover"
+                        }
+                      },
+                      {
+                        "kind": "raw",
+                        "html": ""
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "13": {
+      "style": {
+        "vertical-align": "middle",
+        "_contentPadding": "100px 4% 100px 4%",
+        "text-align": "center"
+      }
+    },
+    "14": {
+      "style": {
+        "_contentPadding": "0 4% 80px 4%"
+      },
+      "tree": {
+        "kind": "stack",
+        "children": [
+          {
+            "kind": "widget",
+            "widget": {
+              "type": "map"
+            }
+          },
+          {
+            "kind": "row",
+            "cells": [
+              {
+                "token": {
+                  "cols": 1
+                },
+                "node": {
+                  "kind": "row",
+                  "cells": [
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "The Pointe",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "2900 West Alameda Ave<br>Burbank, CA 91505",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"http://www.thepointeburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "The Tower",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "3900 West Alameda Ave<br>Burbank, CA 91505",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"http://www.thetowerburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "The Pinnacle I",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "3400 West Olive Ave<br>Burbank, CA 91505",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.thepinnacleburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "The Pinnacle II",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "3300 West Olive Ave<br>Burbank, CA 91505",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.thepinnacleburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "3800 Alameda",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "3800 Alameda Ave<br>Burbank, CA 91505",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.theburbankportfolio.com/3800-alameda\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "Media Studios",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "3100 Thornton Ave<br>2255 &amp; 2233 Ontario Ave<br>3333 &amp; 3355 Empire Ave<br>Burbank, CA 91504",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.mediastudiosburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "token": {
+                        "cols": 4
+                      },
+                      "node": {
+                        "kind": "stack",
+                        "children": [
+                          {
+                            "kind": "heading",
+                            "level": 4,
+                            "html": "Central Park",
+                            "role": "text5"
+                          },
+                          {
+                            "kind": "body",
+                            "html": "3500 West Olive Ave<br>Burbank, CA 91505",
+                            "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.theburbankportfolio.com/central-park\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "map": {
+        "mid": "1KwcmcCf1kd-8jN7lLt36kQ9lFjLab0bz",
+        "layers": [
+          {
+            "name": "Hotels",
+            "lid": "8rJ0fKhImbs",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "Food_And_Drink",
+            "lid": "dqcWdasb9-8",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "Retail",
+            "lid": "58NHVxQwLlc",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "Services",
+            "lid": "Sv_E02Q8vjc",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "Entertainment",
+            "lid": "5Exqy6xPvW4",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "Office_Tenants",
+            "lid": "Xf3l8pFzy4s",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "Studios",
+            "lid": "avheVKZTvpo",
+            "initiallyVisible": false,
+            "preserveViewport": true
+          },
+          {
+            "name": "The_Burbank_Portfolio",
+            "lid": "lq--xeECBoM",
+            "initiallyVisible": true,
+            "preserveViewport": false
+          }
+        ],
+        "toggles": [
+          {
+            "label": "The Burbank Portfolio",
+            "layers": ["The_Burbank_Portfolio"]
+          },
+          {
+            "label": "Studio And Offices",
+            "layers": ["Studios", "Office_Tenants"]
+          },
+          {
+            "label": "Retail And Dining",
+            "layers": ["Food_And_Drink", "Retail", "Entertainment"]
+          },
+          {
+            "label": "Hotel And Services",
+            "layers": ["Hotels", "Services"]
+          }
+        ],
+        "styles": [
+          {
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#f5f5f5"
+              },
+              {
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "weight": 1.5
+              }
+            ]
+          },
+          {
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#616161"
+              },
+              {
+                "weight": 1.5
+              }
+            ]
+          },
+          {
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#f5f5f5"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "color": "#9e9e9e"
+              },
+              {
+                "visibility": "off"
+              },
+              {
+                "weight": 1
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#bdbdbd"
+              },
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#eeeeee"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#757575"
+              }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#e5e5e5"
+              }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#9e9e9e"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#ffffff"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "labels.icon",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#757575"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#dadada"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#616161"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#9e9e9e"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#e5e5e5"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.station",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#eeeeee"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#c9c9c9"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#9e9e9e"
+              }
+            ]
+          }
+        ],
+        "center": {
+          "lat": -34.397,
+          "lng": 150.644
+        },
+        "zoom": 8
+      }
+    },
+    "15": {
+      "style": {
+        "text-align": "center",
+        "height": "600px",
+        "vertical-align": "middle"
+      }
+    }
+  }
+}

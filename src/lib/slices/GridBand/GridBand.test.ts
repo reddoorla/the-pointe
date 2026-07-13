@@ -52,4 +52,25 @@ describe("GridBand slice", () => {
     });
     expect(container.querySelector("section")).toBeNull();
   });
+
+  it("mounts the map for a grid band whose tree carries a widget:map + map payload", () => {
+    const presentation = {
+      bands: {
+        "9": {
+          tree: {
+            kind: "stack",
+            children: [
+              { kind: "widget", widget: { type: "map" } },
+              { kind: "body", html: "<p>addr</p>" },
+            ],
+          },
+          map: { mid: "M", layers: [], toggles: [], styles: [] },
+        },
+      },
+    } as unknown as Presentation;
+    const { container } = render(GridBand, {
+      props: { slice: slice(9), context: { presentation } },
+    });
+    expect(container.querySelector("[data-map-placeholder]")).not.toBeNull();
+  });
 });

@@ -1,6 +1,8 @@
 <script lang="ts">
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
+  import BandContent from "$lib/blux/BandContent.svelte";
+  import BandTitle from "$lib/blux/BandTitle.svelte";
 
   type Props = {
     slice: {
@@ -25,10 +27,10 @@
   sliceType={slice.slice_type}
   sliceVariation={slice.variation}
 >
-  <div class="mx-auto w-full max-w-screen-xl px-6 py-16 text-center">
-    {#if slice.primary.heading}<h2>{slice.primary.heading}</h2>{/if}
-    {#if slice.primary.subtitle}<p class="mt-2">
-        {slice.primary.subtitle}
-      </p>{/if}
-  </div>
+  <BandContent {band}>
+    <BandTitle
+      heading={slice.primary.heading}
+      subtitle={slice.primary.subtitle}
+    />
+  </BandContent>
 </SectionBand>
