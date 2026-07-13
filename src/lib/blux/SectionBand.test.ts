@@ -107,4 +107,50 @@ describe("SectionBand", () => {
     expect(container.querySelector("img")).toBeNull();
     expect(container.querySelector("video")).toBeNull();
   });
+
+  it("gates non-hero band content behind an animateIn scroll reveal (starts hidden)", () => {
+    const { container } = render(SectionBand, {
+      props: { band: { style: {} }, children: children() },
+    });
+    const reveal = container.querySelector("section > div.w-full");
+    expect(reveal).not.toBeNull();
+    // animateIn hides the wrapper until it intersects the viewport.
+    expect((reveal as HTMLElement).style.opacity).toBe("0");
+    expect((reveal as HTMLElement).style.transform).toContain("translateY");
+    expect(reveal?.textContent).toContain("content");
+  });
+
+  it("renders the hero band content immediately (no reveal gate) when eagerBackground", () => {
+    const { container } = render(SectionBand, {
+      props: {
+        band: { style: {} },
+        eagerBackground: true,
+        children: children(),
+      },
+    });
+    // The hero is above the fold and the LCP — it must not start hidden.
+    expect(container.querySelector("section > div.w-full")).toBeNull();
+    expect(container.querySelector("section")?.textContent).toContain(
+      "content",
+    );
+  });
+
+  it("does not hide content under prefers-reduced-motion", () => {
+    window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+      matches: query === "(prefers-reduced-motion: reduce)",
+      media: query,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      onchange: null,
+      dispatchEvent: () => false,
+    }));
+    const { container } = render(SectionBand, {
+      props: { band: { style: {} }, children: children() },
+    });
+    const reveal = container.querySelector("section > div.w-full");
+    // Wrapper still renders, but animateIn early-returns → no opacity gate.
+    expect((reveal as HTMLElement)?.style.opacity).not.toBe("0");
+  });
 });
