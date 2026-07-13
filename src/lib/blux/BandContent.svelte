@@ -29,8 +29,29 @@
       .filter(Boolean)
       .join(";"),
   );
+
+  // Some bands set their copy in a narrow column over the background, positioned
+  // to one side (left/right) independently of the text alignment inside it. When
+  // `_column-width` is present, wrap the content in that column and hug it to the
+  // `_column-side` edge of the content box (default left).
+  const colW = $derived(band?.style?.["_column-width"]);
+  const colSide = $derived(band?.style?.["_column-side"]);
+  const colStyle = $derived(
+    colW
+      ? `max-width:${colW};` +
+          (colSide === "right"
+            ? "margin-inline-start:auto"
+            : colSide === "center"
+              ? "margin-inline:auto"
+              : "margin-inline-end:auto")
+      : "",
+  );
 </script>
 
 <div class="w-full {extra}" {style}>
-  {@render children()}
+  {#if colW}
+    <div style={colStyle}>{@render children()}</div>
+  {:else}
+    {@render children()}
+  {/if}
 </div>

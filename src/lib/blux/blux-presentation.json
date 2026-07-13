@@ -299,7 +299,7 @@
                             "url": "https://images.prismic.io/the-pointe/jIpdCtfQZuq4E9xY_1083733e-b211-4e23-8a62-2c6db839a02c.png?auto=format,compress",
                             "alt": "leed.png",
                             "width": 123,
-                            "aspect": 100.0,
+                            "aspect": 100,
                             "fit": "contain"
                           }
                         }
@@ -347,7 +347,9 @@
         "text-align": "left",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 4% 120px 4%"
+        "_contentPadding": "120px 4% 120px 4%",
+        "_column-width": "699px",
+        "_column-side": "left"
       },
       "tree": {
         "kind": "row",
@@ -559,7 +561,9 @@
         "text-align": "left",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 4% 120px 4%"
+        "_contentPadding": "120px 4% 120px 4%",
+        "_column-width": "699px",
+        "_column-side": "left"
       },
       "background": {
         "kind": "image",
@@ -698,7 +702,9 @@
         "text-align": "left",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 4% 120px 4%"
+        "_contentPadding": "120px 4% 120px 4%",
+        "_column-width": "699px",
+        "_column-side": "left"
       },
       "background": {
         "kind": "image",

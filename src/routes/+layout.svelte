@@ -45,7 +45,16 @@
   Skip to main content
 </a>
 <div class="flex flex-col min-h-screen">
-  <Nav navLinks={[{ text: "Contact Us", href: "#contact" }]} />
+  <!-- The original's nav: four section anchors targeting the band indices the
+       homepage renders (Vision→1, Amenities→5, Burbank→8, Contact→11). -->
+  <Nav
+    navLinks={[
+      { text: "Vision", href: "/#1" },
+      { text: "Amenities", href: "/#5" },
+      { text: "Burbank", href: "/#8" },
+      { text: "Contact Us", href: "/#11" },
+    ]}
+  />
 
   <main id="main-content" tabindex="-1" class="flex-1">
     {@render children?.()}
