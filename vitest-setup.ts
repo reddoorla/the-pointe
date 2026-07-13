@@ -16,3 +16,26 @@ if (typeof window !== "undefined" && typeof window.matchMedia !== "function") {
       dispatchEvent: () => false,
     }) as unknown as MediaQueryList;
 }
+
+// jsdom ships no `IntersectionObserver`. The `animateIn` action (now on every
+// Blux band via SectionBand) constructs one at mount, so any component test that
+// renders revealed content would throw without it. A no-op default keeps those
+// tests green; tests that need to DRIVE intersection reassign it in beforeEach.
+if (
+  typeof window !== "undefined" &&
+  typeof window.IntersectionObserver !== "function"
+) {
+  class NoopIntersectionObserver {
+    root = null;
+    rootMargin = "";
+    thresholds = [];
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords(): IntersectionObserverEntry[] {
+      return [];
+    }
+  }
+  window.IntersectionObserver =
+    NoopIntersectionObserver as unknown as typeof IntersectionObserver;
+}

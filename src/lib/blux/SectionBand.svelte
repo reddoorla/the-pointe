@@ -2,6 +2,7 @@
   import type { Snippet } from "svelte";
   import type { BandPresentation } from "./presentation";
   import Media from "./Media.svelte";
+  import { animateIn } from "$lib/actions/animateIn";
 
   type Props = {
     band: BandPresentation | null;
@@ -66,5 +67,18 @@
       />
     </div>
   {/if}
-  {@render children()}
+  <!-- Reveal the band's content on scroll-in with the fleet's animateIn (fade +
+       subtle rise) — the faithful stand-in for Blux's runtime scroll effects,
+       using our own system. The background stays static; the hero
+       (`eagerBackground`, above the fold) renders immediately so it isn't
+       hidden on load; animateIn no-ops under prefers-reduced-motion. A fixed
+       32px rise (not the action's height-relative 50% default) keeps the slide
+       subtle regardless of how tall the band is. -->
+  {#if eagerBackground}
+    {@render children()}
+  {:else}
+    <div class="w-full" use:animateIn={{ translateY: "32px" }}>
+      {@render children()}
+    </div>
+  {/if}
 </section>
