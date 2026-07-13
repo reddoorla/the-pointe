@@ -1,6 +1,7 @@
 <script lang="ts">
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
+  import BandContent from "$lib/blux/BandContent.svelte";
   import Media from "$lib/blux/Media.svelte";
 
   type Props = {
@@ -16,6 +17,11 @@
     bandFor(context.presentation, slice.primary.band ?? null),
   );
   const media = $derived(band?.gallery ?? null);
+  // Slider frames carry per-slide captions in the source. When present we can't
+  // reduce the band to a single cover frame without dropping copy, so render the
+  // frames as a captioned grid (image + caption per cell) inside the band's
+  // content box. Caption-less galleries keep the full-bleed single-frame view.
+  const captioned = $derived(!!media?.some((m) => m.caption));
 </script>
 
 {#if media && media.length > 0}
@@ -24,16 +30,31 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <!-- The source is a full-bleed image slider showing ONE ~80vh cover frame
-         at a time. We have no slider runtime, so we render the first frame
-         full-bleed at 80vh to match the original's default view and height.
-         Frames 1+ stay in the manifest for a future true-slider enhancement. -->
-    <div data-gallery-cell class="w-full">
-      <Media
-        media={media[0]}
-        class="block h-[80vh] w-full object-cover"
-        loading="eager"
-      />
-    </div>
+    {#if captioned}
+      <BandContent {band}>
+        <div class="flex w-full flex-wrap gap-y-8">
+          {#each media as frame, i (i)}
+            <div class="min-w-0 grow basis-full md:basis-1/3">
+              <Media media={frame} class="block h-auto w-full" />
+              {#if frame.caption}
+                <p class="txt-role-text5 mt-4">{frame.caption}</p>
+              {/if}
+            </div>
+          {/each}
+        </div>
+      </BandContent>
+    {:else}
+      <!-- The source is a full-bleed image slider showing ONE ~80vh cover frame
+           at a time. We have no slider runtime, so we render the first frame
+           full-bleed at 80vh to match the original's default view and height.
+           Frames 1+ stay in the manifest for a future true-slider enhancement. -->
+      <div data-gallery-cell class="w-full">
+        <Media
+          media={media[0]}
+          class="block h-[80vh] w-full object-cover"
+          loading="eager"
+        />
+      </div>
+    {/if}
   </SectionBand>
 {/if}

@@ -18,6 +18,8 @@ export type RenderMedia = {
   aspect?: number;
   /** Source `background-size` intent. */
   fit?: "contain" | "cover";
+  /** Per-frame caption (gallery slides carry a title in the source slider). */
+  caption?: string;
 };
 
 export type GridToken = {
