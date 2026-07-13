@@ -24,12 +24,13 @@ describe("presentation", () => {
     expect(bandFor({} as Presentation, 1)).toBeNull();
   });
 
-  it("cellWidth: ratio → %, sized → %, numeric cols → 100/cols, any → null", () => {
+  it("cellWidth: ratio → %, spacing ignored, numeric cols → 100/cols, any → null", () => {
     expect(cellWidth({ cols: 2, ratio: 60 })).toBe("60%");
-    expect(cellWidth({ cols: 1, sized: 40 })).toBe("40%");
+    // spacing is a gap, not a width: a 1-col grid stacks full-width.
+    expect(cellWidth({ cols: 1, spacing: 40 })).toBe("100%");
     expect(cellWidth({ cols: 4 })).toBe("25%");
     expect(cellWidth({ cols: 3 })).toBe("33.3333%");
-    expect(cellWidth({ cols: "any" })).toBeNull();
+    expect(cellWidth({ cols: "any", spacing: 20 })).toBeNull();
   });
 
   it("cellWidth guards non-positive cols instead of yielding Infinity%", () => {
