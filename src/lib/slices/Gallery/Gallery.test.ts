@@ -25,17 +25,17 @@ const slice = {
 } as never;
 
 describe("Gallery slice", () => {
-  it("renders one cell per manifest media item", () => {
+  it("renders the first frame full-bleed at 80vh (slider default view)", () => {
     const { container } = render(Gallery, {
       props: { slice, context: { presentation } },
     });
+    // One frame shown, like the original's single-frame slider.
     const cells = container.querySelectorAll("[data-gallery-cell]");
-    expect(cells).toHaveLength(3);
-    expect(container.querySelectorAll("img")).toHaveLength(2);
-    expect(container.querySelectorAll("video")).toHaveLength(1);
-    // Even thirds via flex, stacking below sm; cover images carry a fixed height.
-    expect((cells[0] as HTMLElement).className).toContain("flex-1");
-    expect(container.querySelector("img")?.className).toContain("object-cover");
+    expect(cells).toHaveLength(1);
+    const img = container.querySelector("img");
+    expect(img?.getAttribute("src")).toBe("https://cdn/one.jpg");
+    expect(img?.className).toContain("h-[80vh]");
+    expect(img?.className).toContain("object-cover");
   });
 
   it("renders nothing without a manifest gallery payload", () => {

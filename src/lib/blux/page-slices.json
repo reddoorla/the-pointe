@@ -22,7 +22,7 @@
     "primary": {
       "band": 2,
       "heading": "the space",
-      "subtitle": "distinguished design"
+      "subtitle": "distinguished\ndesign"
     }
   },
   {
@@ -64,7 +64,7 @@
     "primary": {
       "band": 7,
       "heading": "the outdoors",
-      "subtitle": "an impeccably lush haven"
+      "subtitle": "an impeccably \nlush haven"
     }
   },
   {
@@ -114,7 +114,7 @@
     "primary": {
       "band": 13,
       "heading": "the location",
-      "subtitle": "everything within reach"
+      "subtitle": "everything \nwithin reach"
     }
   },
   {

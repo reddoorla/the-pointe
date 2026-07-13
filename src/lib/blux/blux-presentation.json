@@ -38,7 +38,8 @@
       "style": {
         "text-align": "center",
         "vertical-align": "middle",
-        "_max-content-width": "1280px"
+        "_max-content-width": "1280px",
+        "_contentPadding": "120px 4% 120px 4%"
       },
       "background": {
         "kind": "image",
@@ -919,6 +920,11 @@
                             "kind": "body",
                             "html": "2900 West Alameda Ave<br>Burbank, CA 91505",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"http://www.thepointeburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
                       }
@@ -940,6 +946,11 @@
                             "kind": "body",
                             "html": "3900 West Alameda Ave<br>Burbank, CA 91505",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"http://www.thetowerburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
                       }
@@ -961,6 +972,11 @@
                             "kind": "body",
                             "html": "3400 West Olive Ave<br>Burbank, CA 91505",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.thepinnacleburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
                       }
@@ -982,6 +998,11 @@
                             "kind": "body",
                             "html": "3300 West Olive Ave<br>Burbank, CA 91505",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.thepinnacleburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
                       }
@@ -1003,6 +1024,11 @@
                             "kind": "body",
                             "html": "3800 Alameda Ave<br>Burbank, CA 91505",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.theburbankportfolio.com/3800-alameda\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
                       }
@@ -1024,6 +1050,11 @@
                             "kind": "body",
                             "html": "3100 Thornton Ave<br>2255 &amp; 2233 Ontario Ave<br>3333 &amp; 3355 Empire Ave<br>Burbank, CA 91504",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.mediastudiosburbank.com/\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
                       }
@@ -1045,358 +1076,13 @@
                             "kind": "body",
                             "html": "3500 West Olive Ave<br>Burbank, CA 91505",
                             "role": "text8"
+                          },
+                          {
+                            "kind": "body",
+                            "role": "text8",
+                            "html": "<a class=\"underline\" href=\"https://www.theburbankportfolio.com/central-park\" target=\"_blank\" rel=\"noopener\">Visit Website</a>"
                           }
                         ]
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "token": {
-                  "cols": 1
-                },
-                "node": {
-                  "kind": "row",
-                  "cells": [
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/U6cLZrJEA5fl-0s__052e9b6f-6abe-4478-8a20-380f73d119ff.png?auto=format,compress",
-                          "alt": "tenant-1.png",
-                          "width": 1701,
-                          "aspect": 23.692,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/c6DDo3VjsDjmQtxU_f0e78916-7572-4cb2-a931-47b994991ef8.png?auto=format,compress",
-                          "alt": "tenant-2.png",
-                          "width": 1701,
-                          "aspect": 23.692,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/dNR4TBG9ZyM7Qf8w_b4dd73b4-a59a-426b-8908-a4407632d190.png?auto=format,compress",
-                          "alt": "tenant-3.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/9Z_G61gZpXJv0ymG_050cf5e5-2d8b-4712-950e-ad6c353c3e5e.png?auto=format,compress",
-                          "alt": "tenant-4.png",
-                          "width": 1701,
-                          "aspect": 23.692,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/DVP2WljYM7Q1gtkl_4ea50f1e-25e9-4d60-a67c-2f1aa9410c55.png?auto=format,compress",
-                          "alt": "tenant-5.png",
-                          "width": 852,
-                          "aspect": 23.709,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/4MoTm8jJl7trwbI9_0cfa7062-d911-483c-94be-20e8e4e0f4bb.png?auto=format,compress",
-                          "alt": "tenant-6.png",
-                          "width": 1702,
-                          "aspect": 23.678,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/Zzbnh19EFaFr91wY_63b7996d-fe0a-4f00-abcc-c3fb521638f5.png?auto=format,compress",
-                          "alt": "tenant-7.png",
-                          "width": 1702,
-                          "aspect": 23.678,
-                          "fit": "contain"
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "token": {
-                  "cols": 1
-                },
-                "node": {
-                  "kind": "row",
-                  "cells": [
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/kPr8Vx9CojUfl7M9_3b966d54-aa06-4d81-ac7a-00a18a31da6f.png?auto=format,compress",
-                          "alt": "Dining-1.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/9YVxB_Re0g5C5rzF_6e1b82f7-5bf9-48b1-b956-8d614a319176.png?auto=format,compress",
-                          "alt": "Dining-2.png",
-                          "width": 1702,
-                          "aspect": 23.678,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/U3rDOImfFk32ohpt_1d601436-8017-4dd1-a548-29b66dd10eab.png?auto=format,compress",
-                          "alt": "Dining-3.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/wuXt8zh_WPK467F2_fa1b07a4-1c8b-497c-9241-5c013a6e278c.png?auto=format,compress",
-                          "alt": "Dining-4.png",
-                          "width": 852,
-                          "aspect": 23.709,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/4GRpybwNhhNvVAJ3_2116f17d-7cf0-4880-997d-bd3b5d9a08f1.png?auto=format,compress",
-                          "alt": "Dining-5.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/401-mJOSPl2fvNPC_fd4d69f3-bb9e-4754-bebc-c2897a1bc1c8.png?auto=format,compress",
-                          "alt": "Dining-6.png",
-                          "width": 852,
-                          "aspect": 23.709,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/1gRTmtF_oE59Yp1N_ae55dfb4-2234-4188-899f-3fe9ee92682b.png?auto=format,compress",
-                          "alt": "Dining-7.png",
-                          "width": 1701,
-                          "aspect": 23.692,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/AVrQd1fmrMMyGBwW_ccdd3fcb-7361-4683-a5ff-5558b65746c0.png?auto=format,compress",
-                          "alt": "Dining-8.png",
-                          "width": 1702,
-                          "aspect": 23.678,
-                          "fit": "contain"
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "token": {
-                  "cols": 1
-                },
-                "node": {
-                  "kind": "row",
-                  "cells": [
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/L72pVL06Cdo2S_Y7_80180ff4-c26c-4c3f-8cc5-3ae8df7d64cb.png?auto=format,compress",
-                          "alt": "service-1.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/1PjlbjQgOpPQDvZB_ea5a8ac9-4bd3-4934-a38c-cf0a9cce6517.png?auto=format,compress",
-                          "alt": "service-2.png",
-                          "width": 1702,
-                          "aspect": 23.678,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/lysbN9kolwpbnHa5_998c3e5a-f177-4d0e-9e0e-d95f1b803976.png?auto=format,compress",
-                          "alt": "service-3.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/ZOBAvtrb358TghoC_865149e9-5e82-440f-93e0-6c5279d23e26.png?auto=format,compress",
-                          "alt": "service-4.png",
-                          "width": 1702,
-                          "aspect": 23.678,
-                          "fit": "contain"
-                        }
-                      }
-                    },
-                    {
-                      "token": {
-                        "cols": 2
-                      },
-                      "node": {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/LaKUeFJVPHPK7Nuq_c9dffc4f-f371-4007-ba80-71233c827d79.png?auto=format,compress",
-                          "alt": "service-5.png",
-                          "width": 851,
-                          "aspect": 23.737,
-                          "fit": "contain"
-                        }
                       }
                     }
                   ]

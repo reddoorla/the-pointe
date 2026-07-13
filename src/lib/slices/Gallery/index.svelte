@@ -24,20 +24,16 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <!-- The source models this as a full-bleed image slider (each frame a
-         cover image ~80vh tall). A static reproduction shows the frames as an
-         edge-to-edge cover strip: full width, equal thirds, fixed height so
-         the large lazy images reserve their box and never collapse. -->
-    <div class="flex w-full flex-col sm:flex-row">
-      {#each media as m, i (i)}
-        <div data-gallery-cell class="min-w-0 flex-1">
-          <Media
-            media={m}
-            class="block h-[48vh] w-full object-cover sm:h-[60vh]"
-            loading={i === 0 ? "eager" : "lazy"}
-          />
-        </div>
-      {/each}
+    <!-- The source is a full-bleed image slider showing ONE ~80vh cover frame
+         at a time. We have no slider runtime, so we render the first frame
+         full-bleed at 80vh to match the original's default view and height.
+         Frames 1+ stay in the manifest for a future true-slider enhancement. -->
+    <div data-gallery-cell class="w-full">
+      <Media
+        media={media[0]}
+        class="block h-[80vh] w-full object-cover"
+        loading="eager"
+      />
     </div>
   </SectionBand>
 {/if}
