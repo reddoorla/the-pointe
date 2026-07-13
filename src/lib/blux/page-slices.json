@@ -68,7 +68,7 @@
     }
   },
   {
-    "slice_type": "grid_band",
+    "slice_type": "gallery",
     "variation": "default",
     "items": [],
     "primary": {
