@@ -17,7 +17,7 @@
   <!-- Honor the source's hard line breaks (Blux `<br>` in the display title),
        carried as newlines. HTML-escaped interpolation keeps this safe. -->
   <h2 class="txt-role-text12">
-    {#each subtitle.split("\n") as line, i}{#if i}<br />{/if}{line}{/each}
+    {#each subtitle.split("\n") as line, i (i)}{#if i}<br />{/if}{line}{/each}
   </h2>
 {:else if heading}
   <h2 class="txt-role-text11">{heading}</h2>
