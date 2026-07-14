@@ -71,6 +71,8 @@ describe("CarouselFrames", () => {
     const { getByLabelText, container } = renderFrames();
     expect(getByLabelText("Previous slide")).toBeTruthy();
     expect(getByLabelText("Next slide")).toBeTruthy();
+    // Arrows overlay the frame edges like the source (not a below-track row).
+    expect(container.querySelector(".blux-carousel-nav")).toBeTruthy();
     // The export encodes no dots …
     expect(container.querySelector('[aria-label^="Go to slide"]')).toBeNull();
     // … and no autoplay, so no rotation and no pause control.
