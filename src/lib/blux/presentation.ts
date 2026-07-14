@@ -22,6 +22,9 @@ export type RenderMedia = {
   /** A band background's `background-position` (e.g. "right bottom") so a
    * corner-anchored accent isn't centered. */
   position?: string;
+  /** The source holder's inline min-height (e.g. "80vh" on slider slides), so
+   * a cover-frame carousel reserves the original's height. */
+  minHeight?: string;
   /** A `<video>`'s source playback attributes; present-only. Absent = an ambient
    * background loop; `controls` = user-initiated inline playback. */
   playback?: {
@@ -89,6 +92,17 @@ export type BandPresentation = {
   };
   /** Gallery payload. */
   gallery?: RenderMedia[];
+  /** Carousel payload: the band is a source slider (.caslider). Caption TEXT
+   * lives in the page doc's items (Prismic-editable); the manifest carries the
+   * media and the caption's role metadata. `columns` = slides visible at once
+   * (source data-columns). */
+  carousel?: {
+    slides: {
+      media: RenderMedia;
+      caption?: { level?: number; role?: string };
+    }[];
+    columns?: number;
+  };
   /** MediaFull payload. */
   media?: RenderMedia;
   /** LocationMap payload (plan 4). */

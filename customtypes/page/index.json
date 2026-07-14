@@ -59,6 +59,9 @@
             },
             "location_map": {
               "type": "SharedSlice"
+            },
+            "carousel": {
+              "type": "SharedSlice"
             }
           }
         }

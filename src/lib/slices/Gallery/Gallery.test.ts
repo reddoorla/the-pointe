@@ -44,4 +44,87 @@ describe("Gallery slice", () => {
     });
     expect(container.querySelector("section")).toBeNull();
   });
+
+  it("renders the true slider when the manifest carries a carousel payload", () => {
+    // Transition shape: band 8 keeps its gallery payload (caption text) and
+    // gains the carousel payload — the slider renders, captions zipped in.
+    const transitional: Presentation = {
+      bands: {
+        "8": {
+          gallery: [
+            {
+              kind: "image",
+              url: "https://cdn/one.jpg",
+              caption: "a place to sit and breathe",
+            },
+            { kind: "image", url: "https://cdn/two.jpg", caption: "a view" },
+          ],
+          carousel: {
+            slides: [
+              {
+                media: {
+                  kind: "image",
+                  url: "https://cdn/one.jpg",
+                  minHeight: "80vh",
+                },
+                caption: { level: 5, role: "text5" },
+              },
+              {
+                media: {
+                  kind: "image",
+                  url: "https://cdn/two.jpg",
+                  minHeight: "80vh",
+                },
+                caption: { level: 5, role: "text5" },
+              },
+            ],
+            columns: 1,
+          },
+        },
+      },
+    };
+    const carouselSlice = {
+      slice_type: "gallery",
+      variation: "default",
+      primary: { band: 8 },
+      items: [],
+    } as never;
+    const { container, getByRole } = render(Gallery, {
+      props: { slice: carouselSlice, context: { presentation: transitional } },
+    });
+    // Still the /#8 anchor section, now wrapping an APG slider region.
+    expect(container.querySelector("section")?.getAttribute("id")).toBe("8");
+    expect(getByRole("region").getAttribute("aria-roledescription")).toBe(
+      "carousel",
+    );
+    // Captions come from the coexisting gallery frames, roles from the slides.
+    const captions = container.querySelectorAll("figcaption");
+    expect(captions).toHaveLength(2);
+    expect(captions[0]?.textContent).toBe("a place to sit and breathe");
+    expect(captions[0]?.querySelector("span")?.className).toContain(
+      "txt-role-text5",
+    );
+    // Neither fallback mode also rendered (full-bleed cell / captioned grid).
+    expect(container.querySelector("[data-gallery-cell]")).toBeNull();
+    expect(container.querySelector("p.txt-role-text5")).toBeNull();
+  });
+
+  it("keeps the pre-carousel modes when no carousel payload exists", () => {
+    const captioned: Presentation = {
+      bands: {
+        "1": {
+          gallery: [
+            { kind: "image", url: "https://cdn/one.jpg", caption: "one" },
+            { kind: "image", url: "https://cdn/two.jpg", caption: "two" },
+          ],
+        },
+      },
+    };
+    const { container } = render(Gallery, {
+      props: { slice, context: { presentation: captioned } },
+    });
+    // Captioned grid, not a slider.
+    expect(container.querySelector('[role="region"]')).toBeNull();
+    expect(container.querySelectorAll("img")).toHaveLength(2);
+  });
 });
