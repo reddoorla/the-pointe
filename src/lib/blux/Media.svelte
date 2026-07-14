@@ -11,22 +11,46 @@
 
   // When the source carried an explicit display width, render at that width
   // (capped to the container) so in-flow images/logos/rules match the original
-  // instead of stretching full-bleed. `aspect` reserves the box height before
-  // load. Background media carry no width, so they keep their passed classes.
+  // instead of stretching full-bleed. `aspect` reserves the box before load
+  // (also for a foreground video, which carries an aspect but no width).
   const sizeStyle = $derived(
     media.width
       ? `width:${media.width}px;max-width:100%;height:auto` +
           (media.aspect ? `;aspect-ratio:100/${media.aspect}` : "")
-      : undefined,
+      : media.aspect
+        ? `aspect-ratio:100/${media.aspect}`
+        : "",
   );
+
+  // NB: band-background `fit`/`position` are captured by the emit but NOT
+  // rendered here — on the live site the `bg-lines-*` accent bands are hidden
+  // (live-tuned, not reflected in the export's inline style), so honoring
+  // background-size:auto/position would surface a decorative line the real page
+  // doesn't show. The fields stay on RenderMedia for future sites that DO show
+  // their accents.
+  const style = $derived(sizeStyle || undefined);
+
+  // Video playback: an absent `playback` = an ambient background loop (the Blux
+  // default). When the source carried attributes, honor them exactly — band 10's
+  // `<video controls playsinline>` is a user-initiated inline video, NOT a loop.
+  const pb = $derived(media.playback);
+  const ambient = $derived(!pb);
+  const vControls = $derived(pb?.controls ?? false);
+  const vAutoplay = $derived(ambient || (pb?.autoplay ?? false));
+  const vLoop = $derived(ambient || (pb?.loop ?? false));
+  const vMuted = $derived(ambient || (pb?.muted ?? false));
+  const vPlaysinline = $derived(ambient || (pb?.playsinline ?? false));
 
   let videoEl: HTMLVideoElement | undefined = $state();
 
   // The global CSS reduce block can't stop <video autoplay loop>; gate
   // playback client-side like the repo's other motion (VimeoBanner, Slider).
+  // A user-controlled video (no autoplay) is already paused, so this is a no-op
+  // for it and only tames the ambient loops.
   $effect(() => {
     if (
       videoEl &&
+      vAutoplay &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
       videoEl.pause();
@@ -35,16 +59,16 @@
 </script>
 
 {#if media.kind === "video"}
-  <!-- Ambient loop, muted so autoplay is allowed everywhere. -->
   <video
     bind:this={videoEl}
     src={media.url}
     class={passedClasses}
-    style={sizeStyle}
-    autoplay
-    loop
-    muted
-    playsinline
+    {style}
+    controls={vControls}
+    autoplay={vAutoplay}
+    loop={vLoop}
+    muted={vMuted}
+    playsinline={vPlaysinline}
     preload="metadata"
   ></video>
 {:else}
@@ -53,6 +77,6 @@
     alt={media.alt ?? ""}
     {loading}
     class={passedClasses}
-    style={sizeStyle}
+    {style}
   />
 {/if}

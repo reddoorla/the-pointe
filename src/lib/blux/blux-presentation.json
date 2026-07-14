@@ -627,7 +627,12 @@
             "media": {
               "kind": "video",
               "url": "https://the-pointe.cdn.prismic.io/the-pointe/umyIrT5aU5dans1-_c023afe4-996f-4013-83ab-2634ea55355d.mp4",
-              "alt": "TBP_vid.mp4"
+              "alt": "TBP_vid.mp4",
+              "aspect": 56.25,
+              "playback": {
+                "controls": true,
+                "playsinline": true
+              }
             }
           },
           {

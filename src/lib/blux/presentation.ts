@@ -16,8 +16,21 @@ export type RenderMedia = {
   width?: number;
   /** Aspect ratio as height/width percentage (Blux `mediaRatio`/`data-og-ratio`). */
   aspect?: number;
-  /** Source `background-size` intent. */
-  fit?: "contain" | "cover";
+  /** Source `background-size` intent. A band background's `auto` = a native-size
+   * decorative accent (→ object-fit:none), not a full-bleed `cover`. */
+  fit?: "contain" | "cover" | "auto";
+  /** A band background's `background-position` (e.g. "right bottom") so a
+   * corner-anchored accent isn't centered. */
+  position?: string;
+  /** A `<video>`'s source playback attributes; present-only. Absent = an ambient
+   * background loop; `controls` = user-initiated inline playback. */
+  playback?: {
+    controls?: boolean;
+    playsinline?: boolean;
+    autoplay?: boolean;
+    loop?: boolean;
+    muted?: boolean;
+  };
   /** Per-frame caption (gallery slides carry a title in the source slider). */
   caption?: string;
 };
