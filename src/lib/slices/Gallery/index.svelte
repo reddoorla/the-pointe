@@ -2,6 +2,9 @@
   import { bandFor, type Presentation } from "$lib/blux/presentation";
   import SectionBand from "$lib/blux/SectionBand.svelte";
   import BandContent from "$lib/blux/BandContent.svelte";
+  import CarouselFrames, {
+    type CarouselFrame,
+  } from "$lib/blux/CarouselFrames.svelte";
   import Media from "$lib/blux/Media.svelte";
 
   type Props = {
@@ -22,6 +25,24 @@
   // frames as a captioned grid (image + caption per cell) inside the band's
   // content box. Caption-less galleries keep the full-bleed single-frame view.
   const captioned = $derived(!!media?.some((m) => m.caption));
+  // Transition: the live Prismic doc still types band 8 as `gallery` (see
+  // 37310f0 — the /#8 prerender anchor needs this slice rendering id=8).
+  // When the manifest carries the carousel payload, render the true slider
+  // here; caption text comes from the coexisting gallery frames. Once the
+  // doc is migrated to the carousel slice type, this mode and the gallery
+  // payload can be dropped.
+  const carouselFrames = $derived(
+    band?.carousel
+      ? band.carousel.slides.map((s, i): CarouselFrame => {
+          const caption = band.gallery?.[i]?.caption;
+          return {
+            media: s.media,
+            ...(caption ? { caption } : {}),
+            ...(s.caption?.role ? { role: s.caption.role } : {}),
+          };
+        })
+      : null,
+  );
 </script>
 
 {#if media && media.length > 0}
@@ -30,7 +51,9 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    {#if captioned}
+    {#if carouselFrames && carouselFrames.length > 0}
+      <CarouselFrames frames={carouselFrames} label="Photo slideshow" />
+    {:else if captioned}
       <BandContent {band}>
         <div class="flex w-full flex-wrap gap-y-8">
           {#each media as frame, i (i)}

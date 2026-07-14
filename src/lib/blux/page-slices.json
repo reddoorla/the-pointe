@@ -68,9 +68,13 @@
     }
   },
   {
-    "slice_type": "gallery",
+    "slice_type": "carousel",
     "variation": "default",
-    "items": [],
+    "items": [
+      { "caption": "a place to sit and breathe" },
+      { "caption": "a calm escape right outside your door" },
+      { "caption": "a building with a view" }
+    ],
     "primary": {
       "band": 8
     }

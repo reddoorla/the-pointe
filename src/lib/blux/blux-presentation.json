@@ -559,7 +559,39 @@
           "alt": "© Oe-Ueda _13A5357-2.jpg",
           "caption": "a building with a view"
         }
-      ]
+      ],
+      "carousel": {
+        "slides": [
+          {
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/8_X493LSjFGia_pq_aefbd53c-205a-402a-ba88-6294a555b0aa.jpg?auto=format,compress",
+              "alt": "Oe-Ueda__13A5181-2.jpg",
+              "minHeight": "80vh"
+            },
+            "caption": { "level": 5, "role": "text5" }
+          },
+          {
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/lJgYetvcQOKsOvMQ_cb6f38b7-4ca7-4590-aeb9-11287fc942e4.jpg?auto=format,compress",
+              "alt": "© Oe-Ueda _13A5260-2.jpg",
+              "minHeight": "80vh"
+            },
+            "caption": { "level": 5, "role": "text5" }
+          },
+          {
+            "media": {
+              "kind": "image",
+              "url": "https://images.prismic.io/the-pointe/PgF-4ylZIqo8wYFz_88737f87-d643-4435-9eb7-839516e95b38.jpg?auto=format,compress",
+              "alt": "© Oe-Ueda _13A5357-2.jpg",
+              "minHeight": "80vh"
+            },
+            "caption": { "level": 5, "role": "text5" }
+          }
+        ],
+        "columns": 1
+      }
     },
     "9": {
       "style": {
