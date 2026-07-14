@@ -59,6 +59,14 @@ describe("CarouselFrames", () => {
     );
   });
 
+  it("honors the source data-columns — all frames visible means no controls", () => {
+    const { container } = render(CarouselFrames, {
+      props: { frames, label: "Photo slideshow", columns: 3 },
+    });
+    // Slider renders no arrows when everything fits in one view.
+    expect(container.querySelector("button")).toBeNull();
+  });
+
   it("shows prev/next arrows but no dots and no autoplay pause control", () => {
     const { getByLabelText, container } = renderFrames();
     expect(getByLabelText("Previous slide")).toBeTruthy();

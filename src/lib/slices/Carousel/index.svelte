@@ -41,6 +41,10 @@
     sliceType={slice.slice_type}
     sliceVariation={slice.variation}
   >
-    <CarouselFrames {frames} label={slice.primary.label || "Photo slideshow"} />
+    <CarouselFrames
+      {frames}
+      label={slice.primary.label || "Photo slideshow"}
+      columns={band?.carousel?.columns ?? 1}
+    />
   </SectionBand>
 {/if}

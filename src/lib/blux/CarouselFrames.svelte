@@ -14,12 +14,28 @@
   import Slider from "$lib/components/Slider.svelte";
   import Media from "./Media.svelte";
 
-  let { frames, label }: { frames: CarouselFrame[]; label: string } = $props();
+  let {
+    frames,
+    label,
+    columns = 1,
+  }: {
+    frames: CarouselFrame[];
+    label: string;
+    /** Slides visible at once (the source grid's data-columns); mobile is
+     * always 1 per the Slider. */
+    columns?: number;
+  } = $props();
 </script>
 
 <!-- The source slider shows one full-bleed cover frame at a time with prev/next
      arrows and NO dots or autoplay (the export encodes none) — mirror exactly. -->
-<Slider itemCount={frames.length} {label} showDots={false} class="w-full">
+<Slider
+  itemCount={frames.length}
+  {label}
+  cardsPerView={columns}
+  showDots={false}
+  class="w-full"
+>
   {#snippet children({ index }: { index: number })}
     {@const frame = frames[index]}
     {#if frame}

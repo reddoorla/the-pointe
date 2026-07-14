@@ -52,7 +52,11 @@
     sliceVariation={slice.variation}
   >
     {#if carouselFrames && carouselFrames.length > 0}
-      <CarouselFrames frames={carouselFrames} label="Photo slideshow" />
+      <CarouselFrames
+        frames={carouselFrames}
+        label="Photo slideshow"
+        columns={band?.carousel?.columns ?? 1}
+      />
     {:else if captioned}
       <BandContent {band}>
         <div class="flex w-full flex-wrap gap-y-8">
