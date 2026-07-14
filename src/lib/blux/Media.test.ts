@@ -60,6 +60,23 @@ describe("Media", () => {
     expect((video as HTMLVideoElement).muted).toBe(true);
   });
 
+  it("honors source playback attrs — a controls video is user-initiated, not an autoplay loop", () => {
+    const { container } = render(Media, {
+      props: {
+        media: {
+          kind: "video",
+          url: "https://cdn/x.mp4",
+          playback: { controls: true, playsinline: true },
+        },
+      },
+    });
+    const video = container.querySelector("video");
+    expect(video?.hasAttribute("controls")).toBe(true);
+    expect(video?.hasAttribute("autoplay")).toBe(false);
+    expect(video?.hasAttribute("loop")).toBe(false);
+    expect(video?.hasAttribute("playsinline")).toBe(true);
+  });
+
   it("pauses the ambient video when prefers-reduced-motion is reduce", () => {
     mockMatchMedia(true);
     // jsdom media elements don't really play; observe the pause() call.
