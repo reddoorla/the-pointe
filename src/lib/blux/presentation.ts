@@ -53,6 +53,11 @@ export type RenderNode =
        * peeled Blux `.blocks0` wrapper's inline background-color (currently the
        * only key). Distinct from a band's `background` (a Media image). */
       style?: Record<string, string>;
+      /** This row's cells are the map widget's toggle-switched content panels
+       * (the Blux clickMap wiring): cell i shows when toggle i is active, the
+       * rest are hidden. Set only on the row that directly follows a widget:map
+       * sibling and has exactly one cell per map toggle. */
+      panels?: boolean;
     }
   | { kind: "stack"; children: RenderNode[]; style?: Record<string, string> }
   | {

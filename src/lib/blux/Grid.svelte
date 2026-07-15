@@ -5,8 +5,21 @@
   import LocationMap from "./LocationMap.svelte";
   import Grid from "./Grid.svelte";
 
-  type Props = { node: RenderNode; map?: MapRenderConfig };
-  let { node, map }: Props = $props();
+  type Props = {
+    node: RenderNode;
+    map?: MapRenderConfig;
+    /** Shared active-toggle state linking the LocationMap's tabs to a
+     * `panels: true` row elsewhere in the same band tree. The outermost Grid
+     * creates it and threads it down; LocationMap writes the selected index,
+     * the panels row shows only that cell (the Blux clickMap wiring). */
+    panelState?: { active: number };
+  };
+  let { node, map, panelState }: Props = $props();
+
+  // Own state doubles as the shared object at the tree root (no prop passed);
+  // nested Grids receive the root's instance so every level sees one index.
+  const ownPanelState = $state({ active: 0 });
+  const panels = $derived(panelState ?? ownPanelState);
 
   const roleClass = (role?: string) => (role ? `txt-role-${role}` : "");
 
@@ -48,14 +61,32 @@
      Prismic rich text. A widget:map mounts the real LocationMap when a
      map config is threaded down from the band; other widget types still
      render a mount placeholder. -->
-{#if node.kind === "row"}
+{#if node.kind === "row" && node.panels}
+  <!-- Toggle-switched map panels: exactly one cell (the active toggle's panel)
+       is visible; the rest stay mounted but hidden — mirroring the original's
+       display:none siblings so lazily-loaded panel images survive switching. -->
+  <div
+    class="w-full"
+    style={containerStyle(node.style)}
+    data-grid-row
+    data-panels
+  >
+    {#each node.cells as cell, i (i)}
+      <div data-grid-cell class={i === panels.active ? "" : "hidden"}>
+        <Grid node={cell.node} {map} panelState={panels} />
+      </div>
+    {/each}
+  </div>
+{:else if node.kind === "row"}
   {@const bases = rowCellBases(node.cells)}
   <!-- gap-y spaces rows that wrap to their own line (stacked media/text bands
        and mobile) with Blux's inter-block rhythm. md:gap-x-[4%] is Blux's
        column gutter between side-by-side cells (md: up); it's reserved back out
        of each cell's basis by rowCellBases (calc(basis - share%)) so the columns
        still fit one flex line instead of the last cell wrapping. Keep the 4%
-       here in sync with GRID_GUTTER in presentation.ts. -->
+       here in sync with GRID_GUTTER in presentation.ts. Cells never grow: Blux
+       columns are fixed percentages, so a wrapping grid's short last line keeps
+       the same cell widths as the full lines above it. -->
   <div
     class="flex w-full flex-wrap gap-y-10 md:gap-x-[4%]"
     style={containerStyle(node.style)}
@@ -64,10 +95,10 @@
     {#each node.cells as cell, i (i)}
       <div
         data-grid-cell
-        class="min-w-0 grow basis-full md:basis-(--cell-basis)"
+        class="min-w-0 basis-full md:basis-(--cell-basis)"
         style:--cell-basis={bases[i] ?? "auto"}
       >
-        <Grid node={cell.node} {map} />
+        <Grid node={cell.node} {map} panelState={panels} />
       </div>
     {/each}
   </div>
@@ -77,7 +108,7 @@
        may also carry a card background (a peeled `.blocks0` wrapper's fill). -->
   <div class="flex flex-col gap-6" style={containerStyle(node.style)}>
     {#each node.children as child, i (i)}
-      <Grid node={child} {map} />
+      <Grid node={child} {map} panelState={panels} />
     {/each}
   </div>
 {:else if node.kind === "heading"}
@@ -112,7 +143,7 @@
   {@html node.html}
 {:else if node.kind === "widget"}
   {#if node.widget.type === "map" && map}
-    <LocationMap {map} />
+    <LocationMap {map} panelState={panels} />
   {:else}
     <div data-widget={node.widget.type} class="min-h-64 w-full"></div>
   {/if}

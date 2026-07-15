@@ -1,5 +1,5 @@
 import { describe, expect, it, afterEach } from "vitest";
-import { render, cleanup } from "@testing-library/svelte";
+import { render, cleanup, fireEvent } from "@testing-library/svelte";
 import Grid from "./Grid.svelte";
 import type { RenderNode } from "./presentation";
 
@@ -272,5 +272,81 @@ describe("Grid (recursive fallback)", () => {
     });
     const stack = container.firstElementChild as HTMLElement;
     expect(stack.style.backgroundColor).toBe("rgb(0, 0, 0)");
+  });
+
+  it("cells never grow: a wrapping grid's short last line keeps full-line widths", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "row",
+          cells: Array.from({ length: 7 }, () => ({
+            token: { cols: 4 },
+            node: { kind: "subtitle", text: "card" } as RenderNode,
+          })),
+        },
+      },
+    });
+    for (const c of container.querySelectorAll("[data-grid-cell]")) {
+      expect((c as HTMLElement).className).not.toContain("grow");
+    }
+  });
+
+  it("a panels row shows only the active toggle's cell; the rest stay mounted hidden", async () => {
+    // The clickMap shape: stack[widget:map, panels row], toggles drive which
+    // panel is visible. Clicking tab 2 hides panel 0 and reveals panel 1.
+    const node: RenderNode = {
+      kind: "stack",
+      children: [
+        { kind: "widget", widget: { type: "map" } },
+        {
+          kind: "row",
+          panels: true,
+          cells: [
+            {
+              token: { cols: 1 },
+              node: { kind: "subtitle", text: "addresses" },
+            },
+            { token: { cols: 1 }, node: { kind: "subtitle", text: "logos" } },
+          ],
+        },
+      ],
+    };
+    const map = {
+      mid: "M",
+      layers: [],
+      toggles: [
+        { label: "All", layers: [] },
+        { label: "Offices", layers: [] },
+      ],
+      styles: [],
+    };
+    const { container, getByRole } = render(Grid, { props: { node, map } });
+    const panelCells = () =>
+      [...container.querySelectorAll("[data-panels] > [data-grid-cell]")].map(
+        (c) => (c as HTMLElement).className.includes("hidden"),
+      );
+    expect(panelCells()).toEqual([false, true]);
+    await fireEvent.click(getByRole("button", { name: "Offices" }));
+    expect(panelCells()).toEqual([true, false]);
+  });
+
+  it("a panels row without toggles renders its first cell (no crash, nothing hidden twice)", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "row",
+          panels: true,
+          cells: [
+            { token: { cols: 1 }, node: { kind: "subtitle", text: "only" } },
+          ],
+        },
+      },
+    });
+    const cells = container.querySelectorAll(
+      "[data-panels] > [data-grid-cell]",
+    );
+    expect(cells).toHaveLength(1);
+    expect((cells[0] as HTMLElement).className).not.toContain("hidden");
+    expect(container.textContent).toContain("only");
   });
 });
