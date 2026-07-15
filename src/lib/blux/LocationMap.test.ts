@@ -93,15 +93,46 @@ describe("LocationMap", () => {
     expect(document.querySelector('script[src*="maps.googleapis"]')).toBeNull();
   });
 
-  it("renders one chip button per toggle with its label", () => {
-    const { getAllByRole } = render(LocationMap, { props: { map: config } });
+  it("renders one tab button per toggle with its label (glyph outside the name)", () => {
+    const { getAllByRole, getByRole } = render(LocationMap, {
+      props: { map: config },
+    });
     const chips = getAllByRole("button");
     expect(chips).toHaveLength(3);
-    expect(chips.map((c) => c.textContent?.trim())).toEqual([
-      "All",
-      "Dining",
-      "Parks",
-    ]);
+    // The plus/minus state glyph is aria-hidden: the accessible name is the
+    // bare label, so `name:`-based queries keep working.
+    for (const label of ["All", "Dining", "Parks"]) {
+      expect(getByRole("button", { name: label })).toBeDefined();
+    }
+    // Full-width equal tabs (the original's 25%-per-tab bar): every tab flexes
+    // to an equal share of the row instead of hugging its label.
+    for (const c of chips) expect(c.className).toContain("flex-1");
+  });
+
+  it("active tab shows a minus glyph, inactive tabs a plus", async () => {
+    const { getAllByRole } = render(LocationMap, { props: { map: config } });
+    const glyphs = () =>
+      getAllByRole("button").map((c) =>
+        c.querySelector("[aria-hidden]")?.textContent?.trim(),
+      );
+    expect(glyphs()).toEqual(["−", "+", "+"]);
+    const chips = getAllByRole("button");
+    const second = chips[1];
+    if (!second) throw new Error("missing chip");
+    await fireEvent.click(second);
+    expect(glyphs()).toEqual(["+", "−", "+"]);
+  });
+
+  it("selecting a tab writes the shared panelState index", async () => {
+    const panelState = { active: 0 };
+    const { getAllByRole } = render(LocationMap, {
+      props: { map: config, panelState },
+    });
+    const chips = getAllByRole("button");
+    const third = chips[2];
+    if (!third) throw new Error("missing chip");
+    await fireEvent.click(third);
+    expect(panelState.active).toBe(2);
   });
 
   it("chips are radio-style: first pressed by default, click moves the press", async () => {
