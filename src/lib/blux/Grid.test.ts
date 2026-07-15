@@ -109,4 +109,72 @@ describe("Grid (recursive fallback)", () => {
     expect(cell.className).toContain("basis-full");
     expect(cell.className).toContain("md:basis-(--cell-basis)");
   });
+
+  it("renders media in a w-full block wrapper with an inline-block image (never mx-auto centered)", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "media",
+          media: { kind: "image", url: "https://cdn/logo.png" },
+        },
+      },
+    });
+    const img = container.querySelector("img") as HTMLElement;
+    expect(img).not.toBeNull();
+    // The image is inline so it follows the ancestor's text-align instead of
+    // being force-centered — Blux `.ib` graphics are positioned by text-align.
+    expect(img.className).toContain("inline-block");
+    expect(img.className).not.toContain("mx-auto");
+    // A left-aligned ancestor therefore leaves it left: there is no centering
+    // class, and the image sits in a full-width block wrapper.
+    const wrapper = img.parentElement as HTMLElement;
+    expect(wrapper.className).toContain("w-full");
+  });
+
+  it("renders a heading's export style: color/padding inline, margin-right as a desktop-only var", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "heading",
+          level: 2,
+          html: "Hi",
+          role: "text11",
+          style: {
+            color: "rgb(255, 255, 255)",
+            padding: "10px 20px",
+            "margin-right": "20%",
+          },
+        },
+      },
+    });
+    const h2 = container.querySelector("h2") as HTMLElement;
+    expect(h2.style.color).toBe("rgb(255, 255, 255)");
+    expect(h2.style.padding).toBe("10px 20px");
+    // The role class still applies alongside the deviations.
+    expect(h2.className).toContain("txt-role-text11");
+    // margin-right is desktop-only in the source (reset ≤800px): it must NOT be
+    // an unconditional inline margin (which would leak onto mobile), but a
+    // `--node-mr` var consumed by a md:-scoped class.
+    expect(h2.style.marginRight).toBe("");
+    expect(h2.style.getPropertyValue("--node-mr")).toBe("20%");
+    expect(h2.className).toContain("md:mr-(--node-mr)");
+  });
+
+  it("renders a subtitle's inline color and omits the margin var/class when margin-right is absent", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "subtitle",
+          text: "sub",
+          role: "text5",
+          style: { color: "rgb(255, 255, 255)" },
+        },
+      },
+    });
+    const p = container.querySelector("p") as HTMLElement;
+    expect(p.style.color).toBe("rgb(255, 255, 255)");
+    expect(p.className).toContain("txt-role-text5");
+    expect(p.className).not.toContain("md:mr-(--node-mr)");
+    expect(p.style.getPropertyValue("--node-mr")).toBe("");
+  });
 });
