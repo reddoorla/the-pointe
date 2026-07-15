@@ -30,6 +30,17 @@
       style: decls.length ? decls.join(";") : undefined,
     };
   };
+
+  // A container node (row/stack) may carry a "card" background — a Blux
+  // `.blocks0` wrapper's inline background-color the emit stage threaded onto
+  // the node when it peeled the wrapper. Applied inline so the fill sits behind
+  // the whole box (e.g. band 3's white stats card).
+  const containerStyle = (style?: Record<string, string>) =>
+    style
+      ? Object.entries(style)
+          .map(([k, v]) => `${k}:${v}`)
+          .join(";")
+      : undefined;
 </script>
 
 <!-- Render-faithful fallback: reconstructs a band's parsed node tree.
@@ -45,7 +56,11 @@
        of each cell's basis by rowCellBases (calc(basis - share%)) so the columns
        still fit one flex line instead of the last cell wrapping. Keep the 4%
        here in sync with GRID_GUTTER in presentation.ts. -->
-  <div class="flex w-full flex-wrap gap-y-10 md:gap-x-[4%]" data-grid-row>
+  <div
+    class="flex w-full flex-wrap gap-y-10 md:gap-x-[4%]"
+    style={containerStyle(node.style)}
+    data-grid-row
+  >
     {#each node.cells as cell, i (i)}
       <div
         data-grid-cell
@@ -58,8 +73,9 @@
   </div>
 {:else if node.kind === "stack"}
   <!-- Blux stacks its block elements with vertical rhythm between them; the
-       flat stack rendered them flush. A modest column gap restores it. -->
-  <div class="flex flex-col gap-6">
+       flat stack rendered them flush. A modest column gap restores it. A stack
+       may also carry a card background (a peeled `.blocks0` wrapper's fill). -->
+  <div class="flex flex-col gap-6" style={containerStyle(node.style)}>
     {#each node.children as child, i (i)}
       <Grid node={child} {map} />
     {/each}

@@ -228,4 +228,49 @@ describe("Grid (recursive fallback)", () => {
       );
     }
   });
+
+  it("paints a row's card background from its style (a peeled .blocks0 fill)", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "row",
+          style: { "background-color": "rgb(255, 255, 255)" },
+          cells: [
+            { token: { cols: 1 }, node: { kind: "subtitle", text: "s" } },
+          ],
+        },
+      },
+    });
+    const row = container.querySelector("[data-grid-row]") as HTMLElement;
+    expect(row.style.backgroundColor).toBe("rgb(255, 255, 255)");
+  });
+
+  it("a row without a card style carries no inline background", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "row",
+          cells: [
+            { token: { cols: 1 }, node: { kind: "subtitle", text: "s" } },
+          ],
+        },
+      },
+    });
+    const row = container.querySelector("[data-grid-row]") as HTMLElement;
+    expect(row.style.backgroundColor).toBe("");
+  });
+
+  it("paints a stack's card background from its style", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "stack",
+          style: { "background-color": "rgb(0, 0, 0)" },
+          children: [{ kind: "subtitle", text: "y" }],
+        },
+      },
+    });
+    const stack = container.firstElementChild as HTMLElement;
+    expect(stack.style.backgroundColor).toBe("rgb(0, 0, 0)");
+  });
 });

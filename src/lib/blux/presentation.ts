@@ -46,8 +46,15 @@ export type GridToken = {
 };
 
 export type RenderNode =
-  | { kind: "row"; cells: RenderCell[] }
-  | { kind: "stack"; children: RenderNode[] }
+  | {
+      kind: "row";
+      cells: RenderCell[];
+      /** A "card" background threaded onto this container by the emit stage — a
+       * peeled Blux `.blocks0` wrapper's inline background-color (currently the
+       * only key). Distinct from a band's `background` (a Media image). */
+      style?: Record<string, string>;
+    }
+  | { kind: "stack"; children: RenderNode[]; style?: Record<string, string> }
   | {
       kind: "heading";
       level: number;
