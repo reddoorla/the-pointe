@@ -30,13 +30,20 @@
     sliceVariation={slice.variation}
   >
     <BandContent {band}>
+      <!--
+        Two columns with a horizontal gutter between them at md: up, mirroring
+        Blux's ~4% column gutter. The gutter is reserved out of each cell's basis
+        (half of 4% per cell) so the columns still fit on one line — a plain
+        gap-x with basis summing to 100% would push past the row and wrap. On
+        mobile the columns stack (basis-full) and gap-y-8 spaces them instead.
+      -->
       <div
-        class="flex w-full flex-wrap items-center gap-y-8"
+        class="flex w-full flex-wrap items-center gap-y-8 md:gap-x-[4%]"
         class:flex-row-reverse={split.mediaSide === "left"}
       >
         <div
           data-split-cell
-          class="min-w-0 grow basis-full text-left md:basis-(--cell-basis) md:pt-20"
+          class="min-w-0 grow basis-full text-left md:basis-[calc(var(--cell-basis)_-_2%)] md:pt-20"
           style:--cell-basis="{100 - split.ratio}%"
         >
           {#if slice.primary.body && isFilled.richText(slice.primary.body)}
@@ -47,7 +54,7 @@
         </div>
         <div
           data-split-cell
-          class="min-w-0 grow basis-full md:basis-(--cell-basis) md:pt-[100px]"
+          class="min-w-0 grow basis-full md:basis-[calc(var(--cell-basis)_-_2%)] md:pt-[100px]"
           style:--cell-basis="{split.ratio}%"
         >
           <Media media={split.media} class="h-auto w-full" />
