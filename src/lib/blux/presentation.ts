@@ -48,9 +48,37 @@ export type GridToken = {
 export type RenderNode =
   | { kind: "row"; cells: RenderCell[] }
   | { kind: "stack"; children: RenderNode[] }
-  | { kind: "heading"; level: number; html: string; role?: string }
-  | { kind: "body"; html: string; role?: string }
-  | { kind: "subtitle"; text: string; role?: string }
+  | {
+      kind: "heading";
+      level: number;
+      html: string;
+      role?: string;
+      /** Inline deviations the export carries on the text leaf (color, padding)
+       * plus decoded margin utilities (margin-20r → margin-right:20%). The
+       * margin-right percentage is desktop-only in the source (reset ≤800px) —
+       * the render scopes it to md+. */
+      style?: Record<string, string>;
+    }
+  | {
+      kind: "body";
+      html: string;
+      role?: string;
+      /** Inline deviations the export carries on the text leaf (color, padding)
+       * plus decoded margin utilities (margin-20r → margin-right:20%). The
+       * margin-right percentage is desktop-only in the source (reset ≤800px) —
+       * the render scopes it to md+. */
+      style?: Record<string, string>;
+    }
+  | {
+      kind: "subtitle";
+      text: string;
+      role?: string;
+      /** Inline deviations the export carries on the text leaf (color, padding)
+       * plus decoded margin utilities (margin-20r → margin-right:20%). The
+       * margin-right percentage is desktop-only in the source (reset ≤800px) —
+       * the render scopes it to md+. */
+      style?: Record<string, string>;
+    }
   | { kind: "media"; media: RenderMedia }
   | { kind: "raw"; html: string }
   | { kind: "widget"; widget: { type: "map" } };

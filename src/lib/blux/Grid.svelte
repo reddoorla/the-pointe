@@ -9,6 +9,27 @@
   let { node, map }: Props = $props();
 
   const roleClass = (role?: string) => (role ? `txt-role-${role}` : "");
+
+  // A text leaf's role class plus the style deviations the export carries on it.
+  // color/padding (and any other keys) apply inline at every width; margin-right
+  // is desktop-only in the source (reset ≤800px), so it rides a `--node-mr`
+  // custom property consumed by the md:-scoped `mr-(--node-mr)` class — never an
+  // unconditional inline margin that would leak onto mobile.
+  const textStyle = (role?: string, style?: Record<string, string>) => {
+    const mr = style?.["margin-right"];
+    const decls = style
+      ? Object.entries(style)
+          .filter(([k]) => k !== "margin-right")
+          .map(([k, v]) => `${k}:${v}`)
+      : [];
+    if (mr) decls.push(`--node-mr:${mr}`);
+    return {
+      class: [roleClass(role), mr ? "md:mr-(--node-mr)" : ""]
+        .filter(Boolean)
+        .join(" "),
+      style: decls.length ? decls.join(";") : undefined,
+    };
+  };
 </script>
 
 <!-- Render-faithful fallback: reconstructs a band's parsed node tree.
@@ -40,24 +61,32 @@
     {/each}
   </div>
 {:else if node.kind === "heading"}
+  {@const ts = textStyle(node.role, node.style)}
   <svelte:element
     this={`h${Math.min(Math.max(node.level, 1), 6)}`}
-    class={roleClass(node.role)}
+    class={ts.class}
+    style={ts.style}
   >
     <!-- eslint-disable-next-line svelte/no-at-html-tags -->
     {@html node.html}
   </svelte:element>
 {:else if node.kind === "body"}
-  <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-  <div class={roleClass(node.role)}>{@html node.html}</div>
+  {@const ts = textStyle(node.role, node.style)}
+  <div class={ts.class} style={ts.style}>
+    <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+    {@html node.html}
+  </div>
 {:else if node.kind === "subtitle"}
-  <p class={roleClass(node.role)}>{node.text}</p>
+  {@const ts = textStyle(node.role, node.style)}
+  <p class={ts.class} style={ts.style}>{node.text}</p>
 {:else if node.kind === "media"}
-  <!-- Render at the image's intrinsic width (capped to the cell), not forced
-       full-bleed: Blux uses small graphics as horizontal rules/logos that must
-       NOT stretch. Photos are intrinsically large and still fill. Exact source
-       widths land once the emit stage threads them into the manifest. -->
-  <Media media={node.media} class="mx-auto block h-auto max-w-full" />
+  <!-- Media follows inherited text-align: an `inline-block` image inside a
+       full-width block wrapper, positioned by the ancestor's text-align — Blux
+       `.ib{display:inline-block}` graphics are never force-centered. Intrinsic
+       width still caps to the cell so rules/logos keep their true size. -->
+  <div class="w-full">
+    <Media media={node.media} class="inline-block h-auto max-w-full" />
+  </div>
 {:else if node.kind === "raw"}
   <!-- eslint-disable-next-line svelte/no-at-html-tags -->
   {@html node.html}

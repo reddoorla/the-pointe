@@ -373,3 +373,13 @@
     line-height: 70px;
   }
 }
+
+/* Band content padding with the export's mobile override (≤700px in source). */
+.band-pad {
+  padding: var(--band-pad);
+}
+@media (max-width: 700px) {
+  .band-pad {
+    padding: var(--band-pad-m, var(--band-pad));
+  }
+}

@@ -18,12 +18,20 @@
 
   const maxW = $derived(band?.style?.["_max-content-width"]);
   const pad = $derived(band?.style?.["_contentPadding"]);
+  // The export's mobile override (≤700px in source). When present, padding moves
+  // off the inline style onto the `.band-pad` class (app.css) so it can respond.
+  const padMobile = $derived(band?.style?.["_contentPaddingMobile"]);
+  const padValue = $derived(pad && pad !== "0px" ? pad : "0 4%");
   const align = $derived(band?.style?.["text-align"]);
   const style = $derived(
     [
       `max-width:${maxW && maxW !== "none" ? maxW : "1280px"}`,
       "margin-inline:auto",
-      `padding:${pad && pad !== "0px" ? pad : "0 4%"}`,
+      // With a mobile override the padding rides `--band-pad`/`--band-pad-m` for
+      // the `.band-pad` class to consume; otherwise it stays a fixed inline value.
+      padMobile
+        ? `--band-pad:${padValue};--band-pad-m:${padMobile}`
+        : `padding:${padValue}`,
       align ? `text-align:${align}` : "",
     ]
       .filter(Boolean)
@@ -48,7 +56,7 @@
   );
 </script>
 
-<div class="w-full {extra}" {style}>
+<div class="w-full{padMobile ? ' band-pad' : ''} {extra}" {style}>
   {#if colW}
     <div style={colStyle}>{@render children()}</div>
   {:else}
