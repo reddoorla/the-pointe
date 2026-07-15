@@ -43,15 +43,20 @@ describe("SplitFeature slice", () => {
     expect(
       (cells[1] as HTMLElement).style.getPropertyValue("--cell-basis"),
     ).toBe("40%");
-    // Cells stack full-width on mobile; the ratio basis applies from md: up.
+    // Cells stack full-width on mobile; from md: up the ratio basis applies,
+    // shrunk by half the column gutter so the two cells + gutter fit one line
+    // instead of wrapping (Blux's ~4% column gutter, reserved here in the basis).
     expect((cells[1] as HTMLElement).className).toContain("basis-full");
     expect((cells[1] as HTMLElement).className).toContain(
-      "md:basis-(--cell-basis)",
+      "md:basis-[calc(var(--cell-basis)_-_2%)]",
     );
+    // The row carries the horizontal gutter between the two columns (md: up),
+    // and keeps the vertical gap for the stacked mobile layout.
+    const row = cells[0]?.parentElement as HTMLElement;
+    expect(row.className).toContain("md:gap-x-[4%]");
+    expect(row.className).toContain("gap-y-8");
     // Media on the right → no direction flip.
-    expect(cells[0]?.parentElement?.className).not.toContain(
-      "flex-row-reverse",
-    );
+    expect(row.className).not.toContain("flex-row-reverse");
   });
 
   it("flips visual order with flex-row-reverse when media belongs left, keeping text-first DOM order", () => {
