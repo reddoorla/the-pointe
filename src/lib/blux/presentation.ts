@@ -191,17 +191,21 @@ export function rowCellBases(
   // Any auto/content-width cell → don't reserve; cells flex around the gap.
   if (widths.some((w) => w === null)) return widths.map((w) => w ?? "auto");
   const pcts = (widths as string[]).map((w) => parseFloat(w));
-  // Cells per line: leading cells whose bases sum within the row (+epsilon for
-  // rounded thirds like 33.3333% × 3 = 99.9999%).
+  // Cells per line: leading cells whose bases sum within the row. The small
+  // epsilon admits rounding overshoot from equal splits (thirds 33.3333% × 3 =
+  // 99.9999%, sixths 16.6667% × 6 = 100.0002%) without also swallowing a
+  // genuine next-line cell.
   let k = 0;
   let sum = 0;
   for (const p of pcts) {
-    if (sum + p <= 100.5) {
+    if (sum + p <= 100.05) {
       sum += p;
       k += 1;
     } else break;
   }
   if (k <= 1) return widths as string[]; // one per line → no horizontal gutter
-  const reserve = Math.round(((gutter * (k - 1)) / k) * 10000) / 10000;
+  // Round the reserve UP so k cells + (k-1) gutters never exceed 100% (a
+  // rounded-down reserve leaves the line marginally wide, e.g. cols=6).
+  const reserve = Math.ceil(((gutter * (k - 1)) / k) * 10000) / 10000;
   return (widths as string[]).map((w) => `calc(${w} - ${reserve}%)`);
 }

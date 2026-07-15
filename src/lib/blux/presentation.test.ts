@@ -123,6 +123,16 @@ describe("presentation", () => {
       ]);
     });
 
+    it("rounds the reserve UP so k cells + gutters never exceed the row (cols=6)", () => {
+      // 16.6667% × 6, k=6 → reserve = 4*5/6 = 3.33333…%. Rounding UP to 3.3334%
+      // keeps the line at 6*13.3333 + 5*4 = 99.9998% (rounding down to 3.3333%
+      // would leave it at 100.0004% — marginally wide).
+      const cells = Array.from({ length: 6 }, () => cell({ cols: 6 }));
+      expect(rowCellBases(cells)).toEqual(
+        Array.from({ length: 6 }, () => "calc(16.6667% - 3.3334%)"),
+      );
+    });
+
     it("exports the default gutter as a single source of truth (kept in sync with the md:gap-x class)", () => {
       expect(GRID_GUTTER).toBe(4);
     });
