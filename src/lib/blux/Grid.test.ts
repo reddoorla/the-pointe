@@ -235,7 +235,9 @@ describe("Grid (recursive fallback)", () => {
         node: {
           kind: "row",
           style: { "background-color": "rgb(255, 255, 255)" },
-          cells: [{ token: { cols: 1 }, node: { kind: "subtitle", text: "s" } }],
+          cells: [
+            { token: { cols: 1 }, node: { kind: "subtitle", text: "s" } },
+          ],
         },
       },
     });
@@ -248,7 +250,9 @@ describe("Grid (recursive fallback)", () => {
       props: {
         node: {
           kind: "row",
-          cells: [{ token: { cols: 1 }, node: { kind: "subtitle", text: "s" } }],
+          cells: [
+            { token: { cols: 1 }, node: { kind: "subtitle", text: "s" } },
+          ],
         },
       },
     });
