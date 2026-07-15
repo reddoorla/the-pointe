@@ -165,3 +165,47 @@ export function cellWidth(token: GridToken): string | null {
   if (typeof token.cols !== "number" || token.cols <= 0) return null;
   return `${Math.round((100 / token.cols) * 10000) / 10000}%`;
 }
+
+/** Blux's baseline column gutter between side-by-side grid cells, as a % of the
+ * row. A uniform default (matching the SplitFeature slice), independent of a
+ * grid's per-band `spacing` token. Kept in sync with the `md:gap-x-[4%]` utility
+ * on the row in Grid.svelte — Tailwind needs the literal there, so change both. */
+export const GRID_GUTTER = 4;
+
+/** Per-cell `--cell-basis` values for a grid row, with the column gutter
+ * reserved out of each basis so the cells still fit one flex line instead of the
+ * last one wrapping. A plain `gap-x` on cells whose bases already sum to 100%
+ * pushes past the row and wraps (the same failure the SplitFeature fix solved).
+ *
+ * The reserve is keyed off cells-per-LINE `k`, not cell count: a `cols=4` row of
+ * 7 cells lays out 4 per line (25% each), so it must reserve `gutter*(k-1)/k`
+ * (3% at k=4), not `gutter/2`. `k` is the greedy count of leading cells whose
+ * bases fit within the row. Rows that are one-per-line (100% cells) or
+ * auto-width (`cols:"any"`) carry no reservation — there's no adjacent cell to
+ * gutter against, or no percentage basis to reserve from. */
+export function rowCellBases(
+  cells: RenderCell[],
+  gutter: number = GRID_GUTTER,
+): string[] {
+  const widths = cells.map((c) => cellWidth(c.token));
+  // Any auto/content-width cell → don't reserve; cells flex around the gap.
+  if (widths.some((w) => w === null)) return widths.map((w) => w ?? "auto");
+  const pcts = (widths as string[]).map((w) => parseFloat(w));
+  // Cells per line: leading cells whose bases sum within the row. The small
+  // epsilon admits rounding overshoot from equal splits (thirds 33.3333% × 3 =
+  // 99.9999%, sixths 16.6667% × 6 = 100.0002%) without also swallowing a
+  // genuine next-line cell.
+  let k = 0;
+  let sum = 0;
+  for (const p of pcts) {
+    if (sum + p <= 100.05) {
+      sum += p;
+      k += 1;
+    } else break;
+  }
+  if (k <= 1) return widths as string[]; // one per line → no horizontal gutter
+  // Round the reserve UP so k cells + (k-1) gutters never exceed 100% (a
+  // rounded-down reserve leaves the line marginally wide, e.g. cols=6).
+  const reserve = Math.ceil(((gutter * (k - 1)) / k) * 10000) / 10000;
+  return (widths as string[]).map((w) => `calc(${w} - ${reserve}%)`);
+}

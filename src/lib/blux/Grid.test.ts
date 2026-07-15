@@ -36,17 +36,24 @@ describe("Grid (recursive fallback)", () => {
     expect(h2?.className).toContain("txt-role-text2");
     const cells = container.querySelectorAll("[data-grid-cell]");
     expect(cells).toHaveLength(2);
+    // The two 60/40 cells share one flex line (k=2), so each reserves half the
+    // 4% column gutter (2%) out of its basis — the columns still fit one line.
     expect(
       (cells[0] as HTMLElement).style.getPropertyValue("--cell-basis"),
-    ).toBe("60%");
+    ).toBe("calc(60% - 2%)");
     expect(
       (cells[1] as HTMLElement).style.getPropertyValue("--cell-basis"),
-    ).toBe("40%");
+    ).toBe("calc(40% - 2%)");
     // Cells stack full-width on mobile; the token basis applies from md: up.
     expect((cells[0] as HTMLElement).className).toContain("basis-full");
     expect((cells[0] as HTMLElement).className).toContain(
       "md:basis-(--cell-basis)",
     );
+    // The row carries the horizontal gutter (md: up) plus the vertical rhythm
+    // for cells that wrap to their own line (mobile, stacked bands).
+    const row = cells[0]?.parentElement as HTMLElement;
+    expect(row.className).toContain("md:gap-x-[4%]");
+    expect(row.className).toContain("gap-y-10");
     expect(container.querySelector("img")?.getAttribute("src")).toBe(
       "https://cdn/a.jpg",
     );
@@ -176,5 +183,49 @@ describe("Grid (recursive fallback)", () => {
     expect(p.className).toContain("txt-role-text5");
     expect(p.className).not.toContain("md:mr-(--node-mr)");
     expect(p.style.getPropertyValue("--node-mr")).toBe("");
+  });
+
+  it("reserves the gutter per line (cols), not per cell, on a wrapping grid", () => {
+    // Band 14 shape: 7 cells at cols=4 → 4 per line (25% each) → reserve 3%.
+    const cells = Array.from({ length: 7 }, () => ({
+      token: { cols: 4 },
+      node: { kind: "subtitle", text: "card" } as RenderNode,
+    }));
+    const { container } = render(Grid, {
+      props: { node: { kind: "row", cells } },
+    });
+    const rendered = container.querySelectorAll("[data-grid-cell]");
+    expect(rendered).toHaveLength(7);
+    for (const c of rendered) {
+      expect((c as HTMLElement).style.getPropertyValue("--cell-basis")).toBe(
+        "calc(25% - 3%)",
+      );
+    }
+  });
+
+  it("leaves a single-per-line (cols 1) stat stack at full-width, no gutter carved out", () => {
+    const { container } = render(Grid, {
+      props: {
+        node: {
+          kind: "row",
+          cells: [
+            {
+              token: { cols: 1, spacing: 40 },
+              node: { kind: "subtitle", text: "stat a" },
+            },
+            {
+              token: { cols: 1, spacing: 40 },
+              node: { kind: "subtitle", text: "stat b" },
+            },
+          ],
+        },
+      },
+    });
+    const cells = container.querySelectorAll("[data-grid-cell]");
+    for (const c of cells) {
+      expect((c as HTMLElement).style.getPropertyValue("--cell-basis")).toBe(
+        "100%",
+      );
+    }
   });
 });
