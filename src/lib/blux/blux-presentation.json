@@ -5,7 +5,8 @@
         "height": "100vh",
         "vertical-align": "middle",
         "_contentPadding": "0 4% 0 4%",
-        "text-align": "center"
+        "text-align": "center",
+        "_max-content-width": "1280px"
       },
       "background": {
         "kind": "image",
@@ -29,7 +30,11 @@
           {
             "kind": "subtitle",
             "text": "BURBANK",
-            "role": "text13"
+            "role": "text13",
+            "style": {
+              "padding": "10px 0px 0px",
+              "color": "rgb(255, 255, 255)"
+            }
           }
         ]
       }
@@ -39,7 +44,8 @@
         "text-align": "center",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 6% 120px 6%"
+        "_contentPadding": "120px 6% 120px 6%",
+        "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "background": {
         "kind": "image",
@@ -107,7 +113,9 @@
       "style": {
         "vertical-align": "middle",
         "text-align": "center",
-        "_contentPadding": "40px 0px 40px 0px"
+        "_contentPadding": "40px 0px 40px 0px",
+        "_contentPaddingMobile": "20px 0",
+        "_max-content-width": "1280px"
       }
     },
     "3": {
@@ -115,7 +123,8 @@
         "text-align": "left",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 4% 120px 4%"
+        "_contentPadding": "120px 4% 120px 4%",
+        "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "tree": {
         "kind": "row",
@@ -193,7 +202,10 @@
                           "kind": "heading",
                           "level": 5,
                           "html": "480,000 SF of<br>Class A office space<br>",
-                          "role": "text5"
+                          "role": "text5",
+                          "style": {
+                            "padding": "0px 0px 0px 8px"
+                          }
                         }
                       }
                     ]
@@ -233,7 +245,10 @@
                           "kind": "heading",
                           "level": 5,
                           "html": "Premier 14-Story<br>Office Tower",
-                          "role": "text5"
+                          "role": "text5",
+                          "style": {
+                            "padding": "0px 0px 0px 8px"
+                          }
                         }
                       }
                     ]
@@ -273,7 +288,10 @@
                           "kind": "heading",
                           "level": 5,
                           "html": "9.35 Acres in the<br>Media District",
-                          "role": "text5"
+                          "role": "text5",
+                          "style": {
+                            "padding": "0px 0px 0px 8px"
+                          }
                         }
                       }
                     ]
@@ -313,7 +331,10 @@
                           "kind": "heading",
                           "level": 5,
                           "html": "LEED Gold Certified<br>Energy Star Certified",
-                          "role": "text5"
+                          "role": "text5",
+                          "style": {
+                            "padding": "0px 0px 0px 8px"
+                          }
                         }
                       }
                     ]
@@ -330,7 +351,10 @@
         "text-align": "center",
         "height": "800px",
         "vertical-align": "middle",
-        "background-color": "#ffffff"
+        "background-color": "#ffffff",
+        "_contentPadding": "120px 4% 120px 4%",
+        "_contentPaddingMobile": "80px 4% 80px 4%",
+        "_max-content-width": "1280px"
       },
       "background": {
         "kind": "image",
@@ -349,7 +373,8 @@
         "_max-content-width": "1280px",
         "_contentPadding": "120px 4% 120px 4%",
         "_column-width": "699px",
-        "_column-side": "left"
+        "_column-side": "left",
+        "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "tree": {
         "kind": "row",
@@ -388,7 +413,10 @@
                 {
                   "kind": "body",
                   "html": "A campus built for the modern worker, The Pointe offers amenities that enrich the every day.",
-                  "role": "text1"
+                  "role": "text1",
+                  "style": {
+                    "margin-right": "20%"
+                  }
                 }
               ]
             }
@@ -525,7 +553,8 @@
       "style": {
         "vertical-align": "middle",
         "_contentPadding": "100px 4% 100px 4%",
-        "text-align": "center"
+        "text-align": "center",
+        "_max-content-width": "1280px"
       },
       "background": {
         "kind": "image",
@@ -600,7 +629,8 @@
         "_max-content-width": "1280px",
         "_contentPadding": "120px 4% 120px 4%",
         "_column-width": "699px",
-        "_column-side": "left"
+        "_column-side": "left",
+        "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "background": {
         "kind": "image",
@@ -614,7 +644,10 @@
             "kind": "heading",
             "level": 4,
             "html": "a property within",
-            "role": "text5"
+            "role": "text5",
+            "style": {
+              "color": "rgb(0, 0, 0)"
+            }
           },
           {
             "kind": "media",
@@ -641,7 +674,11 @@
           {
             "kind": "body",
             "html": "A collection of 13 buildings offering premier office space among the biggest names in entertainment. Explore 3,100,000 SF of endless possibilities.",
-            "role": "text1"
+            "role": "text1",
+            "style": {
+              "margin-right": "20%",
+              "color": "rgb(0, 0, 0)"
+            }
           }
         ]
       }
@@ -649,7 +686,8 @@
     "10": {
       "style": {
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 4% 120px 4%"
+        "_contentPadding": "120px 4% 120px 4%",
+        "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "tree": {
         "kind": "stack",
@@ -746,7 +784,8 @@
         "_max-content-width": "1280px",
         "_contentPadding": "120px 4% 120px 4%",
         "_column-width": "699px",
-        "_column-side": "left"
+        "_column-side": "left",
+        "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "background": {
         "kind": "image",
@@ -782,7 +821,10 @@
           {
             "kind": "body",
             "html": "Burbank offers a wide range of opportunities from its network of world-renowned studios, accessible airport, and recreational activities.",
-            "role": "text1"
+            "role": "text1",
+            "style": {
+              "margin-right": "20%"
+            }
           }
         ]
       }
@@ -925,12 +967,14 @@
       "style": {
         "vertical-align": "middle",
         "_contentPadding": "100px 4% 100px 4%",
-        "text-align": "center"
+        "text-align": "center",
+        "_max-content-width": "1280px"
       }
     },
     "14": {
       "style": {
-        "_contentPadding": "0 4% 80px 4%"
+        "_contentPadding": "0 4% 80px 4%",
+        "_max-content-width": "1280px"
       },
       "tree": {
         "kind": "stack",
@@ -1473,7 +1517,10 @@
       "style": {
         "text-align": "center",
         "height": "600px",
-        "vertical-align": "middle"
+        "vertical-align": "middle",
+        "_contentPadding": "120px 4% 120px 4%",
+        "_contentPaddingMobile": "80px 4% 80px 4%",
+        "_max-content-width": "1280px"
       }
     }
   }
