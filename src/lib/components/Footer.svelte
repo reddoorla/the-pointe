@@ -1,6 +1,7 @@
 <script lang="ts">
   import wordmark from "$lib/assets/tbp-pointe-wordmark.png";
   import tbpLogo from "$lib/assets/tbp-logo.png";
+  import linesGlyph from "$lib/assets/tbp-lines.png";
 
   // Leasing contacts from the original site's footer (Blux export).
   const contacts = [
@@ -19,12 +20,19 @@
   ];
 </script>
 
+<!-- Left-aligned like the original's footer (it never centers). -->
 <footer id="contact" class="w-full px-8 py-16 mt-auto bg-surface">
-  <div class="max-w-4xl mx-auto flex flex-col items-center gap-10 text-center">
+  <div class="max-w-4xl mx-auto flex flex-col items-start gap-10 text-left">
     <img src={wordmark} alt="The Pointe" class="h-8 w-auto" />
 
-    <div class="flex flex-col items-center gap-6">
-      <p class="text-sm uppercase tracking-[0.1em] font-medium">Leasing Team</p>
+    <div class="flex flex-col items-start gap-6">
+      <div class="flex flex-col gap-2">
+        <p class="text-sm uppercase tracking-[0.1em] font-medium">
+          Leasing Team
+        </p>
+        <!-- The original's small decorative lines glyph under the heading. -->
+        <img src={linesGlyph} alt="" class="h-auto w-10" />
+      </div>
       <div class="flex flex-col sm:flex-row gap-8 sm:gap-16">
         {#each contacts as contact (contact.email)}
           <div class="flex flex-col gap-1">
@@ -38,7 +46,7 @@
     </div>
 
     <div
-      class="flex flex-col items-center gap-4 pt-6 border-t border-light w-full"
+      class="flex flex-col items-start gap-4 pt-6 border-t border-light w-full"
     >
       <p class="text-sm uppercase tracking-[0.1em] font-medium">
         A Property Within

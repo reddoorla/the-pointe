@@ -149,7 +149,7 @@
     },
     "3": {
       "style": {
-        "text-align": "left",
+        "text-align": "center",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
         "_contentPadding": "120px 4% 120px 4%",
@@ -177,14 +177,23 @@
                   }
                 },
                 {
-                  "kind": "media",
-                  "media": {
-                    "kind": "image",
-                    "url": "https://images.prismic.io/the-pointe/XY7N7bOAYVJBsF8F_43983b42-cd6d-42ba-b76d-9bce1931e581.png?auto=format,compress",
-                    "alt": "Pointe.png",
-                    "width": 1645,
-                    "aspect": 32.462,
-                    "fit": "contain"
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "media",
+                      "media": {
+                        "kind": "image",
+                        "url": "https://images.prismic.io/the-pointe/XY7N7bOAYVJBsF8F_43983b42-cd6d-42ba-b76d-9bce1931e581.png?auto=format,compress",
+                        "alt": "Pointe.png",
+                        "width": 1645,
+                        "aspect": 32.462,
+                        "fit": "contain"
+                      }
+                    }
+                  ],
+                  "style": {
+                    "padding": "0px 4% 20px",
+                    "_valign": "middle"
                   }
                 }
               ]
@@ -372,7 +381,8 @@
               ],
               "style": {
                 "background-color": "rgb(255, 255, 255)",
-                "padding": "100px 4% 80px"
+                "padding": "100px 4% 80px",
+                "_valign": "middle"
               }
             }
           }
@@ -704,59 +714,82 @@
         "position": "left bottom"
       },
       "tree": {
-        "kind": "stack",
-        "children": [
+        "kind": "row",
+        "cells": [
           {
-            "kind": "stack",
-            "children": [
-              {
-                "kind": "heading",
-                "level": 4,
-                "html": "a property within",
-                "role": "text5",
-                "style": {
-                  "color": "rgb(0, 0, 0)"
+            "token": {
+              "cols": 2,
+              "ratio": 60
+            },
+            "node": {
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "heading",
+                      "level": 4,
+                      "html": "a property within",
+                      "role": "text5",
+                      "style": {
+                        "color": "rgb(0, 0, 0)"
+                      }
+                    },
+                    {
+                      "kind": "media",
+                      "media": {
+                        "kind": "image",
+                        "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/bf56be7d-863c-4f44-8247-6d92ea7762a9.png",
+                        "alt": "40px_lines.png",
+                        "width": 40,
+                        "aspect": 17.5,
+                        "fit": "contain"
+                      }
+                    }
+                  ],
+                  "style": {
+                    "_valign": "middle"
+                  }
+                },
+                {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "media",
+                      "media": {
+                        "kind": "image",
+                        "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/b640649d-05cf-40c1-9edc-f3fc9d427c76.png",
+                        "alt": "TBP-Logo-Outline.png",
+                        "width": 996,
+                        "aspect": 6.124,
+                        "fit": "contain"
+                      }
+                    }
+                  ],
+                  "style": {
+                    "padding": "40px 4% 30px 0%",
+                    "_valign": "middle"
+                  }
+                },
+                {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "body",
+                      "html": "A collection of 13 buildings offering premier office space among the biggest names in entertainment. Explore 3,100,000 SF of endless possibilities.",
+                      "role": "text1",
+                      "style": {
+                        "margin-right": "20%",
+                        "color": "rgb(0, 0, 0)"
+                      }
+                    }
+                  ],
+                  "style": {
+                    "_valign": "middle"
+                  }
                 }
-              },
-              {
-                "kind": "media",
-                "media": {
-                  "kind": "image",
-                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/bf56be7d-863c-4f44-8247-6d92ea7762a9.png",
-                  "alt": "40px_lines.png",
-                  "width": 40,
-                  "aspect": 17.5,
-                  "fit": "contain"
-                }
-              }
-            ]
-          },
-          {
-            "kind": "stack",
-            "children": [
-              {
-                "kind": "media",
-                "media": {
-                  "kind": "image",
-                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/b640649d-05cf-40c1-9edc-f3fc9d427c76.png",
-                  "alt": "TBP-Logo-Outline.png",
-                  "width": 996,
-                  "aspect": 6.124,
-                  "fit": "contain"
-                }
-              }
-            ],
-            "style": {
-              "padding": "40px 4% 30px 0%"
-            }
-          },
-          {
-            "kind": "body",
-            "html": "A collection of 13 buildings offering premier office space among the biggest names in entertainment. Explore 3,100,000 SF of endless possibilities.",
-            "role": "text1",
-            "style": {
-              "margin-right": "20%",
-              "color": "rgb(0, 0, 0)"
+              ]
             }
           }
         ]
@@ -890,68 +923,86 @@
         "position": "left top"
       },
       "tree": {
-        "kind": "stack",
-        "children": [
+        "kind": "row",
+        "cells": [
           {
-            "kind": "stack",
-            "children": [
-              {
-                "kind": "heading",
-                "level": 4,
-                "html": "local amenities",
-                "role": "text5"
-              },
-              {
-                "kind": "media",
-                "media": {
-                  "kind": "image",
-                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png",
-                  "alt": "lines-blue.png",
-                  "width": 50,
-                  "aspect": 18.978,
-                  "fit": "contain"
-                }
-              }
-            ]
-          },
-          {
-            "kind": "stack",
-            "children": [
-              {
-                "kind": "heading",
-                "level": 4,
-                "html": "a city full of possibilities",
-                "role": "text11"
-              }
-            ],
-            "style": {
-              "padding": "20px 0px 30px 0%"
-            }
-          },
-          {
-            "kind": "stack",
-            "children": [
-              {
-                "kind": "body",
-                "html": "Burbank offers a wide range of opportunities from its network of world-renowned studios, accessible airport, and recreational activities.",
-                "role": "text1",
-                "style": {
-                  "margin-right": "20%"
-                }
-              },
-              {
-                "kind": "stack",
-                "children": [
-                  {
-                    "kind": "raw",
-                    "html": "<a class=\"ib middle buttons2\" href=\"https://dv4tl7yyk1zlp.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/1b5b96c1-16fb-4d8b-8cb0-f71938af22c0.pdf\">Burbank Incentives</a>"
+            "token": {
+              "cols": 2,
+              "ratio": 60
+            },
+            "node": {
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "heading",
+                      "level": 4,
+                      "html": "local amenities",
+                      "role": "text5"
+                    },
+                    {
+                      "kind": "media",
+                      "media": {
+                        "kind": "image",
+                        "url": "https://d3syaxnfm3oj0e.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png",
+                        "alt": "lines-blue.png",
+                        "width": 50,
+                        "aspect": 18.978,
+                        "fit": "contain"
+                      }
+                    }
+                  ],
+                  "style": {
+                    "_valign": "middle"
                   }
-                ],
-                "style": {
-                  "padding": "40px 0px 0px"
+                },
+                {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "heading",
+                      "level": 4,
+                      "html": "a city full of possibilities",
+                      "role": "text11"
+                    }
+                  ],
+                  "style": {
+                    "padding": "20px 0px 30px 0%",
+                    "_valign": "middle"
+                  }
+                },
+                {
+                  "kind": "stack",
+                  "children": [
+                    {
+                      "kind": "body",
+                      "html": "Burbank offers a wide range of opportunities from its network of world-renowned studios, accessible airport, and recreational activities.",
+                      "role": "text1",
+                      "style": {
+                        "margin-right": "20%"
+                      }
+                    },
+                    {
+                      "kind": "stack",
+                      "children": [
+                        {
+                          "kind": "raw",
+                          "html": "<a class=\"ib middle buttons2\" href=\"https://dv4tl7yyk1zlp.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/1b5b96c1-16fb-4d8b-8cb0-f71938af22c0.pdf\">Burbank Incentives</a>"
+                        }
+                      ],
+                      "style": {
+                        "padding": "40px 0px 0px"
+                      }
+                    }
+                  ],
+                  "style": {
+                    "_valign": "middle"
+                  }
                 }
-              }
-            ]
+              ]
+            }
           }
         ]
       }
@@ -1052,7 +1103,8 @@
                       }
                     ],
                     "style": {
-                      "padding": "8% 0px 30px 4%"
+                      "padding": "8% 0px 30px 4%",
+                      "_valign": "middle"
                     }
                   }
                 }

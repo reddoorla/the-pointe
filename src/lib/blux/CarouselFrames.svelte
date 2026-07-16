@@ -51,12 +51,15 @@
             class="absolute inset-0 h-full w-full object-cover"
           />
           {#if frame.caption}
-            <!-- The source caption card: white, centered on the frame, 15px/30px padding. -->
+            <!-- The source caption: a full-content-width white bar anchored
+                 near the top of the slide (the original's .blocks0 bar is
+                 1280px wide with 15px/30px padding, inset ~80px from the top)
+                 — not a floating chip. -->
             <figcaption
-              class="absolute inset-0 flex items-center justify-center"
+              class="absolute inset-x-0 top-0 flex justify-center px-4 pt-20"
             >
               <span
-                class={`bg-white px-[30px] py-[15px] text-center ${frame.role ? `txt-role-${frame.role}` : ""}`}
+                class={`w-full max-w-[1280px] bg-white px-[30px] py-[15px] text-center ${frame.role ? `txt-role-${frame.role}` : ""}`}
                 >{frame.caption}</span
               >
             </figcaption>

@@ -44,16 +44,24 @@
     };
   };
 
-  // A container node (row/stack) may carry a "card" background — a Blux
-  // `.blocks0` wrapper's inline background-color the emit stage threaded onto
-  // the node when it peeled the wrapper. Applied inline so the fill sits behind
-  // the whole box (e.g. band 3's white stats card).
-  const containerStyle = (style?: Record<string, string>) =>
-    style
+  // A container node (row/stack) may carry a "card" box — a peeled Blux
+  // wrapper's inline background-color/padding the emit stage threaded onto the
+  // node. Applied inline so the box wraps the whole node (e.g. band 3's white
+  // stats card). Underscore-prefixed keys are presentation HINTS (e.g.
+  // `_valign`) consumed by the layout below, never valid CSS — strip them.
+  const containerStyle = (style?: Record<string, string>) => {
+    const decls = style
       ? Object.entries(style)
+          .filter(([k]) => !k.startsWith("_"))
           .map(([k, v]) => `${k}:${v}`)
-          .join(";")
-      : undefined;
+      : [];
+    return decls.length ? decls.join(";") : undefined;
+  };
+
+  // Does a cell's node carry the `_valign: middle` hint (a peeled valignmiddle
+  // wrapper)? Only container/text nodes have a style slot.
+  const valignMiddle = (n: RenderNode) =>
+    "style" in n && n.style?.["_valign"] === "middle";
 </script>
 
 <!-- Render-faithful fallback: reconstructs a band's parsed node tree.
@@ -93,9 +101,16 @@
     data-grid-row
   >
     {#each node.cells as cell, i (i)}
+      <!-- A cell whose node carries the `_valign: middle` hint (a peeled
+           valignmiddle wrapper) centers against its row siblings — the
+           original's side captions sit centered on their photos. -->
       <div
         data-grid-cell
-        class="min-w-0 basis-full md:basis-(--cell-basis)"
+        class="min-w-0 basis-full md:basis-(--cell-basis) {valignMiddle(
+          cell.node,
+        )
+          ? 'self-center'
+          : ''}"
         style:--cell-basis={bases[i] ?? "auto"}
       >
         <Grid node={cell.node} {map} panelState={panels} />
@@ -148,7 +163,7 @@
   {@html node.html}
 {:else if node.kind === "widget"}
   {#if node.widget.type === "map" && map}
-    <LocationMap {map} panelState={panels} />
+    <LocationMap {map} onselect={(i) => (panels.active = i)} />
   {:else}
     <div data-widget={node.widget.type} class="min-h-64 w-full"></div>
   {/if}
