@@ -44,13 +44,15 @@
         "text-align": "center",
         "vertical-align": "middle",
         "_max-content-width": "1280px",
-        "_contentPadding": "120px 6% 120px 6%",
+        "_contentPadding": "120px 4% 120px 4%",
         "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "background": {
         "kind": "image",
         "url": "https://images.prismic.io/the-pointe/qSnYlKx8o1X4P3J7_a732d1e4-59be-42ba-b87f-5acea9b3c4b9.png?auto=format,compress",
-        "alt": "bg-lines-4.png"
+        "alt": "bg-lines-4.png",
+        "fit": "auto",
+        "position": "right bottom"
       },
       "split": {
         "mediaSide": "right",
@@ -67,45 +69,72 @@
           "kind": "stack",
           "children": [
             {
-              "kind": "heading",
-              "level": 1,
-              "html": "The Pointe",
-              "role": "text5"
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "heading",
+                  "level": 1,
+                  "html": "The Pointe",
+                  "role": "text5"
+                },
+                {
+                  "kind": "media",
+                  "media": {
+                    "kind": "image",
+                    "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
+                    "alt": "lines-blue.png",
+                    "width": 50,
+                    "aspect": 18.978,
+                    "fit": "contain"
+                  }
+                }
+              ]
             },
             {
-              "kind": "media",
-              "media": {
-                "kind": "image",
-                "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
-                "alt": "lines-blue.png",
-                "width": 50,
-                "aspect": 18.978,
-                "fit": "contain"
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "heading",
+                  "level": 4,
+                  "html": "a monument <br>of excellence",
+                  "role": "text11"
+                }
+              ],
+              "style": {
+                "padding": "20px 0px 30px"
               }
-            },
-            {
-              "kind": "heading",
-              "level": 4,
-              "html": "a monument <br>of excellence",
-              "role": "text11"
             },
             {
               "kind": "body",
               "html": "Nestled among the biggest names in entertainment, The Pointe  is a modern and elegant haven for the finest tenants in Burbank.",
-              "role": "text1"
+              "role": "text1",
+              "style": {
+                "margin-right": "20%"
+              }
             },
             {
-              "kind": "media",
-              "media": {
-                "kind": "image",
-                "url": "https://images.prismic.io/the-pointe/PDAnjbYv1xPkjqiw_e15eb8af-95eb-4aac-b03e-ca1990de534e.png?auto=format,compress",
-                "alt": "pointe-placeholder-1.png",
-                "width": 1334,
-                "aspect": 78.111,
-                "fit": "contain"
+              "kind": "stack",
+              "children": [
+                {
+                  "kind": "media",
+                  "media": {
+                    "kind": "image",
+                    "url": "https://images.prismic.io/the-pointe/PDAnjbYv1xPkjqiw_e15eb8af-95eb-4aac-b03e-ca1990de534e.png?auto=format,compress",
+                    "alt": "pointe-placeholder-1.png",
+                    "width": 1334,
+                    "aspect": 78.111,
+                    "fit": "contain"
+                  }
+                }
+              ],
+              "style": {
+                "padding": "100px 0px 0px"
               }
             }
-          ]
+          ],
+          "style": {
+            "padding": "80px 4% 0px"
+          }
         }
       }
     },
@@ -466,12 +495,23 @@
                     "ratio": 30
                   },
                   "node": {
-                    "kind": "body",
-                    "html": "Renew and recover with exclusive access to a state-of-the-art <a href=\"https://www.tbpfit.com/\" class=\"links\">FIT Health Club</a> with full-service locker rooms in a spa-like atmosphere. <br>",
-                    "role": "text14"
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "body",
+                        "html": "Renew and recover with exclusive access to a state-of-the-art <a href=\"https://www.tbpfit.com/\" class=\"links\">FIT Health Club</a> with full-service locker rooms in a spa-like atmosphere. <br>",
+                        "role": "text14"
+                      }
+                    ],
+                    "style": {
+                      "padding": "8% 0px 30px 4%"
+                    }
                   }
                 }
-              ]
+              ],
+              "style": {
+                "padding": "20px 0px"
+              }
             }
           },
           {
@@ -487,9 +527,17 @@
                     "ratio": 30
                   },
                   "node": {
-                    "kind": "body",
-                    "html": "Enjoy exclusive access to on-site production and filming studios.",
-                    "role": "text14"
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "body",
+                        "html": "Enjoy exclusive access to on-site production and filming studios.",
+                        "role": "text14"
+                      }
+                    ],
+                    "style": {
+                      "padding": "8% 6% 40px 4%"
+                    }
                   }
                 },
                 {
@@ -509,7 +557,10 @@
                     }
                   }
                 }
-              ]
+              ],
+              "style": {
+                "padding": "20px 0px"
+              }
             }
           },
           {
@@ -542,12 +593,23 @@
                     "ratio": 30
                   },
                   "node": {
-                    "kind": "body",
-                    "html": "Head to the MRKT for a quick bite on-the-go, or dine in for a filling meal.",
-                    "role": "text14"
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "body",
+                        "html": "Head to the MRKT for a quick bite on-the-go, or dine in for a filling meal.",
+                        "role": "text14"
+                      }
+                    ],
+                    "style": {
+                      "padding": "8% 0px 30px 4%"
+                    }
                   }
                 }
-              ]
+              ],
+              "style": {
+                "padding": "20px 0px"
+              }
             }
           }
         ]
@@ -915,9 +977,17 @@
                     "ratio": 30
                   },
                   "node": {
-                    "kind": "body",
-                    "html": "Be part of the community among the biggest names in entertainment. <br>",
-                    "role": "text14"
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "body",
+                        "html": "Be part of the community among the biggest names in entertainment. <br>",
+                        "role": "text14"
+                      }
+                    ],
+                    "style": {
+                      "padding": "8% 6% 30px 4%"
+                    }
                   }
                 },
                 {
@@ -937,7 +1007,10 @@
                     }
                   }
                 }
-              ]
+              ],
+              "style": {
+                "padding": "20px 4%"
+              }
             }
           },
           {
@@ -970,12 +1043,23 @@
                     "ratio": 30
                   },
                   "node": {
-                    "kind": "body",
-                    "html": "Fly, surf, ski, all within an hour away. Plus every business partner is around the corner.<br>",
-                    "role": "text14"
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "body",
+                        "html": "Fly, surf, ski, all within an hour away. Plus every business partner is around the corner.<br>",
+                        "role": "text14"
+                      }
+                    ],
+                    "style": {
+                      "padding": "8% 0px 30px 4%"
+                    }
                   }
                 }
-              ]
+              ],
+              "style": {
+                "padding": "20px 4%"
+              }
             }
           },
           {
@@ -991,9 +1075,17 @@
                     "ratio": 30
                   },
                   "node": {
-                    "kind": "body",
-                    "html": "Day or night, Burbank delights with vibrant energy and one-of-a-kind character.",
-                    "role": "text14"
+                    "kind": "stack",
+                    "children": [
+                      {
+                        "kind": "body",
+                        "html": "Day or night, Burbank delights with vibrant energy and one-of-a-kind character.",
+                        "role": "text14"
+                      }
+                    ],
+                    "style": {
+                      "padding": "8% 6% 40px 4%"
+                    }
                   }
                 },
                 {
@@ -1002,27 +1094,21 @@
                     "ratio": 70
                   },
                   "node": {
-                    "kind": "stack",
-                    "children": [
-                      {
-                        "kind": "media",
-                        "media": {
-                          "kind": "image",
-                          "url": "https://images.prismic.io/the-pointe/1EUpmAUXwGz6-_7z_122c1f54-872a-40af-8437-a6a226ad968a.jpg?auto=format,compress",
-                          "alt": "TBP_Burbank_women_coffee-web.jpg",
-                          "width": 1080,
-                          "aspect": 66.667,
-                          "fit": "cover"
-                        }
-                      },
-                      {
-                        "kind": "raw",
-                        "html": ""
-                      }
-                    ]
+                    "kind": "media",
+                    "media": {
+                      "kind": "image",
+                      "url": "https://images.prismic.io/the-pointe/1EUpmAUXwGz6-_7z_122c1f54-872a-40af-8437-a6a226ad968a.jpg?auto=format,compress",
+                      "alt": "TBP_Burbank_women_coffee-web.jpg",
+                      "width": 1080,
+                      "aspect": 66.667,
+                      "fit": "cover"
+                    }
                   }
                 }
-              ]
+              ],
+              "style": {
+                "padding": "20px 4%"
+              }
             }
           }
         ]
