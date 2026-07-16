@@ -319,6 +319,9 @@
   line-height: 26px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+  /* The style's own block margin (site.json .text5) — Blux's stack rhythm.
+     Collapses against adjacent blocks in normal flow, like the original. */
+  margin: 10px 0;
 }
 .txt-role-text8 {
   font-family: var(--font-body);
@@ -327,6 +330,8 @@
   line-height: 28px;
   letter-spacing: normal;
   text-transform: none;
+  /* site.json .text8 margin — see .txt-role-text5. */
+  margin: 10px 0;
 }
 .txt-role-text11 {
   font-family: var(--font-heading);
