@@ -106,9 +106,12 @@
   <!-- Blux stacks blocks in NORMAL FLOW: the vertical rhythm is the text
        styles' own block margins (txt-role-* margin, e.g. Grid Titles' 10px 0),
        collapsing between neighbors exactly like the original — not a flex gap,
-       which can't collapse and overshoots. A stack may also carry a card
-       background (a peeled `.blocks0` wrapper's fill). -->
-  <div style={containerStyle(node.style)}>
+       which can't collapse and overshoots. flow-root CONTAINS the children's
+       margins at the stack boundary, like the original's block-content
+       clearfix — a grid cell's stack keeps its blocks' margins inside the
+       cell instead of leaking them into (or collapsing with) its siblings.
+       A stack may also carry a card box (a peeled wrapper's fill/inset). -->
+  <div class="flow-root" style={containerStyle(node.style)}>
     {#each node.children as child, i (i)}
       <Grid node={child} {map} panelState={panels} />
     {/each}

@@ -632,47 +632,60 @@
         "vertical-align": "middle",
         "_max-content-width": "1280px",
         "_contentPadding": "120px 4% 120px 4%",
-        "_column-width": "699px",
-        "_column-side": "left",
         "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "background": {
         "kind": "image",
-        "url": "https://images.prismic.io/the-pointe/z2ekZ3_ZKFpJUl8G_673cb1d4-af95-4e81-a5dd-5018d4af5e86.png?auto=format,compress",
-        "alt": "bg-lines-5.png"
+        "url": "https://d3syaxnfm3oj0e.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/673cb1d4-af95-4e81-a5dd-5018d4af5e86.png",
+        "alt": "bg-lines-5.png",
+        "fit": "auto",
+        "position": "left bottom"
       },
       "tree": {
         "kind": "stack",
         "children": [
           {
-            "kind": "heading",
-            "level": 4,
-            "html": "a property within",
-            "role": "text5",
+            "kind": "stack",
+            "children": [
+              {
+                "kind": "heading",
+                "level": 4,
+                "html": "a property within",
+                "role": "text5",
+                "style": {
+                  "color": "rgb(0, 0, 0)"
+                }
+              },
+              {
+                "kind": "media",
+                "media": {
+                  "kind": "image",
+                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/bf56be7d-863c-4f44-8247-6d92ea7762a9.png",
+                  "alt": "40px_lines.png",
+                  "width": 40,
+                  "aspect": 17.5,
+                  "fit": "contain"
+                }
+              }
+            ]
+          },
+          {
+            "kind": "stack",
+            "children": [
+              {
+                "kind": "media",
+                "media": {
+                  "kind": "image",
+                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/b640649d-05cf-40c1-9edc-f3fc9d427c76.png",
+                  "alt": "TBP-Logo-Outline.png",
+                  "width": 996,
+                  "aspect": 6.124,
+                  "fit": "contain"
+                }
+              }
+            ],
             "style": {
-              "color": "rgb(0, 0, 0)"
-            }
-          },
-          {
-            "kind": "media",
-            "media": {
-              "kind": "image",
-              "url": "https://images.prismic.io/the-pointe/z8yoZAoEZAqy5KCN_bf56be7d-863c-4f44-8247-6d92ea7762a9.png?auto=format,compress",
-              "alt": "40px_lines.png",
-              "width": 40,
-              "aspect": 17.5,
-              "fit": "contain"
-            }
-          },
-          {
-            "kind": "media",
-            "media": {
-              "kind": "image",
-              "url": "https://images.prismic.io/the-pointe/X6YGpBsbrrwdi1ff_b640649d-05cf-40c1-9edc-f3fc9d427c76.png?auto=format,compress",
-              "alt": "TBP-Logo-Outline.png",
-              "width": 996,
-              "aspect": 6.124,
-              "fit": "contain"
+              "padding": "40px 4% 30px 0%"
             }
           },
           {
@@ -700,7 +713,7 @@
             "kind": "media",
             "media": {
               "kind": "video",
-              "url": "https://the-pointe.cdn.prismic.io/the-pointe/umyIrT5aU5dans1-_c023afe4-996f-4013-83ab-2634ea55355d.mp4",
+              "url": "https://dv4tl7yyk1zlp.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/c023afe4-996f-4013-83ab-2634ea55355d.mp4",
               "alt": "TBP_vid.mp4",
               "aspect": 56.25,
               "playback": {
@@ -743,14 +756,22 @@
                             "spacing": 20
                           },
                           "node": {
-                            "kind": "media",
-                            "media": {
-                              "kind": "image",
-                              "url": "https://images.prismic.io/the-pointe/x4uOQMZTS0kpOOtx_cfc17af2-ff1f-40a4-a5bf-4123cd5f355c.png?auto=format,compress",
-                              "alt": "worthe.png",
-                              "width": 120,
-                              "aspect": 26.009,
-                              "fit": "contain"
+                            "kind": "stack",
+                            "children": [
+                              {
+                                "kind": "media",
+                                "media": {
+                                  "kind": "image",
+                                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/cfc17af2-ff1f-40a4-a5bf-4123cd5f355c.png",
+                                  "alt": "worthe.png",
+                                  "width": 120,
+                                  "aspect": 26.009,
+                                  "fit": "contain"
+                                }
+                              }
+                            ],
+                            "style": {
+                              "padding": "10px 40px 6px 0px"
                             }
                           }
                         },
@@ -760,14 +781,22 @@
                             "spacing": 20
                           },
                           "node": {
-                            "kind": "media",
-                            "media": {
-                              "kind": "image",
-                              "url": "https://images.prismic.io/the-pointe/N_SqrV9yqYJ5sgen_966adedb-0315-4afd-b070-8c89f8792267.png?auto=format,compress",
-                              "alt": "Blackstone.png",
-                              "width": 160,
-                              "aspect": 39.576,
-                              "fit": "contain"
+                            "kind": "stack",
+                            "children": [
+                              {
+                                "kind": "media",
+                                "media": {
+                                  "kind": "image",
+                                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/26c9ecb9-bc35-4562-8155-fadfee8df2b2/966adedb-0315-4afd-b070-8c89f8792267.png",
+                                  "alt": "Blackstone.png",
+                                  "width": 160,
+                                  "aspect": 39.576,
+                                  "fit": "contain"
+                                }
+                              }
+                            ],
+                            "style": {
+                              "padding": "10px 40px 0px 0px"
                             }
                           }
                         }
@@ -776,7 +805,10 @@
                   ]
                 }
               }
-            ]
+            ],
+            "style": {
+              "padding": "20px 0px 0px"
+            }
           }
         ]
       }
@@ -787,48 +819,77 @@
         "vertical-align": "middle",
         "_max-content-width": "1280px",
         "_contentPadding": "120px 4% 120px 4%",
-        "_column-width": "699px",
-        "_column-side": "left",
         "_contentPaddingMobile": "80px 4% 80px 4%"
       },
       "background": {
         "kind": "image",
-        "url": "https://images.prismic.io/the-pointe/vqfi923-jp-vkvVF_6dd54dfc-b4d1-4ef2-8165-a1f2421668bf.png?auto=format,compress",
-        "alt": "bg-lines-3.png"
+        "url": "https://d3syaxnfm3oj0e.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/6dd54dfc-b4d1-4ef2-8165-a1f2421668bf.png",
+        "alt": "bg-lines-3.png",
+        "position": "left top"
       },
       "tree": {
         "kind": "stack",
         "children": [
           {
-            "kind": "heading",
-            "level": 4,
-            "html": "local amenities",
-            "role": "text5"
+            "kind": "stack",
+            "children": [
+              {
+                "kind": "heading",
+                "level": 4,
+                "html": "local amenities",
+                "role": "text5"
+              },
+              {
+                "kind": "media",
+                "media": {
+                  "kind": "image",
+                  "url": "https://d3syaxnfm3oj0e.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png",
+                  "alt": "lines-blue.png",
+                  "width": 50,
+                  "aspect": 18.978,
+                  "fit": "contain"
+                }
+              }
+            ]
           },
           {
-            "kind": "media",
-            "media": {
-              "kind": "image",
-              "url": "https://images.prismic.io/the-pointe/5sY2iRwQQdJRiGHP_ec0c6ec6-45b9-4ac8-84e5-0438c84629b9.png?auto=format,compress",
-              "alt": "lines-blue.png",
-              "width": 50,
-              "aspect": 18.978,
-              "fit": "contain"
-            }
-          },
-          {
-            "kind": "heading",
-            "level": 4,
-            "html": "a city full of possibilities",
-            "role": "text11"
-          },
-          {
-            "kind": "body",
-            "html": "Burbank offers a wide range of opportunities from its network of world-renowned studios, accessible airport, and recreational activities.",
-            "role": "text1",
+            "kind": "stack",
+            "children": [
+              {
+                "kind": "heading",
+                "level": 4,
+                "html": "a city full of possibilities",
+                "role": "text11"
+              }
+            ],
             "style": {
-              "margin-right": "20%"
+              "padding": "20px 0px 30px 0%"
             }
+          },
+          {
+            "kind": "stack",
+            "children": [
+              {
+                "kind": "body",
+                "html": "Burbank offers a wide range of opportunities from its network of world-renowned studios, accessible airport, and recreational activities.",
+                "role": "text1",
+                "style": {
+                  "margin-right": "20%"
+                }
+              },
+              {
+                "kind": "stack",
+                "children": [
+                  {
+                    "kind": "raw",
+                    "html": "<a class=\"ib middle buttons2\" href=\"https://dv4tl7yyk1zlp.cloudfront.net/ea3c0e4e-aa87-4d1b-adaa-cb250234ec3c/1b5b96c1-16fb-4d8b-8cb0-f71938af22c0.pdf\">Burbank Incentives</a>"
+                  }
+                ],
+                "style": {
+                  "padding": "40px 0px 0px"
+                }
+              }
+            ]
           }
         ]
       }
