@@ -123,16 +123,19 @@ describe("LocationMap", () => {
     expect(glyphs()).toEqual(["+", "−", "+"]);
   });
 
-  it("selecting a tab writes the shared panelState index", async () => {
-    const panelState = { active: 0 };
+  it("selecting a tab notifies the owner via onselect (no prop mutation)", async () => {
+    const seen: number[] = [];
     const { getAllByRole } = render(LocationMap, {
-      props: { map: config, panelState },
+      props: { map: config, onselect: (i: number) => seen.push(i) },
     });
     const chips = getAllByRole("button");
     const third = chips[2];
     if (!third) throw new Error("missing chip");
     await fireEvent.click(third);
-    expect(panelState.active).toBe(2);
+    expect(seen).toEqual([2]);
+    // re-clicking the active tab does not re-notify
+    await fireEvent.click(third);
+    expect(seen).toEqual([2]);
   });
 
   it("chips are radio-style: first pressed by default, click moves the press", async () => {

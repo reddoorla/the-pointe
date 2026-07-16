@@ -398,6 +398,12 @@
 .ib {
   display: inline-block;
 }
+/* Text links (`ib middle links`) are underlined by the Blux platform CSS; an
+   inline-block box does not inherit an ancestor's text-decoration, so the
+   affordance must be declared on the anchor itself. */
+.links {
+  text-decoration: underline;
+}
 /* buttons0 — White Buttons */
 .buttons0 {
   padding: 6px 0 6px 0;
