@@ -328,6 +328,13 @@ describe("Grid (recursive fallback)", () => {
     expect(panelCells()).toEqual([false, true]);
     await fireEvent.click(getByRole("button", { name: "Offices" }));
     expect(panelCells()).toEqual([true, false]);
+    // The panel fade-in rides a :global data-attribute selector, so the cells
+    // stay hash-free: exactly `hidden` or nothing. (A scoped selector would
+    // stamp Svelte's scope class on every dynamic-class element here.)
+    const classes = [
+      ...container.querySelectorAll("[data-panels] > [data-grid-cell]"),
+    ].map((c) => (c as HTMLElement).className);
+    expect(classes.sort()).toEqual(["", "hidden"]);
   });
 
   it("a panels row without toggles renders its first cell (no crash, nothing hidden twice)", () => {

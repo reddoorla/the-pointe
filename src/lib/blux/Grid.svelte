@@ -168,3 +168,25 @@
     <div data-widget={node.widget.type} class="min-h-64 w-full"></div>
   {/if}
 {/if}
+
+<style>
+  /* Switching map tabs fades the incoming panel in. The keyframes replay each
+     time a cell leaves display:none (Tailwind's .hidden), so every switch —
+     not just the first — animates; siblings stay mounted, so nothing reloads.
+     The original clickMap snapped panels instantly (its media loader supplied
+     the only fade); 250ms ease-in-out is the Blux runtime's own animate()
+     default. Deliberate polish, gated off under prefers-reduced-motion.
+     :global keeps Svelte from stamping its scope hash onto every
+     dynamic-class element in this component (text nodes pin clean class
+     lists); the data-attribute pair scopes it to panels rows regardless. */
+  @media (prefers-reduced-motion: no-preference) {
+    :global([data-panels] > [data-grid-cell]:not(.hidden)) {
+      animation: blux-panel-fade-in 250ms ease-in-out;
+    }
+    @keyframes -global-blux-panel-fade-in {
+      from {
+        opacity: 0;
+      }
+    }
+  }
+</style>
