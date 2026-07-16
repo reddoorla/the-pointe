@@ -103,10 +103,12 @@
     {/each}
   </div>
 {:else if node.kind === "stack"}
-  <!-- Blux stacks its block elements with vertical rhythm between them; the
-       flat stack rendered them flush. A modest column gap restores it. A stack
-       may also carry a card background (a peeled `.blocks0` wrapper's fill). -->
-  <div class="flex flex-col gap-6" style={containerStyle(node.style)}>
+  <!-- Blux stacks blocks in NORMAL FLOW: the vertical rhythm is the text
+       styles' own block margins (txt-role-* margin, e.g. Grid Titles' 10px 0),
+       collapsing between neighbors exactly like the original — not a flex gap,
+       which can't collapse and overshoots. A stack may also carry a card
+       background (a peeled `.blocks0` wrapper's fill). -->
+  <div style={containerStyle(node.style)}>
     {#each node.children as child, i (i)}
       <Grid node={child} {map} panelState={panels} />
     {/each}
